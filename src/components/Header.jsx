@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, Truck, Sparkles, Sprout, ArrowRight, ShieldCheck } from 'lucide-react';
 import { siteData } from '../data/siteData';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Header({ onOpenSearch, onOpenDrawer }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,7 +16,19 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Also connect to GSAP ScrollTrigger if available
+    const st = ScrollTrigger.create({
+      start: 20,
+      onUpdate: (self) => {
+        setIsScrolled(self.scroll() > 20);
+      }
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      st.kill();
+    };
   }, []);
 
   // Close menus on route change
@@ -39,7 +52,7 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
 
   return (
     <header
-      className={`w-full z-40 sticky top-0 bg-white transition-all duration-300 ${
+      className={`w-full z-40 fixed top-0 left-0 bg-white transition-all duration-300 ${
         isScrolled
           ? 'shadow-md py-3'
           : 'border-b border-[#e8e8e9] py-4 lg:py-5'

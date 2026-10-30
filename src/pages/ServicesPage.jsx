@@ -30,7 +30,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 2. Service Vertical 1: Automotive Sourcing & Logistics (Section 3.1) */}
-      <section id="car-import" className="w-full py-[110px] bg-white border-b border-[#e8e8e9]">
+      <section id="car-import" className="w-full py-[110px] bg-white border-b border-[#e8e8e9] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="max-w-3xl mb-12">
             <div className="inline-flex items-center space-x-2 bg-[#ff5e14] text-white px-3 py-1 text-[11px] font-heading font-black tracking-widest uppercase mb-4">
@@ -89,7 +89,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 3. Service Vertical 2: Beauty & Hair Care Products (Section 3.2) */}
-      <section id="beauty" className="w-full py-[110px] bg-[#fcfcfd] border-b border-[#e8e8e9]">
+      <section id="beauty" className="w-full py-[110px] bg-[#fcfcfd] border-b border-[#e8e8e9] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
             <div className="lg:col-span-6">
@@ -156,7 +156,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 4. Service Vertical 3: Agriculture & Food Commodities (Section 3.3) */}
-      <section id="agriculture" className="w-full py-[110px] bg-white">
+      <section id="agriculture" className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
             <div className="lg:col-span-6 order-2 lg:order-1">

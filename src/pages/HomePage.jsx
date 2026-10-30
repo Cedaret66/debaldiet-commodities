@@ -19,37 +19,59 @@ export default function HomePage({ onSelectProject }) {
       <HeroSlider />
 
       {/* 2. Services Header & 4 Cards (Nodes 4294967350 & 4294967355) */}
-      <FeatureBanners />
+      <div className="fade-in-scroll">
+        <FeatureBanners />
+      </div>
 
       {/* 3. Full Project Management Section (Node 4294967432) */}
-      <ProjectManagement />
+      <div className="fade-in-scroll">
+        <ProjectManagement />
+      </div>
 
       {/* 4. Featured Projects Showcase (Node 4294967462) */}
-      <ProjectsPortfolio onSelectProject={onSelectProject} />
+      <div className="fade-in-scroll">
+        <ProjectsPortfolio onSelectProject={onSelectProject} />
+      </div>
 
       {/* 5. Specialized Services Grid: Interior, Graphic, Product (Node 4294967604) */}
-      <ServicesSection />
+      <div className="fade-in-scroll">
+        <ServicesSection />
+      </div>
 
-      {/* 7. Full-Width Parallax Management Feature (Node 4294967677) */}
-      <ParallaxBanner />
+      {/* 6. Full-Width Parallax Management Feature (Node 4294967677) */}
+      <div className="fade-in-scroll">
+        <ParallaxBanner />
+      </div>
 
-      {/* 8. Numerical Stats Counters (Node 4294967697) */}
-      <StatsCounter />
+      {/* 7. Numerical Stats Counters (Node 4294967697) */}
+      <div className="fade-in-scroll">
+        <StatsCounter />
+      </div>
 
-      {/* 9. Client Testimonials Slider (Node 4294967746) */}
-      <TestimonialsSlider />
+      {/* 8. Client Testimonials Slider (Node 4294967746) */}
+      <div className="fade-in-scroll">
+        <TestimonialsSlider />
+      </div>
 
-      {/* 10. Professionals Leadership Team (Node 4294967912) */}
-      <TeamSection />
+      {/* 9. Professionals Leadership Team (Node 4294967912) */}
+      <div className="fade-in-scroll">
+        <TeamSection />
+      </div>
 
-      {/* 11. Performance & Skill Progress Rings (Node 4294967952) */}
-      <SkillsPieCharts />
+      {/* 10. Performance & Skill Progress Rings (Node 4294967952) */}
+      <div className="fade-in-scroll">
+        <SkillsPieCharts />
+      </div>
 
-      {/* 12. Accordions Section (Node 4294967997) */}
-      <AccordionSection />
+      {/* 11. Accordions Section (Node 4294967997) */}
+      <div className="fade-in-scroll">
+        <AccordionSection />
+      </div>
 
-      {/* 13. Latest News & Articles Grid (Node 4294968050) */}
-      <LatestNews />
+      {/* 12. Latest News & Articles Grid (Node 4294968050) */}
+      <div className="fade-in-scroll">
+        <LatestNews />
+      </div>
     </div>
   );
 }

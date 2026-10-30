@@ -31,7 +31,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Company Overview & Our Story (Section 2.1) */}
-      <section className="w-full py-[110px] bg-white">
+      <section className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Photo & Badge */}
@@ -86,7 +86,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Mission & Vision (Section 2.2) */}
-      <section className="w-full py-[100px] bg-[#f8f9fa] border-y border-[#e8e8e9]">
+      <section className="w-full py-[100px] bg-[#f8f9fa] border-y border-[#e8e8e9] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Vision */}
@@ -131,7 +131,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Core Values Matrix (Section 2.2 Table) */}
-      <section className="w-full py-[110px] bg-white">
+      <section className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="max-w-2xl mb-12">
             <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
@@ -169,7 +169,7 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Executive Profile & Leadership Message (Section 2.3) */}
-      <section className="w-full py-[110px] bg-[#00235a] text-white">
+      <section className="w-full py-[110px] bg-[#00235a] text-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8">
@@ -220,7 +220,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. Testimonials Slider */}
-      <section className="w-full py-[120px] bg-white">
+      <section className="w-full py-[120px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="mb-12">
             <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">

@@ -7,8 +7,9 @@ export default function ParallaxBanner() {
 
   return (
     <section
-      className="relative w-full py-[100px] lg:py-[140px] bg-cover bg-center font-body"
+      className="relative w-full py-[100px] lg:py-[140px] bg-cover bg-center font-body overflow-hidden"
       style={{ backgroundImage: `url('/home-parallax-bg.jpg')` }}
+      data-speed="0.95"
     >
       <div className="absolute inset-0 bg-black/40" />
       <div className="relative max-w-[1300px] mx-auto px-6 flex justify-end">
