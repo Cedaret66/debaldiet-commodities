@@ -166,17 +166,9 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
           <div className="flex items-center space-x-3">
             <Link
               to="/contact-us"
-              className="hidden sm:inline-flex items-center justify-center h-[42px] px-5 bg-[#ff5e14] text-white font-heading font-bold text-[13px] uppercase tracking-[1px] hover:bg-[#001659] transition-colors duration-300 shadow-sm"
+              className="inline-flex items-center justify-center h-[42px] px-5 bg-[#ff5e14] text-white font-heading font-bold text-[13px] uppercase tracking-[1px] hover:bg-[#001659] transition-colors duration-300 shadow-sm"
             >
               Request a Quote
-            </Link>
-
-            <Link
-              to="/our-services#car-import"
-              className="hidden md:inline-flex items-center space-x-1.5 h-[42px] px-4 border border-[#001659] text-[#001659] font-heading font-bold text-[13px] uppercase tracking-[1px] hover:bg-[#001659] hover:text-white transition-colors duration-300"
-            >
-              <Truck className="w-4 h-4 text-[#ff5e14]" />
-              <span>Track Shipment</span>
             </Link>
 
             {/* Mobile Hamburger Toggle */}
@@ -265,13 +257,6 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
                 className="w-full text-center py-3 bg-[#ff5e14] text-white font-heading font-bold uppercase text-xs tracking-wider"
               >
                 Request a Quote
-              </Link>
-              <Link
-                to="/our-services#car-import"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-3 border border-[#001659] text-[#001659] font-heading font-bold uppercase text-xs tracking-wider"
-              >
-                Track Shipment
               </Link>
             </div>
           </nav>
