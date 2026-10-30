@@ -65,20 +65,6 @@ export default function ContactPage() {
               <div className="space-y-6 pt-4 border-t border-gray-100">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-[#001659] text-white flex items-center justify-center rounded-sm flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-[#ff5e14]" />
-                  </div>
-                  <div>
-                    <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#565969] block mb-1">
-                      OFFICE LOCATION
-                    </span>
-                    <p className="font-heading font-bold text-[18px] text-[#001659]">
-                      {contact.headquarters.location}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#001659] text-white flex items-center justify-center rounded-sm flex-shrink-0">
                     <Phone className="w-5 h-5 text-[#ff5e14]" />
                   </div>
                   <div>
@@ -142,20 +128,6 @@ export default function ContactPage() {
                       {contact.headquarters.schedule}
                     </p>
                   </div>
-                </div>
-              </div>
-
-              {/* Map Preview */}
-              <div className="w-full h-[220px] overflow-hidden border border-[#e8e8e9] relative shadow-sm">
-                <img
-                  src="/contact-map.png"
-                  alt="Accra Office Map"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-[#001659]/10 pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#ff5e14] text-white px-3 py-1.5 font-heading font-black text-xs uppercase shadow-lg flex items-center space-x-1.5">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>Mantse Drive, Accra</span>
                 </div>
               </div>
             </div>
