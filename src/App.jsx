@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import TopBar from './components/TopBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -26,9 +25,6 @@ function AppLayout() {
     <div className="min-h-screen flex flex-col bg-white text-[#303030]">
       {/* Scroll restoration helper */}
       <ScrollToTop />
-
-      {/* Top Contact & Hours Bar */}
-      <TopBar />
 
       {/* Main Navigation Header with Dedicated Routing */}
       <Header

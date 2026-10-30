@@ -11,7 +11,7 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -39,10 +39,10 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
 
   return (
     <header
-      className={`w-full z-40 transition-all duration-300 ${
+      className={`w-full z-40 sticky top-0 bg-white transition-all duration-300 ${
         isScrolled
-          ? 'fixed top-0 left-0 bg-white shadow-md py-3'
-          : 'relative bg-white border-b border-[#e8e8e9] py-4 lg:py-5'
+          ? 'shadow-md py-3'
+          : 'border-b border-[#e8e8e9] py-4 lg:py-5'
       }`}
     >
       <div className="max-w-[1300px] mx-auto px-6">
