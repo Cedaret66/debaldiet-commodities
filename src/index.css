@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Modal guidance compliance */
+  dialog:modal {
+    overscroll-behavior: contain;
+  }
+  
+  dialog::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+    background: rgba(10, 18, 41, 0.75);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* Watermark typography styles */
+.section-watermark {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Yantramanav', sans-serif;
+  font-size: clamp(4rem, 12vw, 9.5rem);
+  font-weight: 900;
+  color: rgba(0, 22, 89, 0.035);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+.section-watermark-left {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  font-family: 'Yantramanav', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  font-weight: 900;
+  color: rgba(0, 22, 89, 0.035);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+/* Industrial button styling */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff5e14;
+  color: #ffffff;
+  font-family: 'Yantramanav', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background-color: #001659;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(255, 94, 20, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #001659;
+  color: #ffffff;
+  font-family: 'Yantramanav', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-secondary:hover {
+  background-color: #ff5e14;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 22, 89, 0.3);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Yantramanav', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.9rem 2.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline:hover {
+  background-color: #ffffff;
+  color: #001659;
+}
+
+/* Custom Accordion */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] summary .accordion-icon {
+  transform: rotate(90deg);
+  color: #ff5e14;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
