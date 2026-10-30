@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
 export default function HeroSlider() {
@@ -35,28 +35,15 @@ export default function HeroSlider() {
       {/* Content Container (1300px max) */}
       <div className="relative w-full h-full max-w-[1300px] mx-auto px-6 flex items-center z-10">
         <div className="max-w-3xl text-white">
-          {/* Overline */}
-          <div className="inline-flex items-center space-x-2 bg-[#ff5e14] text-white px-3.5 py-1 text-[12px] font-heading uppercase tracking-[2px] font-bold mb-4">
-            <span>{active.overline}</span>
-          </div>
-
           {/* Main Headline */}
           <h1 className="font-heading font-black text-[42px] sm:text-[58px] lg:text-[70px] text-white leading-[1.05] tracking-tight mb-5 drop-shadow-sm">
             {active.headline}
           </h1>
 
           {/* Supporting Body */}
-          <p className="font-body text-[16px] sm:text-[18px] text-white/90 leading-relaxed mb-6 max-w-2xl">
+          <p className="font-body text-[16px] sm:text-[18px] text-white/90 leading-relaxed mb-8 max-w-2xl">
             {active.body}
           </p>
-
-          {/* Banner Tag / Benefit */}
-          {active.benefitTag && (
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 text-[#ff5e14] px-4 py-1.5 text-[13px] font-heading uppercase tracking-[1.5px] font-bold mb-8">
-              <CheckCircle2 className="w-4 h-4 text-[#ff5e14]" />
-              <span className="text-white">{active.benefitTag}</span>
-            </div>
-          )}
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center gap-4">
