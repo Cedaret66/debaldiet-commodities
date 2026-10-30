@@ -3,7 +3,6 @@ import HeroSlider from '../components/HeroSlider';
 import FeatureBanners from '../components/FeatureBanners';
 import ProjectManagement from '../components/ProjectManagement';
 import ProjectsPortfolio from '../components/ProjectsPortfolio';
-import ClientsCarousel from '../components/ClientsCarousel';
 import ServicesSection from '../components/ServicesSection';
 import ParallaxBanner from '../components/ParallaxBanner';
 import StatsCounter from '../components/StatsCounter';
@@ -28,10 +27,7 @@ export default function HomePage({ onSelectProject }) {
       {/* 4. Featured Projects Showcase (Node 4294967462) */}
       <ProjectsPortfolio onSelectProject={onSelectProject} />
 
-      {/* 5. Client Logos Banner (Node 4294967549) */}
-      <ClientsCarousel />
-
-      {/* 6. Specialized Services Grid: Interior, Graphic, Product (Node 4294967604) */}
+      {/* 5. Specialized Services Grid: Interior, Graphic, Product (Node 4294967604) */}
       <ServicesSection />
 
       {/* 7. Full-Width Parallax Management Feature (Node 4294967677) */}
