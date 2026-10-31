@@ -276,12 +276,12 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-[280px] h-[360px] sm:w-[320px] sm:h-[420px] overflow-hidden border-4 border-white/20 shadow-2xl">
+              <div className="w-[280px] sm:w-[320px] aspect-[4/5] overflow-hidden border-4 border-white/20 shadow-2xl bg-[#001659] relative">
                 <EditableImage
                   path="about.leadership.image"
                   src={about.leadership?.image || '/team-1.jpg'}
                   alt={about.leadership?.name || 'Managing Director'}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   title="Change Leadership Photo"
                 />
               </div>

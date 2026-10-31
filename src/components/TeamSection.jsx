@@ -98,12 +98,12 @@ export default function TeamSection() {
             </div>
 
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-[240px] h-[300px] sm:w-[280px] sm:h-[350px] overflow-hidden border-4 border-white/20 shadow-2xl">
+              <div className="w-[260px] sm:w-[300px] aspect-[4/5] overflow-hidden border-4 border-white/20 shadow-2xl bg-[#001659] relative">
                 <EditableImage
                   path="about.leadership.image"
                   src={leadership.image || '/team-1.jpg'}
                   alt={leadership.name || 'Managing Director'}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   title="Change Leadership Photo"
                 />
               </div>
