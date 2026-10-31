@@ -318,6 +318,9 @@ export function CmsProvider({ children }) {
         cloudConfig,
         saveCloudConfig,
         isSyncing,
+        isAdminLoggedIn: isAuthenticated,
+        loginAdmin: login,
+        logoutAdmin: logout,
       }}
     >
       {children}
@@ -327,9 +330,46 @@ export function CmsProvider({ children }) {
 
 export function useCms() {
   const ctx = useContext(CmsContext);
-  if (!ctx) throw new Error('useCms must be used within a CmsProvider');
-  return ctx;
+  if (!ctx) {
+    return {
+      content: defaultSiteData,
+      isAuthenticated: false,
+      isEditMode: false,
+      toggleEditMode: () => {},
+      isDrawerOpen: false,
+      setIsDrawerOpen: () => {},
+      updateField: () => {},
+      updateContent: () => {},
+      getNestedValue: (path) => getNestedValue(defaultSiteData, path),
+      saveChanges: () => {},
+      discardChanges: () => {},
+      isDirty: false,
+      isSaving: false,
+      resetToDefault: () => {},
+      login: () => false,
+      logout: () => {},
+      toastMessage: null,
+      showToast: () => {},
+      imageModalState: { isOpen: false },
+      openImageUpload: () => {},
+      closeImageUpload: () => {},
+      uploadImageFile: async () => {},
+      cloudConfig: null,
+      saveCloudConfig: () => {},
+      isSyncing: false,
+      isAdminLoggedIn: false,
+      loginAdmin: () => false,
+      logoutAdmin: () => {},
+    };
+  }
+  return {
+    ...ctx,
+    isAdminLoggedIn: ctx.isAuthenticated,
+    loginAdmin: ctx.login,
+    logoutAdmin: ctx.logout,
+  };
 }
 
 // Backward compatibility alias for useContent
 export const useContent = useCms;
+export const ContentProvider = CmsProvider;
