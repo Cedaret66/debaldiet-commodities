@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import { useCms } from '../context/CmsContext';
+import EditableText from '../components/cms/EditableText';
 
 export default function ContactPage() {
-  const { content } = useContent();
-  const { contact } = content;
+  const { content } = useCms();
+  const contact = content.contact || {};
+  const headquarters = contact.headquarters || {};
+  const form = contact.form || {};
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,12 +37,21 @@ export default function ContactPage() {
             <span className="font-heading uppercase text-[13px] font-bold tracking-[2px] text-[#ff5e14] block mb-3">
               GET IN TOUCH WITH OUR TEAM
             </span>
-            <h1 className="font-heading font-black text-[50px] sm:text-[68px] lg:text-[76px] text-white leading-[1.05] tracking-tight mb-4">
-              Contact Us
-            </h1>
-            <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-xl font-light">
-              Connect directly with our headquarters in Accra, Ghana for vehicle orders, wholesale beauty supplies, and agricultural contracts.
-            </p>
+            <EditableText
+              path="contact.headline"
+              as="h1"
+              className="font-heading font-black text-[50px] sm:text-[68px] lg:text-[76px] text-white leading-[1.05] tracking-tight mb-4 block"
+            >
+              {contact.headline || 'Contact Us'}
+            </EditableText>
+            <EditableText
+              path="contact.subHeadline"
+              as="p"
+              multiline
+              className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-xl font-light block"
+            >
+              {contact.subHeadline || 'Connect directly with our headquarters in Accra, Ghana for vehicle orders, wholesale beauty supplies, and agricultural contracts.'}
+            </EditableText>
           </div>
         </div>
       </section>
@@ -48,15 +61,21 @@ export default function ContactPage() {
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
-            {/* Left Column: Accra Headquarters Details (Page 13) */}
+            {/* Left Column: Accra Headquarters Details */}
             <div className="lg:col-span-5 space-y-8">
               <div>
                 <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-                  ACCRA, GHANA
+                  <EditableText path="contact.headquarters.location" as="span">
+                    {headquarters.location || 'Accra, Ghana'}
+                  </EditableText>
                 </span>
-                <h2 className="font-heading font-black text-[32px] sm:text-[40px] text-[#001659] leading-tight mb-4">
-                  DeBaldiet Commodities (DC)
-                </h2>
+                <EditableText
+                  path="contact.headquarters.name"
+                  as="h2"
+                  className="font-heading font-black text-[32px] sm:text-[40px] text-[#001659] leading-tight mb-4 block"
+                >
+                  {headquarters.name || 'DeBaldiet Commodities (DC)'}
+                </EditableText>
                 <p className="font-body text-[16px] text-[#565969] leading-relaxed">
                   Our headquarters coordinates international supplier vetting, port operations, and direct customer deliveries across West Africa.
                 </p>
@@ -72,12 +91,13 @@ export default function ContactPage() {
                     <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#565969] block mb-1">
                       PHONE HOTLINE
                     </span>
-                    <a
-                      href={`tel:${contact.headquarters.phone.replace(/[^0-9+]/g, '')}`}
-                      className="font-heading font-bold text-[18px] text-[#001659] hover:text-[#ff5e14] transition-colors"
+                    <EditableText
+                      path="contact.headquarters.phone"
+                      as="div"
+                      className="font-heading font-bold text-[18px] text-[#001659]"
                     >
-                      {contact.headquarters.phone}
-                    </a>
+                      {headquarters.phone || '+233 55 166 0943'}
+                    </EditableText>
                   </div>
                 </div>
 
@@ -89,14 +109,13 @@ export default function ContactPage() {
                     <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#565969] block mb-1">
                       WHATSAPP CHANNEL
                     </span>
-                    <a
-                      href={`https://wa.me/${contact.headquarters.whatsapp.replace(/[^0-9]/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-heading font-bold text-[18px] text-[#001659] hover:text-[#ff5e14] transition-colors"
+                    <EditableText
+                      path="contact.headquarters.whatsapp"
+                      as="div"
+                      className="font-heading font-bold text-[18px] text-[#001659]"
                     >
-                      {contact.headquarters.whatsapp}
-                    </a>
+                      {headquarters.whatsapp || '+234 54 148 3758'}
+                    </EditableText>
                   </div>
                 </div>
 
@@ -108,12 +127,13 @@ export default function ContactPage() {
                     <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#565969] block mb-1">
                       OFFICIAL EMAIL
                     </span>
-                    <a
-                      href={`mailto:${contact.headquarters.email}`}
-                      className="font-heading font-bold text-[17px] text-[#001659] hover:text-[#ff5e14] transition-colors"
+                    <EditableText
+                      path="contact.headquarters.email"
+                      as="div"
+                      className="font-heading font-bold text-[17px] text-[#001659]"
                     >
-                      {contact.headquarters.email}
-                    </a>
+                      {headquarters.email || 'debaldietcommodities@gmail.com'}
+                    </EditableText>
                   </div>
                 </div>
 
@@ -125,25 +145,38 @@ export default function ContactPage() {
                     <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#565969] block mb-1">
                       OPERATING SCHEDULE
                     </span>
-                    <p className="font-heading font-bold text-[16px] text-[#001659]">
-                      {contact.headquarters.schedule}
-                    </p>
+                    <EditableText
+                      path="contact.headquarters.schedule"
+                      as="div"
+                      className="font-heading font-bold text-[16px] text-[#001659]"
+                    >
+                      {headquarters.schedule || 'Mon – Sat: 8:00 AM – 5:30 PM | Sunday: Closed'}
+                    </EditableText>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Direct Inquiry Form (Page 13) */}
+            {/* Right Column: Direct Inquiry Form */}
             <div className="lg:col-span-7 bg-[#fcfcfd] border border-[#e8e8e9] p-8 sm:p-12 shadow-sm">
               <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
                 INQUIRY FORM
               </span>
-              <h3 className="font-heading font-black text-[28px] sm:text-[34px] text-[#001659] mb-2">
-                {contact.form.title}
-              </h3>
-              <p className="font-body text-[15px] text-[#565969] mb-8">
-                {contact.form.subText}
-              </p>
+              <EditableText
+                path="contact.form.title"
+                as="h3"
+                className="font-heading font-black text-[28px] sm:text-[34px] text-[#001659] mb-2 block"
+              >
+                {form.title || 'Send Us a Direct Message'}
+              </EditableText>
+              <EditableText
+                path="contact.form.subText"
+                as="p"
+                multiline
+                className="font-body text-[15px] text-[#565969] mb-8 block"
+              >
+                {form.subText || 'Select your area of interest and our team will get in touch within 24 business hours.'}
+              </EditableText>
 
               {submitted ? (
                 <div className="p-8 bg-green-50 border border-green-200 text-center">
@@ -212,7 +245,7 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       className="w-full h-[50px] px-4 bg-white border border-[#e8e8e9] focus:outline-none focus:border-[#001659] text-[15px] transition-colors"
                     >
-                      {contact.form.servicesOptions.map((opt, idx) => (
+                      {(form.servicesOptions || []).map((opt, idx) => (
                         <option key={idx} value={opt}>
                           {opt}
                         </option>

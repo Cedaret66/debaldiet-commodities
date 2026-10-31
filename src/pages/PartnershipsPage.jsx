@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Building2, ShieldCheck, TrendingUp, Users, CheckCircle2, ArrowRight, FileCheck } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useCms } from '../context/CmsContext';
+import EditableText from '../components/cms/EditableText';
 
 export default function PartnershipsPage() {
-  const { partnerships } = siteData;
+  const { content } = useCms();
+  const partnerships = content.partnerships || {};
 
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
@@ -17,13 +19,23 @@ export default function PartnershipsPage() {
         <div className="relative w-full max-w-[1300px] mx-auto px-6">
           <div className="max-w-3xl text-white">
             <span className="font-heading uppercase text-[13px] font-bold tracking-[2px] text-[#ff5e14] block mb-3">
-              {partnerships.tagline} • {partnerships.badge}
+              <EditableText path="partnerships.tagline" as="span">
+                {partnerships.tagline || 'COMMERCIAL BANK COLLABORATION'}
+              </EditableText>
+              {' • '}
+              <EditableText path="partnerships.badge" as="span">
+                {partnerships.badge || 'B2B PROPOSAL'}
+              </EditableText>
             </span>
-            <h1 className="font-heading font-black text-[46px] sm:text-[62px] lg:text-[70px] text-white leading-[1.05] tracking-tight mb-4">
-              {partnerships.headline}
-            </h1>
+            <EditableText
+              path="partnerships.headline"
+              as="h1"
+              className="font-heading font-black text-[46px] sm:text-[62px] lg:text-[70px] text-white leading-[1.05] tracking-tight mb-4 block"
+            >
+              {partnerships.headline || 'Bank & Corporate Asset Partnership Proposal'}
+            </EditableText>
             <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-2xl font-light">
-              Structured collaboration models for commercial banks, credit unions, and corporate institutions across Ghana.
+              Structured collaboration models for commercial banks, credit unions, and corporate institutions across Ghana and Africa.
             </p>
           </div>
         </div>
@@ -39,14 +51,19 @@ export default function PartnershipsPage() {
             <h2 className="font-heading font-black text-[34px] sm:text-[46px] text-[#001659] leading-[1.15] mb-6">
               Empowering Financial Institutions with Accountable Vehicle Sourcing
             </h2>
-            <p className="font-body text-[18px] text-[#565969] leading-relaxed">
-              {partnerships.summary}
-            </p>
+            <EditableText
+              path="partnerships.summary"
+              as="p"
+              multiline
+              className="font-body text-[18px] text-[#565969] leading-relaxed block"
+            >
+              {partnerships.summary || "DeBaldiet Commodities proposes to become your bank's preferred automotive vendor."}
+            </EditableText>
           </div>
 
           {/* 2 Main Collaboration Modules */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16">
-            {partnerships.pillars.map((pillar, idx) => (
+            {(partnerships.pillars || []).map((pillar, idx) => (
               <div
                 key={idx}
                 className="bg-[#fcfcfd] border border-[#e8e8e9] p-8 sm:p-10 shadow-sm flex flex-col justify-between"
@@ -55,12 +72,21 @@ export default function PartnershipsPage() {
                   <div className="w-12 h-12 rounded-full bg-[#001659] text-white flex items-center justify-center font-heading font-black text-xl mb-6">
                     0{idx + 1}
                   </div>
-                  <h3 className="font-heading font-bold text-[24px] sm:text-[26px] text-[#001659] mb-4">
+                  <EditableText
+                    path={`partnerships.pillars[${idx}].title`}
+                    as="h3"
+                    className="font-heading font-bold text-[24px] sm:text-[26px] text-[#001659] mb-4 block"
+                  >
                     {pillar.title}
-                  </h3>
-                  <p className="font-body text-[16px] text-[#565969] leading-relaxed">
+                  </EditableText>
+                  <EditableText
+                    path={`partnerships.pillars[${idx}].desc`}
+                    as="p"
+                    multiline
+                    className="font-body text-[16px] text-[#565969] leading-relaxed block"
+                  >
                     {pillar.desc}
-                  </p>
+                  </EditableText>
                 </div>
                 <div className="mt-8 pt-4 border-t border-gray-200 flex items-center space-x-2 text-xs font-heading font-bold text-[#ff5e14] uppercase tracking-wider">
                   <CheckCircle2 className="w-4 h-4 text-[#ff5e14]" />
@@ -88,14 +114,25 @@ export default function PartnershipsPage() {
               </div>
 
               <div className="divide-y divide-gray-100 bg-white">
-                {partnerships.matrix.map((row, idx) => (
+                {(partnerships.matrix || []).map((row, idx) => (
                   <div key={idx} className="p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-gray-50 transition-colors">
                     <div className="md:col-span-4 font-heading font-bold text-[18px] text-[#001659] flex items-center space-x-2.5">
                       <span className="w-2 h-2 bg-[#ff5e14] rounded-full flex-shrink-0" />
-                      <span>{row.benefit}</span>
+                      <EditableText
+                        path={`partnerships.matrix[${idx}].benefit`}
+                        as="span"
+                      >
+                        {row.benefit}
+                      </EditableText>
                     </div>
                     <div className="md:col-span-8 font-body text-[15px] text-[#565969] leading-relaxed">
-                      {row.delivery}
+                      <EditableText
+                        path={`partnerships.matrix[${idx}].delivery`}
+                        as="div"
+                        multiline
+                      >
+                        {row.delivery}
+                      </EditableText>
                     </div>
                   </div>
                 ))}
@@ -122,14 +159,8 @@ export default function PartnershipsPage() {
               to="/contact-us"
               className="inline-flex items-center justify-center h-[50px] px-8 bg-[#ff5e14] text-white font-heading font-bold text-[14px] uppercase tracking-[1px] hover:bg-white hover:text-[#001659] transition-all duration-300"
             >
-              Schedule Partnership Meeting
+              Request Executive Meeting
             </Link>
-            <a
-              href="mailto:debaldietcommodities@gmail.com"
-              className="inline-flex items-center justify-center h-[50px] px-8 border-2 border-white text-white font-heading font-bold text-[14px] uppercase tracking-[1px] hover:bg-white hover:text-[#001659] transition-all duration-300"
-            >
-              Direct Email Inquiry
-            </a>
           </div>
         </div>
       </section>

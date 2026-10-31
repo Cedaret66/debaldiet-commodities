@@ -310,7 +310,8 @@ export const siteData = {
       email: "debaldietcommodities@gmail.com",
       quote: "Our business is built on trust and delivered promises. Whether sourcing a brand-new or low-mileage Chinese SUV, custom-speccing a vehicle to client taste, delivering virgin hair bundles to an aspiring stylist, or supplying metric tons of staple grains across Ghana and Africa, we ensure that every client experiences seamless efficiency, transparent pricing, and zero hassle.",
       image: "/team-1.jpg"
-    }
+    },
+    storyImage: "/about-project-mgmt.jpg"
   },
 
   services: {
@@ -357,7 +358,8 @@ export const siteData = {
         { title: "Hair Care & Treatments", desc: "Hydrating leave-in serums, edge glazes, sulfate-free shampoos, and reconstructive oils." },
         { title: "Beauty Accessories", desc: "Hot combs, wig bands, styling clips, and salon workstation essentials." }
       ],
-      wholesale: "We supply salon owners and beauty entrepreneurs with tiered wholesale pricing, enabling them to stock high-margin products with low minimum order quantities (MOQs) and guaranteed re-stock schedules."
+      wholesale: "We supply salon owners and beauty entrepreneurs with tiered wholesale pricing, enabling them to stock high-margin products with low minimum order quantities (MOQs) and guaranteed re-stock schedules.",
+      image: "/feature-interior.jpg"
     },
     agriculture: {
       vertical: "Vertical 03",
@@ -370,7 +372,8 @@ export const siteData = {
         { title: "Tubers & Fresh Harvest", desc: "Yam tubers, cassava, and seasonal produce." },
         { title: "Animal Feed Ingredients", desc: "Raw agricultural inputs for commercial feed mills." }
       ],
-      qualityAssurance: "All batches are screened for moisture content, foreign matter, and pest resistance before warehousing or transit, ensuring food commodities arrive in prime condition."
+      qualityAssurance: "All batches are screened for moisture content, foreign matter, and pest resistance before warehousing or transit, ensuring food commodities arrive in prime condition.",
+      image: "/feature-product.jpg"
     }
   },
 
@@ -434,6 +437,126 @@ export const siteData = {
       ]
     }
   },
+
+  buyAndSpec: {
+    hero: {
+      tagline: "EXCLUSIVE CHINA-TO-ACCRA BESPOKE AUTOMOTIVE SERVICE",
+      headline: "Buy & Spec Service",
+      subHeadline: "Purchase Direct from China, Tailor Every Detail to Your Exact Taste Before Shipment.",
+      intro: "Why settle for standard showroom trim? With DeBaldiet Commodities' Buy & Spec service, you choose your desired Chinese SUV—brand new or certified low-mileage slightly used—and customize interior luxury, exterior aesthetics, infotainment, and Africa-ready mechanical upgrades directly at source before ocean freight."
+    },
+    packages: [
+      {
+        id: 'interior',
+        title: 'Interior Luxury & Upholstery',
+        subtitle: 'Premium Cabin Personalization',
+        desc: 'Transform your vehicle cockpit before shipment with custom bespoke materials and tailored craftsmanship.',
+        features: [
+          'Custom Nappa or Italian leather upholstery in bespoke shades (Cognac, Tan, Ivory, Crimson)',
+          'Diamond-quilted stitching and embossed custom headrests',
+          'Starlight headliner illumination packages',
+          'Alcantara steering wheel wraps & roof lining',
+          'Custom all-weather luxury floor mats with metal accents'
+        ],
+        badge: 'POPULAR'
+      },
+      {
+        id: 'exterior',
+        title: 'Exterior Styling & Protection',
+        subtitle: 'Standout Aesthetics & Durability',
+        desc: 'Give your Chinese SUV a distinct, commanding road presence built to withstand West African road and weather conditions.',
+        features: [
+          'Factory color wraps & stealth satin/matte protective film (PPF)',
+          'Multi-layer 9H ceramic coating for long-term UV and heat resistance',
+          'Upgraded forged alloy rims & heavy-duty all-terrain tires',
+          'De-chroming, black-edition styling kits, and aero body mouldings',
+          'Electric retractable side steps for easy cabin entry'
+        ],
+        badge: 'STYLING'
+      },
+      {
+        id: 'technology',
+        title: 'Tech, Infotainment & Audio',
+        subtitle: 'Cutting-Edge Connectivity',
+        desc: 'Localize, optimize, and supercharge your vehicle’s onboard technology and entertainment systems.',
+        features: [
+          'Global English firmware localization & language conversion',
+          'Wireless Apple CarPlay & Android Auto integration',
+          'Audiophile speaker upgrades & acoustic sound-deadening insulation',
+          '360-degree high-definition dash cameras with 24/7 parking surveillance',
+          'Rear-seat entertainment multimedia displays'
+        ],
+        badge: 'TECH UPGRADE'
+      },
+      {
+        id: 'tropicalization',
+        title: 'Tropicalization & Mechanical Prep',
+        subtitle: 'Engineered for Africa',
+        desc: 'Specialized preparation ensuring your SUV thrives reliably across all African climates and road terrains.',
+        features: [
+          'Heavy-duty engine cooling & tropical climate air conditioning tuning',
+          'Underbody corrosion protection and anti-gravel undercoating',
+          'Suspension lift kits & reinforced heavy-duty shock absorbers',
+          'High-capacity dual-stage cabin air filtration filters',
+          'Spare wheel carrier additions and emergency recovery gear kits'
+        ],
+        badge: 'RELIABILITY'
+      }
+    ],
+    process: [
+      {
+        step: 1,
+        title: 'Consultation & Spec Selection',
+        desc: 'Pick your vehicle make and build your custom specification sheet from our interior, tech, and styling options.'
+      },
+      {
+        step: 2,
+        title: 'Factory & Hub Execution in China',
+        desc: 'Our certified partner technicians in China execute upgrades using genuine OEM parts and precision fitment.'
+      },
+      {
+        step: 3,
+        title: 'Dual Inspection & Quality Sign-Off',
+        desc: 'You receive high-resolution photo/video walk-throughs and diagnostic reports verifying every modification.'
+      },
+      {
+        step: 4,
+        title: 'Shipping, Clearance & Handover',
+        desc: 'Shipped to Tema Port, cleared smoothly, and delivered to your doorstep in Accra or across Ghana & Africa.'
+      }
+    ]
+  },
+
+  team: [
+    {
+      name: "Joshua King Kotey",
+      role: 'Managing Director',
+      badge: 'EXECUTIVE LEADERSHIP',
+      image: '/team-1.jpg',
+      bio: 'Directing multi-sector trade strategy, international supplier vetting, and institutional bank financing partnerships across Ghana and Africa.'
+    },
+    {
+      name: 'Michael Addo',
+      role: 'Head of Automotive & China Sourcing',
+      badge: 'AUTOMOTIVE LOGISTICS',
+      image: '/team-2.jpg',
+      bio: 'Supervising direct factory procurement in China, dual-stage technical inspections, and ocean freight logistics.'
+    },
+    {
+      name: 'Sarah Mensah',
+      role: 'Director of Beauty & Cosmetics',
+      badge: 'BEAUTY SUPPLY',
+      image: '/team-3.jpg',
+      bio: 'Curating 100% virgin human hair extensions, lace frontals, and managing wholesale salon supply distribution across Ghana.'
+    },
+    {
+      name: 'Kofi Osei',
+      role: 'Agri-Commodity Trade Manager',
+      badge: 'AGRICULTURE',
+      image: '/team-4.jpg',
+      bio: 'Leading farm-gate aggregation, grain quality screening, and commercial bulk supply contracts for processors.'
+    }
+  ],
 
   footer: {
     col1: {

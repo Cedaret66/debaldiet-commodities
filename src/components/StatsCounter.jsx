@@ -1,8 +1,10 @@
 import React from 'react';
-import { siteData } from '../data/siteData';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
 
 export default function StatsCounter() {
-  const { counters } = siteData;
+  const { content } = useCms();
+  const counters = content.counters || [];
 
   return (
     <section className="w-full py-[100px] bg-white border-b border-[#f0f0f2] font-body">
@@ -18,20 +20,32 @@ export default function StatsCounter() {
                   COUNTER 0{idx + 1}
                 </span>
                 <div className="flex items-baseline space-x-2">
-                  <span className="font-heading font-black text-[42px] sm:text-[48px] text-[#001659] leading-none tracking-tight">
+                  <EditableText
+                    path={`counters[${idx}].value`}
+                    as="span"
+                    className="font-heading font-black text-[42px] sm:text-[48px] text-[#001659] leading-none tracking-tight"
+                  >
                     {item.value}
-                  </span>
+                  </EditableText>
                   {item.unit && (
-                    <span className="font-heading font-bold text-[20px] text-[#001659]">
+                    <EditableText
+                      path={`counters[${idx}].unit`}
+                      as="span"
+                      className="font-heading font-bold text-[20px] text-[#001659]"
+                    >
                       {item.unit}
-                    </span>
+                    </EditableText>
                   )}
                 </div>
               </div>
               <div className="mt-4 pt-3 border-t border-gray-200">
-                <p className="font-heading uppercase text-[11px] font-bold tracking-[1.2px] text-[#565969] leading-tight">
+                <EditableText
+                  path={`counters[${idx}].subtext`}
+                  as="p"
+                  className="font-heading uppercase text-[11px] font-bold tracking-[1.2px] text-[#565969] leading-tight"
+                >
                   {item.subtext}
-                </p>
+                </EditableText>
               </div>
             </div>
           ))}

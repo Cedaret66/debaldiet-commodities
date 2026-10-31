@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, CheckCircle2, ShieldCheck } from 'lucide-react';
 import TeamSection from '../components/TeamSection';
 import StatsCounter from '../components/StatsCounter';
-import { siteData } from '../data/siteData';
+import { useCms } from '../context/CmsContext';
+import EditableText from '../components/cms/EditableText';
 
 export default function TeamPage() {
-  const { about } = siteData;
+  const { content } = useCms();
+  const teamMeta = content.teamMeta || {};
 
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
@@ -21,12 +21,21 @@ export default function TeamPage() {
             <span className="font-heading uppercase text-[13px] font-bold tracking-[2px] text-[#ff5e14] block mb-3">
               LEADERSHIP & OPERATIONS
             </span>
-            <h1 className="font-heading font-black text-[50px] sm:text-[68px] lg:text-[76px] text-white leading-[1.05] tracking-tight mb-4">
-              Our Team
-            </h1>
-            <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-2xl font-light">
-              Led by Managing Director Joshua King Kotey, our specialized procurement, customs clearance, and logistics specialists guarantee end-to-end trade accountability.
-            </p>
+            <EditableText
+              path="teamMeta.headline"
+              as="h1"
+              className="font-heading font-black text-[50px] sm:text-[68px] lg:text-[76px] text-white leading-[1.05] tracking-tight mb-4 block"
+            >
+              {teamMeta.headline || 'Our Team'}
+            </EditableText>
+            <EditableText
+              path="teamMeta.subHeadline"
+              as="p"
+              multiline
+              className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-2xl font-light block"
+            >
+              {teamMeta.subHeadline || 'Led by Managing Director Joshua King Kotey, our specialized procurement, customs clearance, and logistics specialists guarantee end-to-end trade accountability.'}
+            </EditableText>
           </div>
         </div>
       </section>

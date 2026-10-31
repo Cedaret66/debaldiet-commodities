@@ -14,73 +14,20 @@ import {
   Wrench,
   Gauge
 } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
+import EditableText from '../components/cms/EditableText';
+import EditableImage from '../components/cms/EditableImage';
 
 export default function BuyAndSpecPage() {
-  const specPackages = [
-    {
-      id: 'interior',
-      icon: <Layers className="w-8 h-8 text-[#ff5e14]" />,
-      title: 'Interior Luxury & Upholstery',
-      subtitle: 'Premium Cabin Personalization',
-      desc: 'Transform your vehicle cockpit before shipment with custom bespoke materials and tailored craftsmanship.',
-      features: [
-        'Custom Nappa or Italian leather upholstery in bespoke shades (Cognac, Tan, Ivory, Crimson)',
-        'Diamond-quilted stitching and embossed custom headrests',
-        'Starlight headliner illumination packages',
-        'Alcantara steering wheel wraps & roof lining',
-        'Custom all-weather luxury floor mats with metal accents'
-      ],
-      badge: 'POPULAR'
-    },
-    {
-      id: 'exterior',
-      icon: <Palette className="w-8 h-8 text-[#ff5e14]" />,
-      title: 'Exterior Styling & Protection',
-      subtitle: 'Standout Aesthetics & Durability',
-      desc: 'Give your Chinese SUV a distinct, commanding road presence built to withstand West African road and weather conditions.',
-      features: [
-        'Factory color wraps & stealth satin/matte protective film (PPF)',
-        'Multi-layer 9H ceramic coating for long-term UV and heat resistance',
-        'Upgraded forged alloy rims & heavy-duty all-terrain tires',
-        'De-chroming, black-edition styling kits, and aero body mouldings',
-        'Electric retractable side steps for easy cabin entry'
-      ],
-      badge: 'STYLING'
-    },
-    {
-      id: 'technology',
-      icon: <Cpu className="w-8 h-8 text-[#ff5e14]" />,
-      title: 'Tech, Infotainment & Audio',
-      subtitle: 'Cutting-Edge Connectivity',
-      desc: 'Localize, optimize, and supercharge your vehicle’s onboard technology and entertainment systems.',
-      features: [
-        'Global English firmware localization & language conversion',
-        'Wireless Apple CarPlay & Android Auto integration',
-        'Audiophile speaker upgrades & acoustic sound-deadening insulation',
-        '360-degree high-definition dash cameras with 24/7 parking surveillance',
-        'Rear-seat entertainment multimedia displays'
-      ],
-      badge: 'TECH UPGRADE'
-    },
-    {
-      id: 'tropicalization',
-      icon: <Gauge className="w-8 h-8 text-[#ff5e14]" />,
-      title: 'Tropicalization & Mechanical Prep',
-      subtitle: 'Engineered for Africa',
-      desc: 'Specialized preparation ensuring your SUV thrives reliably across all African climates and road terrains.',
-      features: [
-        'Heavy-duty engine cooling & tropical climate air conditioning tuning',
-        'Underbody corrosion protection and anti-gravel undercoating',
-        'Suspension lift kits & reinforced heavy-duty shock absorbers',
-        'High-capacity dual-stage cabin air filtration filters',
-        'Spare wheel carrier additions and emergency recovery gear kits'
-      ],
-      badge: 'RELIABILITY'
-    }
-  ];
+  const { content } = useCms();
+  const buyAndSpec = content.buyAndSpec || {};
+  const hero = buyAndSpec.hero || {};
+  const packages = buyAndSpec.packages || [];
+  const process = buyAndSpec.process || [];
 
   const popularModels = [
     {
+      id: 'byd-song',
       name: 'BYD Song Plus (EV & DM-i Hybrid)',
       type: 'Flagship New Energy SUV',
       image: '/chinese-suv-byd.jpg',
@@ -88,6 +35,7 @@ export default function BuyAndSpecPage() {
       specIdeas: 'English UI conversion, bespoke Nappa interior, 9H ceramic coating'
     },
     {
+      id: 'geely-monjaro',
       name: 'Geely Monjaro (Xingyue L)',
       type: 'Executive Luxury SUV',
       image: '/chinese-suv-geely.jpg',
@@ -95,6 +43,7 @@ export default function BuyAndSpecPage() {
       specIdeas: 'Black-out trim package, custom forged 20" wheels, Alcantara roof'
     },
     {
+      id: 'haval-h6',
       name: 'Haval H6 (Gen 3 & GT)',
       type: 'Best-Selling Mid-Size SUV',
       image: '/chinese-suv-haval.jpg',
@@ -102,6 +51,7 @@ export default function BuyAndSpecPage() {
       specIdeas: 'Electric side steps, wireless CarPlay integration, leather refit'
     },
     {
+      id: 'chery-tiggo',
       name: 'Chery Tiggo 8 Pro Max',
       type: '7-Seater Family & Executive SUV',
       image: '/chinese-suv-chery.jpg',
@@ -109,6 +59,7 @@ export default function BuyAndSpecPage() {
       specIdeas: 'Heavy-duty suspension tuning, diamond-stitch seats, rear entertainment'
     },
     {
+      id: 'tank-300',
       name: 'Tank 300 / Tank 500',
       type: 'Rugged Off-Road Luxury SUV',
       image: '/chinese-suv-tank300.jpg',
@@ -116,6 +67,7 @@ export default function BuyAndSpecPage() {
       specIdeas: 'All-terrain wheel set, underbody armor, roof rack & overland tent setup'
     },
     {
+      id: 'liauto-l9',
       name: 'Li Auto L7 / L8 / L9',
       type: 'Ultra-Luxury Range-Extended EV',
       image: '/chinese-suv-liauto.jpg',
@@ -123,6 +75,20 @@ export default function BuyAndSpecPage() {
       specIdeas: 'Executive 4-seat conversion, stealth satin PPF wrap, localized English UI'
     }
   ];
+
+  const getPackageIcon = (id) => {
+    switch (id) {
+      case 'interior':
+        return <Layers className="w-8 h-8 text-[#ff5e14]" />;
+      case 'exterior':
+        return <Palette className="w-8 h-8 text-[#ff5e14]" />;
+      case 'technology':
+        return <Cpu className="w-8 h-8 text-[#ff5e14]" />;
+      case 'tropicalization':
+      default:
+        return <Gauge className="w-8 h-8 text-[#ff5e14]" />;
+    }
+  };
 
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
@@ -136,14 +102,25 @@ export default function BuyAndSpecPage() {
           <div className="max-w-3xl text-white">
             <span className="inline-flex items-center space-x-2 bg-[#ff5e14] text-white px-3.5 py-1 text-[12px] font-heading uppercase tracking-[2px] font-bold mb-4">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>CUSTOM VEHICLE SPECIFICATION SERVICE</span>
+              <EditableText path="buyAndSpec.hero.tagline" as="span">
+                {hero.tagline || 'CUSTOM VEHICLE SPECIFICATION SERVICE'}
+              </EditableText>
             </span>
-            <h1 className="font-heading font-black text-[42px] sm:text-[58px] lg:text-[70px] text-white leading-[1.06] tracking-tight mb-5">
-              Buy & Spec Service
-            </h1>
-            <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed font-light mb-8">
-              Buy your ideal Chinese SUV—brand new or low-mileage slightly used—and let us custom-spec it to your exact taste before it ships to Ghana and Africa.
-            </p>
+            <EditableText
+              path="buyAndSpec.hero.headline"
+              as="h1"
+              className="font-heading font-black text-[42px] sm:text-[58px] lg:text-[70px] text-white leading-[1.06] tracking-tight mb-5 block"
+            >
+              {hero.headline || 'Buy & Spec Service'}
+            </EditableText>
+            <EditableText
+              path="buyAndSpec.hero.subHeadline"
+              as="p"
+              multiline
+              className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed font-light mb-8 block"
+            >
+              {hero.subHeadline || 'Buy your ideal Chinese SUV—brand new or low-mileage slightly used—and let us custom-spec it to your exact taste before it ships to Ghana and Africa.'}
+            </EditableText>
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 to="/contact-us"
@@ -172,46 +149,39 @@ export default function BuyAndSpecPage() {
             <h2 className="font-heading font-black text-[36px] sm:text-[48px] text-[#001659] leading-tight mb-5">
               Why Settle for Factory Standard When You Can Build Your Dream SUV?
             </h2>
-            <p className="text-[#565969] text-[17px] leading-relaxed">
-              When you purchase a vehicle through DeBaldiet Commodities, you don't have to accept off-the-lot limitations. Through our direct supplier network and professional tuning partners in China, we offer our signature <strong>"Buy & Spec"</strong> service. After you select your vehicle (brand new or low-mileage slightly used), our team executes your desired exterior, interior, technical, and mechanical modifications directly at source before ocean shipment.
-            </p>
+            <EditableText
+              path="buyAndSpec.hero.intro"
+              as="p"
+              multiline
+              className="text-[#565969] text-[17px] leading-relaxed block"
+            >
+              {hero.intro || "When you purchase a vehicle through DeBaldiet Commodities, you don't have to accept off-the-lot limitations. Through our direct supplier network and professional tuning partners in China, we offer our signature 'Buy & Spec' service."}
+            </EditableText>
           </div>
 
           {/* 4 Steps Flow */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              {
-                step: '01',
-                title: 'Vehicle Selection',
-                desc: 'Pick your preferred model (BYD, Haval, Geely, Chery, Tank, Li Auto) — either brand-new from factory or clean slightly used with verified low mileage.'
-              },
-              {
-                step: '02',
-                title: 'Bespoke Spec Consultation',
-                desc: 'Choose your desired upgrades: leather re-trims, color wraps, body aero, English firmware conversion, wheels, or suspension lifts.'
-              },
-              {
-                step: '03',
-                title: 'Precision Execution in China',
-                desc: 'Certified master technicians carry out all modifications in China. Every upgrade is documented with high-res photos and video walkthroughs.'
-              },
-              {
-                step: '04',
-                title: 'Shipping & Handover',
-                desc: 'Your personalized SUV is crated, shipped to Tema Port, cleared through customs, and delivered directly to your driveway across Ghana or Africa.'
-              }
-            ].map((st, idx) => (
+            {process.map((st, idx) => (
               <div key={idx} className="bg-[#f8f9fa] border border-[#e8e8e9] p-8 relative flex flex-col justify-between hover:shadow-lg transition-all">
                 <div>
                   <span className="font-heading font-black text-4xl text-[#ff5e14] block mb-4">
-                    {st.step}
+                    0{st.step || idx + 1}
                   </span>
-                  <h3 className="font-heading font-bold text-xl text-[#001659] mb-3">
+                  <EditableText
+                    path={`buyAndSpec.process[${idx}].title`}
+                    as="h3"
+                    className="font-heading font-bold text-xl text-[#001659] mb-3 block"
+                  >
                     {st.title}
-                  </h3>
-                  <p className="font-body text-sm text-[#565969] leading-relaxed">
+                  </EditableText>
+                  <EditableText
+                    path={`buyAndSpec.process[${idx}].desc`}
+                    as="p"
+                    multiline
+                    className="font-body text-sm text-[#565969] leading-relaxed block"
+                  >
                     {st.desc}
-                  </p>
+                  </EditableText>
                 </div>
                 <div className="mt-6 pt-4 border-t border-gray-200 text-xs font-heading font-bold text-[#001659] uppercase tracking-wider flex items-center space-x-1">
                   <span>Guaranteed Craftsmanship</span>
@@ -238,36 +208,57 @@ export default function BuyAndSpecPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {specPackages.map((pkg) => (
+            {packages.map((pkg, idx) => (
               <div
-                key={pkg.id}
+                key={pkg.id || idx}
                 className="bg-white border border-[#e8e8e9] p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div className="w-14 h-14 bg-[#001659] text-white flex items-center justify-center rounded-sm">
-                      {pkg.icon}
+                      {getPackageIcon(pkg.id)}
                     </div>
                     <span className="bg-[#ff5e14] text-white text-[11px] font-heading font-bold uppercase tracking-wider px-3 py-1">
-                      {pkg.badge}
+                      <EditableText path={`buyAndSpec.packages[${idx}].badge`} as="span">
+                        {pkg.badge}
+                      </EditableText>
                     </span>
                   </div>
 
-                  <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#ff5e14] block mb-1">
+                  <EditableText
+                    path={`buyAndSpec.packages[${idx}].subtitle`}
+                    as="span"
+                    className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#ff5e14] block mb-1"
+                  >
                     {pkg.subtitle}
-                  </span>
-                  <h3 className="font-heading font-black text-[24px] sm:text-[28px] text-[#001659] mb-3">
+                  </EditableText>
+                  <EditableText
+                    path={`buyAndSpec.packages[${idx}].title`}
+                    as="h3"
+                    className="font-heading font-black text-[24px] sm:text-[28px] text-[#001659] mb-3 block"
+                  >
                     {pkg.title}
-                  </h3>
-                  <p className="font-body text-[15px] text-[#565969] leading-relaxed mb-6">
+                  </EditableText>
+                  <EditableText
+                    path={`buyAndSpec.packages[${idx}].desc`}
+                    as="p"
+                    multiline
+                    className="font-body text-[15px] text-[#565969] leading-relaxed mb-6 block"
+                  >
                     {pkg.desc}
-                  </p>
+                  </EditableText>
 
                   <ul className="space-y-3 pt-4 border-t border-gray-100">
-                    {pkg.features.map((feat, fIdx) => (
+                    {(pkg.features || []).map((feat, fIdx) => (
                       <li key={fIdx} className="flex items-start space-x-3 text-[14px] text-[#303030]">
                         <CheckCircle2 className="w-4 h-4 text-[#ff5e14] flex-shrink-0 mt-0.5" />
-                        <span>{feat}</span>
+                        <EditableText
+                          path={`buyAndSpec.packages[${idx}].features[${fIdx}]`}
+                          as="span"
+                          className="flex-1"
+                        >
+                          {feat}
+                        </EditableText>
                       </li>
                     ))}
                   </ul>
@@ -308,17 +299,19 @@ export default function BuyAndSpecPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {popularModels.map((car, idx) => (
               <div
-                key={idx}
+                key={car.id || idx}
                 className="bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
                   <div className="w-full h-[240px] overflow-hidden relative bg-gray-100">
-                    <img
+                    <EditableImage
+                      path={`buyAndSpec.popularModels[${idx}].image`}
                       src={car.image}
                       alt={car.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover"
+                      title={`Change ${car.name} photo`}
                     />
-                    <div className="absolute top-3 left-3 bg-[#001659] text-white text-[10px] font-heading font-bold uppercase tracking-widest px-2.5 py-1">
+                    <div className="absolute top-3 left-3 bg-[#001659] text-white text-[10px] font-heading font-bold uppercase tracking-widest px-2.5 py-1 z-10 pointer-events-none">
                       NEW & SLIGHTLY USED
                     </div>
                   </div>

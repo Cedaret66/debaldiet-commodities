@@ -13,7 +13,10 @@ import {
   Check,
   Upload,
   ExternalLink,
-  Database
+  Database,
+  Wrench,
+  Building2,
+  Users
 } from 'lucide-react';
 import ImageField from './ImageField';
 
@@ -78,6 +81,9 @@ export default function CmsDrawer() {
             { id: 'pillars', label: '3 Verticals', icon: Layers },
             { id: 'scheme', label: '70/30 Plan', icon: Sliders },
             { id: 'about', label: 'About & Values', icon: Type },
+            { id: 'buyandspec', label: 'Buy & Spec', icon: Wrench },
+            { id: 'partnerships', label: 'Partnerships', icon: Building2 },
+            { id: 'team', label: 'Team', icon: Users },
             { id: 'contact', label: 'Contact', icon: Phone },
             { id: 'cloud', label: 'Cloud DB', icon: Database },
           ].map((tab) => {
@@ -269,6 +275,144 @@ export default function CmsDrawer() {
                     })
                   }
                   className="w-full p-2.5 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Buy & Spec Tab */}
+          {activeTab === 'buyandspec' && (
+            <div className="p-4 bg-white border border-gray-200 rounded-md shadow-sm space-y-4">
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Tagline
+                </label>
+                <input
+                  type="text"
+                  value={content.buyAndSpec?.hero?.tagline || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      buyAndSpec: {
+                        ...content.buyAndSpec,
+                        hero: { ...content.buyAndSpec?.hero, tagline: e.target.value }
+                      }
+                    })
+                  }
+                  className="w-full h-10 px-3 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Headline
+                </label>
+                <input
+                  type="text"
+                  value={content.buyAndSpec?.hero?.headline || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      buyAndSpec: {
+                        ...content.buyAndSpec,
+                        hero: { ...content.buyAndSpec?.hero, headline: e.target.value }
+                      }
+                    })
+                  }
+                  className="w-full h-10 px-3 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Intro Description
+                </label>
+                <textarea
+                  rows={3}
+                  value={content.buyAndSpec?.hero?.intro || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      buyAndSpec: {
+                        ...content.buyAndSpec,
+                        hero: { ...content.buyAndSpec?.hero, intro: e.target.value }
+                      }
+                    })
+                  }
+                  className="w-full p-2.5 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Partnerships Tab */}
+          {activeTab === 'partnerships' && (
+            <div className="p-4 bg-white border border-gray-200 rounded-md shadow-sm space-y-4">
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Headline
+                </label>
+                <input
+                  type="text"
+                  value={content.partnerships?.headline || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      partnerships: { ...content.partnerships, headline: e.target.value }
+                    })
+                  }
+                  className="w-full h-10 px-3 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Executive Proposal Summary
+                </label>
+                <textarea
+                  rows={3}
+                  value={content.partnerships?.summary || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      partnerships: { ...content.partnerships, summary: e.target.value }
+                    })
+                  }
+                  className="w-full p-2.5 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Team Tab */}
+          {activeTab === 'team' && (
+            <div className="p-4 bg-white border border-gray-200 rounded-md shadow-sm space-y-4">
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Managing Director Name
+                </label>
+                <input
+                  type="text"
+                  value={content.about?.leadership?.name || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      about: {
+                        ...content.about,
+                        leadership: { ...content.about?.leadership, name: e.target.value }
+                      }
+                    })
+                  }
+                  className="w-full h-10 px-3 bg-white border border-gray-300 rounded text-xs"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-heading font-bold uppercase text-[#001659] mb-1">
+                  Managing Director Role
+                </label>
+                <input
+                  type="text"
+                  value={content.about?.leadership?.role || ''}
+                  onChange={(e) =>
+                    updateContent({
+                      about: {
+                        ...content.about,
+                        leadership: { ...content.about?.leadership, role: e.target.value }
+                      }
+                    })
+                  }
+                  className="w-full h-10 px-3 bg-white border border-gray-300 rounded text-xs"
                 />
               </div>
             </div>

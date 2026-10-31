@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Quote, Star } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
+import EditableImage from './cms/EditableImage';
 
 export default function TestimonialsSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const testimonials = siteData.testimonials;
+  const { content } = useCms();
+  const testimonials = content.testimonials || [];
 
   return (
     <section className="w-full py-[120px] bg-white font-body">
@@ -19,60 +22,78 @@ export default function TestimonialsSlider() {
             </h2>
           </div>
           <p className="text-[#565969] text-[16px] max-w-md mt-4 md:mt-0">
-            Real feedback from private automotive importers, commercial beauty salons, and agricultural distribution partners across Ghana.
+            Real feedback from private automotive importers, commercial beauty salons, and agricultural distribution partners across Ghana and Africa.
           </p>
         </div>
 
         {/* Testimonial Cards Slider */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
-          {testimonials.slice(activeSlide, activeSlide + 2).map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#00235a] text-white p-8 sm:p-10 flex flex-col justify-between shadow-xl min-h-[440px] relative overflow-hidden"
-            >
-              {/* Top: Avatar, Category Badge & Rating */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-[80px] h-[80px] rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
-                    <img
-                      src={item.avatar}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <span className="inline-block bg-[#ff5e14] text-white text-[11px] font-heading font-black uppercase tracking-wider px-2.5 py-0.5 mb-1.5">
-                      {item.clientType}
-                    </span>
-                    <div className="flex items-center space-x-1 text-amber-400">
-                      {[...Array(5)].map((_, sIdx) => (
-                        <Star key={sIdx} className="w-3.5 h-3.5 fill-current" />
-                      ))}
+          {testimonials.slice(activeSlide, activeSlide + 2).map((item, idx) => {
+            const actualIdx = activeSlide + idx;
+            return (
+              <div
+                key={idx}
+                className="bg-[#00235a] text-white p-8 sm:p-10 flex flex-col justify-between shadow-xl min-h-[440px] relative overflow-hidden"
+              >
+                {/* Top: Avatar, Category Badge & Rating */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-[80px] h-[80px] rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                      <EditableImage
+                        path={`testimonials[${actualIdx}].avatar`}
+                        src={item.avatar}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                        title="Change Client Avatar"
+                      />
+                    </div>
+                    <div>
+                      <span className="inline-block bg-[#ff5e14] text-white text-[11px] font-heading font-black uppercase tracking-wider px-2.5 py-0.5 mb-1.5">
+                        {item.clientType}
+                      </span>
+                      <div className="flex items-center space-x-1 text-amber-400">
+                        {[...Array(5)].map((_, sIdx) => (
+                          <Star key={sIdx} className="w-3.5 h-3.5 fill-current" />
+                        ))}
+                      </div>
                     </div>
                   </div>
+                  <Quote className="w-12 h-12 text-white/20" />
                 </div>
-                <Quote className="w-12 h-12 text-white/20" />
-              </div>
 
-              {/* Content */}
-              <div>
-                <p className="font-body text-[16px] text-white/90 leading-[26px] mb-8 italic">
-                  "{item.quote}"
-                </p>
+                {/* Content */}
                 <div>
-                  <h4 className="font-heading font-bold text-[24px] text-white mb-1">
-                    {item.name}
-                  </h4>
-                  <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-white/70 block">
-                    {item.title}
-                  </span>
+                  <EditableText
+                    path={`testimonials[${actualIdx}].quote`}
+                    as="p"
+                    multiline
+                    className="font-body text-[16px] text-white/90 leading-[26px] mb-8 italic block"
+                  >
+                    {item.quote}
+                  </EditableText>
+                  <div>
+                    <EditableText
+                      path={`testimonials[${actualIdx}].name`}
+                      as="h4"
+                      className="font-heading font-bold text-[22px] text-white mb-1 block"
+                    >
+                      {item.name}
+                    </EditableText>
+                    <EditableText
+                      path={`testimonials[${actualIdx}].title`}
+                      as="span"
+                      className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-white/70 block"
+                    >
+                      {item.title}
+                    </EditableText>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Swiper Pagination Dots */}
+        {/* Carousel Dots */}
         <div className="flex items-center justify-center space-x-3 mt-10">
           {[0, 1].map((dotIdx) => (
             <button

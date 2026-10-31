@@ -35,6 +35,20 @@ export function setNestedValue(obj, path, value) {
   return newObj;
 }
 
+function deepMerge(target, source) {
+  const output = { ...target };
+  if (source && typeof source === 'object' && !Array.isArray(source)) {
+    Object.keys(source).forEach((key) => {
+      if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) && key in target) {
+        output[key] = deepMerge(target[key], source[key]);
+      } else {
+        output[key] = source[key];
+      }
+    });
+  }
+  return output;
+}
+
 export function CmsProvider({ children }) {
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -62,7 +76,7 @@ export function CmsProvider({ children }) {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        return { ...defaultSiteData, ...JSON.parse(saved) };
+        return deepMerge(defaultSiteData, JSON.parse(saved));
       }
     } catch (e) {
       console.warn('Error reading saved CMS content:', e);
@@ -74,7 +88,7 @@ export function CmsProvider({ children }) {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        return { ...defaultSiteData, ...JSON.parse(saved) };
+        return deepMerge(defaultSiteData, JSON.parse(saved));
       }
     } catch {
       // ignore

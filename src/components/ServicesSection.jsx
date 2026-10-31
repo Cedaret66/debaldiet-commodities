@@ -1,29 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Truck, Sparkles, Sprout, ArrowRight } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
+import EditableImage from './cms/EditableImage';
 
 export default function ServicesSection() {
-  const { content } = useContent();
-  const { services, corePillars } = content;
+  const { content } = useCms();
+  const services = content.services || {};
+  const corePillars = content.corePillars || [];
 
   const verticals = [
     {
-      data: services.automotive,
+      key: 'automotive',
+      pillarIndex: 0,
+      data: services.automotive || {},
       icon: <Truck className="w-8 h-8 text-[#ff5e14]" />,
       image: corePillars[0]?.image || '/chinese-suv-geely.jpg',
       link: '/our-services#car-import',
       features: ['Chinese SUVs (New & Low-Mileage)', 'Buy & Spec Customization', '70/30 Flexible Financing']
     },
     {
-      data: services.beauty,
+      key: 'beauty',
+      pillarIndex: 1,
+      data: services.beauty || {},
       icon: <Sparkles className="w-8 h-8 text-[#ff5e14]" />,
       image: corePillars[1]?.image || '/feature-interior.jpg',
       link: '/our-services#beauty',
       features: ['100% Virgin Bundles', 'HD Lace Wigs & Frontals', 'Wholesale Salon Accounts']
     },
     {
-      data: services.agriculture,
+      key: 'agriculture',
+      pillarIndex: 2,
+      data: services.agriculture || {},
       icon: <Sprout className="w-8 h-8 text-[#ff5e14]" />,
       image: corePillars[2]?.image || '/feature-product.jpg',
       link: '/our-services#agriculture',
@@ -49,22 +58,24 @@ export default function ServicesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
-          {verticals.map((item, idx) => (
+          {verticals.map((item) => (
             <div
-              key={idx}
+              key={item.key}
               className="group bg-white border border-[#e8e8e9] hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
             >
               {/* Image */}
               <div className="w-full h-[280px] overflow-hidden bg-gray-100 relative">
-                <img
+                <EditableImage
+                  path={`corePillars[${item.pillarIndex}].image`}
                   src={item.image}
-                  alt={item.data.headline}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  alt={item.data.headline || 'Vertical'}
+                  className="w-full h-full object-cover"
+                  title="Change Pillar Image"
                 />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md p-3 shadow-md">
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md p-3 shadow-md z-10 pointer-events-none">
                   {item.icon}
                 </div>
-                <div className="absolute top-4 right-4 bg-[#001659] text-white px-3 py-1 font-heading font-black text-[11px] uppercase tracking-wider">
+                <div className="absolute top-4 right-4 bg-[#001659] text-white px-3 py-1 font-heading font-black text-[11px] uppercase tracking-wider z-10 pointer-events-none">
                   {item.data.badge}
                 </div>
               </div>
@@ -75,12 +86,21 @@ export default function ServicesSection() {
                   <span className="font-heading uppercase text-[12px] font-bold tracking-[1.5px] text-[#ff5e14] block mb-2">
                     {item.data.vertical}
                   </span>
-                  <h3 className="font-heading font-bold text-[22px] sm:text-[24px] text-[#001659] mb-4 group-hover:text-[#ff5e14] transition-colors leading-snug">
+                  <EditableText
+                    path={`services.${item.key}.headline`}
+                    as="h3"
+                    className="font-heading font-bold text-[22px] sm:text-[24px] text-[#001659] mb-4 group-hover:text-[#ff5e14] transition-colors leading-snug block"
+                  >
                     {item.data.headline}
-                  </h3>
-                  <p className="font-body text-[15px] text-[#565969] leading-[25px] mb-6 line-clamp-3">
+                  </EditableText>
+                  <EditableText
+                    path={`services.${item.key}.overview`}
+                    as="p"
+                    multiline
+                    className="font-body text-[15px] text-[#565969] leading-[25px] mb-6 block"
+                  >
                     {item.data.overview}
-                  </p>
+                  </EditableText>
 
                   <div className="space-y-2 mb-8 pt-4 border-t border-gray-100">
                     {item.features.map((feat, fIdx) => (
