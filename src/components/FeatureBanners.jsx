@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 
 export default function FeatureBanners() {
-  const { intro, corePillars } = siteData;
+  const { content } = useContent();
+  const { intro, corePillars } = content;
 
   return (
     <section className="w-full pt-[100px] pb-[90px] bg-white font-body">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, Truck, Sparkles, Sprout, ArrowRight, ShieldCheck } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Header({ onOpenSearch, onOpenDrawer }) {
@@ -9,6 +9,7 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const location = useLocation();
+  const { content } = useContent();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,7 +81,7 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-7" aria-label="Main Navigation">
-            {siteData.navLinks.map((link) => {
+            {content.navLinks.map((link) => {
               if (link.dropdown) {
                 const isServicesActive = location.pathname.startsWith('/our-services');
 
@@ -191,7 +192,7 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-[73px] bg-white border-b border-[#e8e8e9] shadow-xl p-6 transition-all z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
           <nav className="flex flex-col space-y-3">
-            {siteData.navLinks.map((link) => {
+            {content.navLinks.map((link) => {
               if (link.dropdown) {
                 return (
                   <div key={link.label} className="border-b border-gray-100 pb-2">

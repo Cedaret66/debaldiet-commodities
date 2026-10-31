@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = siteData.slides;
+  const { content } = useContent();
+  const slides = content.slides;
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);

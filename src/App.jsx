@@ -9,6 +9,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SearchModal from './components/SearchModal';
 import SideDrawer from './components/SideDrawer';
 import ProjectModal from './components/ProjectModal';
+import { ContentProvider } from './context/ContentContext';
 
 // Dedicated Pages
 import HomePage from './pages/HomePage';
@@ -19,6 +20,7 @@ import TeamPage from './pages/TeamPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 import BuyAndSpecPage from './pages/BuyAndSpecPage';
+import CMSAdminPage from './pages/CMSAdminPage';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -30,24 +32,31 @@ function AppLayout() {
   const location = useLocation();
   const smootherRef = useRef(null);
 
-  // Initialize GSAP ScrollSmoother
+  // Check if current page is the standalone CMS route
+  const isCMS = location.pathname.startsWith('/admin') || location.pathname.startsWith('/cms-portal');
+
+  // Initialize GSAP ScrollSmoother (disabled on CMS admin page for standard full-height form scrolling)
   useLayoutEffect(() => {
+    if (isCMS) return;
+
     const ctx = gsap.context(() => {
       smootherRef.current = ScrollSmoother.create({
         wrapper: '#smooth-wrapper',
         content: '#smooth-content',
-        smooth: 1.2, // smoothing duration in seconds
-        effects: true, // enables data-speed and data-lag effects
-        normalizeScroll: true, // prevents mobile address bar jitter and syncs scroll events
-        smoothTouch: 0.1, // lightweight smoothing on touch devices
+        smooth: 1.2,
+        effects: true,
+        normalizeScroll: true,
+        smoothTouch: 0.1,
       });
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [isCMS]);
 
   // On page/route changes: refresh ScrollSmoother and trigger fade-in animations
   useEffect(() => {
+    if (isCMS) return;
+
     if (smootherRef.current) {
       smootherRef.current.scrollTop(0);
     }
@@ -78,7 +87,17 @@ function AppLayout() {
     }, 120);
 
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [location.pathname, isCMS]);
+
+  // If visiting the secret CMS portal, render full-screen standalone dashboard without public header/footer
+  if (isCMS) {
+    return (
+      <Routes>
+        <Route path="/admin" element={<CMSAdminPage />} />
+        <Route path="/cms-portal" element={<CMSAdminPage />} />
+      </Routes>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white text-[#303030] relative">
@@ -137,8 +156,10 @@ function AppLayout() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppLayout />
-    </BrowserRouter>
+    <ContentProvider>
+      <BrowserRouter>
+        <AppLayout />
+      </BrowserRouter>
+    </ContentProvider>
   );
 }

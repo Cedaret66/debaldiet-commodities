@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 
 export default function ParallaxBanner() {
-  const { scheme7030 } = siteData;
+  const { content } = useContent();
+  const { scheme7030 } = content;
 
   return (
     <section

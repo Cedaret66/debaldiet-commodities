@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Truck, Sparkles, Sprout, CheckCircle2, ShieldCheck, ArrowRight, Download, FileText } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 
 export default function ServicesPage() {
-  const { services } = siteData;
+  const { content } = useContent();
+  const { services } = content;
 
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ShieldCheck, MapPin, Phone, Mail, ArrowRight, Quote, Award } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 
 export default function AboutPage() {
-  const { about, corePillars, testimonials } = siteData;
+  const { content } = useContent();
+  const { about, corePillars, testimonials } = content;
   const [activeTestimonialSlide, setActiveTestimonialSlide] = useState(0);
 
   return (

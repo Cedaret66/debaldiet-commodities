@@ -1,30 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Truck, Sparkles, Sprout, ArrowRight } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useContent } from '../context/ContentContext';
 
 export default function ServicesSection() {
-  const { services } = siteData;
+  const { content } = useContent();
+  const { services, corePillars } = content;
 
   const verticals = [
     {
       data: services.automotive,
       icon: <Truck className="w-8 h-8 text-[#ff5e14]" />,
-      image: '/chinese-suv-geely.jpg',
+      image: corePillars[0]?.image || '/chinese-suv-geely.jpg',
       link: '/our-services#car-import',
       features: ['Chinese SUVs (New & Low-Mileage)', 'Buy & Spec Customization', '70/30 Flexible Financing']
     },
     {
       data: services.beauty,
       icon: <Sparkles className="w-8 h-8 text-[#ff5e14]" />,
-      image: '/feature-interior.jpg',
+      image: corePillars[1]?.image || '/feature-interior.jpg',
       link: '/our-services#beauty',
       features: ['100% Virgin Bundles', 'HD Lace Wigs & Frontals', 'Wholesale Salon Accounts']
     },
     {
       data: services.agriculture,
       icon: <Sprout className="w-8 h-8 text-[#ff5e14]" />,
-      image: '/feature-product.jpg',
+      image: corePillars[2]?.image || '/feature-product.jpg',
       link: '/our-services#agriculture',
       features: ['Bulk Maize & Grains', 'Legumes & Soybeans', 'Farm-to-Warehouse Logistics']
     }
