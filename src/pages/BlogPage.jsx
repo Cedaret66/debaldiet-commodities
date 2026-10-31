@@ -192,7 +192,7 @@ export default function BlogPage() {
                 DeBaldiet Commodities (DC)
               </h4>
               <p className="text-sm text-white/80 leading-relaxed mb-6">
-                Mantse Drive, Accra, Ghana. We are your accountable trading and logistics partner.
+                Accra, Ghana. We are your accountable trading and logistics partner.
               </p>
               <Link
                 to="/contact-us"

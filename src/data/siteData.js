@@ -5,8 +5,8 @@ export const siteData = {
     abbreviation: "DC",
     tagline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana",
     managingDirector: "Joshua King Kotey",
-    headquarters: "Mantse Drive, Accra, Ghana",
-    address: "Mantse Drive, Accra, Ghana",
+    headquarters: "Accra, Ghana",
+    address: "Accra, Ghana",
     phoneHotline: "+233 55 166 0943",
     whatsapp: "+234 54 148 3758",
     email: "debaldietcommodities@gmail.com",
@@ -24,7 +24,7 @@ export const siteData = {
     whatsapp: "+234 54 148 3758",
     email: "debaldietcommodities@gmail.com",
     hours: "Mon – Sat: 8:00 AM – 5:30 PM | Sun: Closed",
-    address: "Mantse Drive, Accra, Ghana",
+    address: "Accra, Ghana",
     socials: [
       { name: "Twitter", url: "https://twitter.com" },
       { name: "Facebook", url: "https://facebook.com" },
@@ -111,7 +111,7 @@ export const siteData = {
   intro: {
     sectionTag: "EXPLORE DEBALDIET COMMODITIES",
     heading: "One Accountable Partner Across Global Sourcing, Retail & Agri-Trade",
-    paragraph: "Headquartered on Mantse Drive in Accra, Ghana, DeBaldiet Commodities (DC) is a diversified trading and logistics company. We solve the three biggest frustrations of modern procurement: opaque markups, slow delivery, and questionable quality. Whether securing your next vehicle from China with our game-changing 70/30 payment plan, stocking your salon with luxury virgin hair, or procuring metric tons of staple grains, you deal with a single, accountable partner from initial order to final handover."
+    paragraph: "Headquartered in Accra, Ghana, DeBaldiet Commodities (DC) is a diversified trading and logistics company. We solve the three biggest frustrations of modern procurement: opaque markups, slow delivery, and questionable quality. Whether securing your next vehicle from China with our game-changing 70/30 payment plan, stocking your salon with luxury virgin hair, or procuring metric tons of staple grains, you deal with a single, accountable partner from initial order to final handover."
   },
 
   corePillars: [
@@ -238,7 +238,7 @@ export const siteData = {
     {
       clientType: "Automotive Client",
       rating: 5,
-      quote: "Importing a vehicle used to be filled with anxiety about port delays and hidden fees. DC made it smooth. The 70/30 scheme meant I didn't tie down all my savings, and my SUV arrived in Mantse Drive exactly 5 weeks later.",
+      quote: "Importing a vehicle used to be filled with anxiety about port delays and hidden fees. DC made it smooth. The 70/30 scheme meant I didn't tie down all my savings, and my SUV arrived in Accra, Ghana exactly 5 weeks later.",
       name: "Kwame M.",
       title: "Bank Operations Specialist, Accra",
       avatar: "/testimonial-1.jpg"
@@ -265,7 +265,7 @@ export const siteData = {
     headline: "About DeBaldiet Commodities",
     subHeadline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana.",
     story: [
-      "Founded on Mantse Drive in Accra, DeBaldiet Commodities (DC) was born out of a desire to bring genuine accountability to Ghanaian importation and trade. For years, individual buyers and commercial enterprises have suffered from inflated local markups, fraudulent brokers, unpredictably long shipping timelines, and subpar product quality.",
+      "Founded in Accra, Ghana, DeBaldiet Commodities (DC) was born out of a desire to bring genuine accountability to Ghanaian importation and trade. For years, individual buyers and commercial enterprises have suffered from inflated local markups, fraudulent brokers, unpredictably long shipping timelines, and subpar product quality.",
       "DeBaldiet Commodities disrupts this broken model by taking direct responsibility for the entire journey. We are not brokers who vanish when problems arise; we are your direct, accountable trading partner. By managing international sourcing directly at the factory and farm gate level, coordinating secure maritime shipping, and personally supervising customs clearance, we ensure our clients receive exactly what they paid for—at fair, transparent costs.",
       "Today, DC operates across three vital sectors of the economy: delivering dependable automotive solutions from China, distributing luxury hair and beauty supplies, and powering commercial agricultural commodity trade across Ghana."
     ],
@@ -298,7 +298,7 @@ export const siteData = {
     leadership: {
       name: "Joshua King Kotey",
       role: "Managing Director, DeBaldiet Commodities (DC)",
-      location: "Mantse Drive, Accra, Ghana",
+      location: "Accra, Ghana",
       phone: "+233 55 166 0943",
       email: "debaldietcommodities@gmail.com",
       quote: "Our business is built on trust and delivered promises. Whether sourcing an electric vehicle from China, delivering virgin hair bundles to an aspiring stylist, or supplying metric tons of staple grains, we ensure that every client experiences seamless efficiency, transparent pricing, and zero hassle.",
@@ -409,7 +409,7 @@ export const siteData = {
   contact: {
     headquarters: {
       name: "DeBaldiet Commodities (DC)",
-      location: "Mantse Drive, Accra, Ghana",
+      location: "Accra, Ghana",
       phone: "+233 55 166 0943",
       whatsapp: "+234 54 148 3758",
       email: "debaldietcommodities@gmail.com",
@@ -447,6 +447,6 @@ export const siteData = {
       title: "NEWSLETTER SIGNUP",
       text: "Subscribe to receive updates on incoming car shipments, beauty stock, and grain prices."
     },
-    copyright: "© 2026 DeBaldiet Commodities (DC). All Rights Reserved. Mantse Drive, Accra, Ghana."
+    copyright: "© 2026 DeBaldiet Commodities (DC). All Rights Reserved. Accra, Ghana."
   }
 };

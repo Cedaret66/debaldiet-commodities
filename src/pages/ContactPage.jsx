@@ -36,7 +36,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-xl font-light">
-              Connect directly with our headquarters on Mantse Drive in Accra for vehicle orders, wholesale beauty supplies, and agricultural contracts.
+              Connect directly with our headquarters in Accra, Ghana for vehicle orders, wholesale beauty supplies, and agricultural contracts.
             </p>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                     Inquiry Submitted Successfully
                   </h4>
                   <p className="text-sm text-green-700">
-                    Thank you, {formData.name}. Our procurement desk on Mantse Drive will review your specifications and contact you within 24 business hours.
+                    Thank you, {formData.name}. Our procurement desk in Accra, Ghana will review your specifications and contact you within 24 business hours.
                   </p>
                 </div>
               ) : (
