@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import { ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { content } = useContent();
+  const { content, isEditMode, openImageUpload } = useCms();
   const slides = content.slides;
 
   const nextSlide = () => {
@@ -31,6 +32,24 @@ export default function HeroSlider() {
         style={{ backgroundImage: `url('${active.bgImage}')` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#001659]/90 via-[#001659]/60 to-[#001659]/30" />
+
+        {/* Change Slide Image Button when in Edit Mode */}
+        {isEditMode && (
+          <button
+            type="button"
+            onClick={() =>
+              openImageUpload(
+                `slides[${currentSlide}].bgImage`,
+                active.bgImage,
+                `Change Slide #${currentSlide + 1} SUV Image`
+              )
+            }
+            className="absolute top-24 right-8 z-30 flex items-center gap-2 px-4 py-2 bg-[#ff5e14] hover:bg-[#e04e0a] text-white text-xs font-heading font-bold uppercase tracking-wider rounded-full shadow-2xl transition-transform hover:scale-105"
+          >
+            <Camera className="w-4 h-4" />
+            <span>Change Slide SUV Image</span>
+          </button>
+        )}
       </div>
 
       {/* Content Container (1300px max) */}
@@ -38,13 +57,17 @@ export default function HeroSlider() {
         <div className="max-w-3xl text-white">
           {/* Main Headline */}
           <h1 className="font-heading font-black text-[42px] sm:text-[58px] lg:text-[70px] text-white leading-[1.05] tracking-tight mb-5 drop-shadow-sm">
-            {active.headline}
+            <EditableText path={`slides[${currentSlide}].headline`}>
+              {active.headline}
+            </EditableText>
           </h1>
 
           {/* Supporting Body */}
-          <p className="font-body text-[16px] sm:text-[18px] text-white/90 leading-relaxed mb-8 max-w-2xl">
-            {active.body}
-          </p>
+          <div className="font-body text-[16px] sm:text-[18px] text-white/90 leading-relaxed mb-8 max-w-2xl">
+            <EditableText path={`slides[${currentSlide}].body`} multiline>
+              {active.body}
+            </EditableText>
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap items-center gap-4">

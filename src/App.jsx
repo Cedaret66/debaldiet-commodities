@@ -9,7 +9,12 @@ import ScrollToTop from './components/ScrollToTop';
 import SearchModal from './components/SearchModal';
 import SideDrawer from './components/SideDrawer';
 import ProjectModal from './components/ProjectModal';
-import { ContentProvider } from './context/ContentContext';
+import { CmsProvider } from './context/CmsContext';
+
+// CMS In-Place Components
+import AdminToolbar from './components/cms/AdminToolbar';
+import CmsDrawer from './components/cms/CmsDrawer';
+import ImageUploadModal from './components/cms/ImageUploadModal';
 
 // Dedicated Pages
 import HomePage from './pages/HomePage';
@@ -32,12 +37,12 @@ function AppLayout() {
   const location = useLocation();
   const smootherRef = useRef(null);
 
-  // Check if current page is the standalone CMS route
-  const isCMS = location.pathname.startsWith('/admin') || location.pathname.startsWith('/cms-portal');
+  // Check if current page is the secret login route
+  const isLoginPage = location.pathname === '/admin' || location.pathname === '/cms-portal';
 
-  // Initialize GSAP ScrollSmoother (disabled on CMS admin page for standard full-height form scrolling)
+  // Initialize GSAP ScrollSmoother (disabled on login page)
   useLayoutEffect(() => {
-    if (isCMS) return;
+    if (isLoginPage) return;
 
     const ctx = gsap.context(() => {
       smootherRef.current = ScrollSmoother.create({
@@ -51,11 +56,11 @@ function AppLayout() {
     });
 
     return () => ctx.revert();
-  }, [isCMS]);
+  }, [isLoginPage]);
 
   // On page/route changes: refresh ScrollSmoother and trigger fade-in animations
   useEffect(() => {
-    if (isCMS) return;
+    if (isLoginPage) return;
 
     if (smootherRef.current) {
       smootherRef.current.scrollTop(0);
@@ -87,10 +92,10 @@ function AppLayout() {
     }, 120);
 
     return () => clearTimeout(timer);
-  }, [location.pathname, isCMS]);
+  }, [location.pathname, isLoginPage]);
 
-  // If visiting the secret CMS portal, render full-screen standalone dashboard without public header/footer
-  if (isCMS) {
+  // If visiting the login page route, render the admin login gate
+  if (isLoginPage) {
     return (
       <Routes>
         <Route path="/admin" element={<CMSAdminPage />} />
@@ -134,7 +139,16 @@ function AppLayout() {
         </div>
       </div>
 
-      {/* Global Interactive Modals & Slideouts (Outside smooth-wrapper for proper fixed overlay) */}
+      {/* Floating In-Place Admin Toolbar (Visible after Admin Login) */}
+      <AdminToolbar />
+
+      {/* Master Content Drawer (Sections side-panel) */}
+      <CmsDrawer />
+
+      {/* Interactive Image Upload / Replacement Modal */}
+      <ImageUploadModal />
+
+      {/* Global Interactive Modals & Slideouts */}
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
@@ -156,10 +170,10 @@ function AppLayout() {
 
 export default function App() {
   return (
-    <ContentProvider>
+    <CmsProvider>
       <BrowserRouter>
         <AppLayout />
       </BrowserRouter>
-    </ContentProvider>
+    </CmsProvider>
   );
 }
