@@ -18,6 +18,7 @@ import PartnershipsPage from './pages/PartnershipsPage';
 import TeamPage from './pages/TeamPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
+import BuyAndSpecPage from './pages/BuyAndSpecPage';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -99,6 +100,7 @@ function AppLayout() {
               <Route path="/" element={<HomePage onSelectProject={(p) => setSelectedProject(p)} />} />
               <Route path="/about-us" element={<AboutPage />} />
               <Route path="/our-services" element={<ServicesPage />} />
+              <Route path="/buy-and-spec" element={<BuyAndSpecPage />} />
               <Route path="/partnerships" element={<PartnershipsPage />} />
               <Route path="/our-team" element={<TeamPage />} />
               <Route path="/blog" element={<BlogPage />} />

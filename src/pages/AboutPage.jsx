@@ -24,7 +24,7 @@ export default function AboutPage() {
               {about.headline}
             </h1>
             <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-2xl font-light">
-              {about.subHeadline}
+              Bridging Global Sourcing with Reliable Local Execution Across Ghana and Africa.
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
               <div className="absolute -bottom-6 -right-6 bg-[#ff5e14] text-white p-6 shadow-xl max-w-[240px]">
                 <div className="font-heading font-black text-2xl">ACCRA, GHANA</div>
                 <div className="font-heading uppercase text-xs tracking-wider mt-1 font-semibold text-white/90">
-                  Direct China-Ghana Trade Hub
+                  Trade Hub for Ghana & Africa
                 </div>
               </div>
             </div>
@@ -227,7 +227,7 @@ export default function AboutPage() {
               CLIENT TESTIMONIALS
             </span>
             <h2 className="font-heading font-black text-[38px] sm:text-[50px] text-[#001659] leading-tight">
-              Endorsed by Partners Across Ghana
+              Endorsed by Partners Across Ghana and Africa
             </h2>
           </div>
 

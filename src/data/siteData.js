@@ -3,7 +3,7 @@ export const siteData = {
     name: "DeBaldiet Commodities (DC)",
     shortName: "DeBaldiet Commodities",
     abbreviation: "DC",
-    tagline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana",
+    tagline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana and Africa",
     managingDirector: "Joshua King Kotey",
     headquarters: "Accra, Ghana",
     address: "Accra, Ghana",
@@ -49,7 +49,13 @@ export const siteData = {
         {
           label: "Automotive Sourcing",
           href: "/our-services#car-import",
-          desc: "Direct China vehicle importation & dual-stage inspection"
+          desc: "Direct China vehicle importation (Brand New & Low-Mileage Slightly Used)"
+        },
+        {
+          label: "Buy & Spec Service",
+          href: "/buy-and-spec",
+          desc: "Custom vehicle styling, trim upgrades, tech & spec modifications",
+          badge: "NEW"
         },
         {
           label: "Beauty & Hair Care",
@@ -64,10 +70,11 @@ export const siteData = {
         {
           label: "All Services Overview",
           href: "/our-services",
-          desc: "Comprehensive breakdown of all three commercial pillars"
+          desc: "Comprehensive breakdown of our strategic commercial pillars"
         }
       ]
     },
+    { label: "Buy & Spec", href: "/buy-and-spec" },
     { label: "Partnerships", href: "/partnerships" },
     { label: "Contact Us", href: "/contact-us" }
   ],
@@ -76,10 +83,10 @@ export const siteData = {
     {
       id: 1,
       pillar: "Automotive Sourcing",
-      bgImage: "/home-hero-bg.jpg",
-      overline: "DIRECT VEHICLE IMPORTATION • CHINA TO ACCRA",
-      headline: "Quality Vehicles Sourced Direct From China. Delivered to Your Door.",
-      body: "Eliminate middlemen, dealer markups, and clearance stress. DeBaldiet Commodities manages end-to-end sourcing, dual-stage technical inspections, ocean freight, and customs clearance in 4 to 6 weeks.",
+      bgImage: "/chinese-suv-byd.jpg",
+      overline: "DIRECT CHINESE SUV & VEHICLE IMPORTATION • CHINA TO ACCRA",
+      headline: "Quality Chinese SUVs Sourced Direct From China. Brand New & Low-Mileage Slightly Used.",
+      body: "Eliminate middlemen, inflated dealer markups, and clearance stress. DeBaldiet Commodities specializes in premium Chinese SUVs (BYD, Haval, Geely, Chery, Tank, Li Auto)—available both brand-new and certified slightly used with low mileage. Enjoy end-to-end sourcing, dual technical inspections, maritime freight, and customs clearance.",
       benefitTag: "FLEXIBLE 70/30 PAYMENT TERMS AVAILABLE",
       primaryBtn: { text: "Start Vehicle Order", href: "/contact-us" },
       secondaryBtn: { text: "How 70/30 Works", href: "/our-services#car-import" }
@@ -110,8 +117,8 @@ export const siteData = {
 
   intro: {
     sectionTag: "EXPLORE DEBALDIET COMMODITIES",
-    heading: "One Accountable Partner Across Global Sourcing, Retail & Agri-Trade",
-    paragraph: "Headquartered in Accra, Ghana, DeBaldiet Commodities (DC) is a diversified trading and logistics company. We solve the three biggest frustrations of modern procurement: opaque markups, slow delivery, and questionable quality. Whether securing your next vehicle from China with our game-changing 70/30 payment plan, stocking your salon with luxury virgin hair, or procuring metric tons of staple grains, you deal with a single, accountable partner from initial order to final handover."
+    heading: "One Accountable Partner Across Global Sourcing, Retail & Agri-Trade Across Ghana & Africa",
+    paragraph: "Headquartered in Accra, Ghana and serving clients across Ghana and Africa, DeBaldiet Commodities (DC) is a diversified trading and logistics company. We solve the three biggest frustrations of modern procurement: opaque markups, slow delivery, and questionable quality. Whether securing your next vehicle from China—brand new or certified low-mileage slightly used—with our game-changing 70/30 payment plan, custom-speccing your ride, stocking your salon with luxury virgin hair, or procuring metric tons of staple grains, you deal with a single, accountable partner from initial order to final handover."
   },
 
   corePillars: [
@@ -119,17 +126,17 @@ export const siteData = {
       id: "cars",
       vertical: "Pillar 01: Automotive",
       badge: "CARS",
-      title: "Vehicle Sourcing & China-to-Ghana Importation",
-      summary: "Turnkey vehicle procurement direct from verified suppliers in China. We manage ocean freight, Tema port customs clearance, and roadworthy delivery.",
+      title: "Chinese SUV Sourcing & Importation (New & Low-Mileage Slightly Used)",
+      summary: "Turnkey procurement of top Chinese SUVs (BYD, Haval, Geely, Chery, Tank). We handle factory vetting, ocean freight, Tema port customs clearance, and our custom Buy & Spec service.",
       highlights: [
+        "Brand New & Low-Mileage Slightly Used",
         "70/30 flexible payment plan",
-        "4 to 6 weeks delivery turnaround",
-        "Dual technical inspections (China + GRA)",
-        "Comprehensive insurance assistance"
+        "Custom vehicle Buy & Spec modifications",
+        "Dual technical inspections (China + GRA)"
       ],
-      linkText: "Explore Cars →",
+      linkText: "Explore SUVs →",
       link: "/our-services#car-import",
-      image: "/project-1.jpg"
+      image: "/chinese-suv-geely.jpg"
     },
     {
       id: "beauty",
@@ -166,19 +173,19 @@ export const siteData = {
   ],
 
   scheme7030: {
-    tagline: "SMART FINANCING FOR VEHICLE OWNERSHIP",
+    tagline: "70/30 SPLIT FINANCING FOR NEW & LOW-MILEAGE VEHICLES",
     headline: "Don't Have the Full Amount Upfront? Our 70/30 Plan Closes the Gap.",
-    intro: "Many buyers want a quality car but do not have 100% of the capital ready today. We co-invest with you to acquire your car from China, ship it, clear it, and deliver it before you pay the remaining balance.",
+    intro: "Many buyers want a quality Chinese SUV or vehicle—brand new or certified low-mileage slightly used—but do not have 100% of the capital ready today. We co-invest with you to acquire your car from China, execute optional Buy & Spec styling, ship it, clear it, and deliver it before you pay the remaining balance.",
     steps: [
       {
         step: 1,
         title: "70% Upfront Deposit",
-        desc: "Select your desired car model. You pay 70% of the vehicle cost into our secured account."
+        desc: "Select your desired Chinese SUV or vehicle (New or Low-Mileage slightly used). You pay 70% of the vehicle cost into our secured account."
       },
       {
         step: 2,
-        title: "DC Tops Up 30%",
-        desc: "DeBaldiet Commodities covers the remaining 30% and completes the purchase in China immediately."
+        title: "DC Tops Up 30% & Specs",
+        desc: "DeBaldiet Commodities covers the remaining 30%, completes the purchase in China immediately, and initiates any requested Buy & Spec custom packages."
       },
       {
         step: 3,
@@ -238,7 +245,7 @@ export const siteData = {
     {
       clientType: "Automotive Client",
       rating: 5,
-      quote: "Importing a vehicle used to be filled with anxiety about port delays and hidden fees. DC made it smooth. The 70/30 scheme meant I didn't tie down all my savings, and my SUV arrived in Accra, Ghana exactly 5 weeks later.",
+      quote: "Importing my Haval H6 SUV was completely stress-free. Finding a clean slightly used Chinese SUV with low mileage seemed tricky until DC stepped in. Their 70/30 scheme and custom spec modifications delivered my car to Accra in 5 weeks in showroom condition.",
       name: "Kwame M.",
       title: "Bank Operations Specialist, Accra",
       avatar: "/testimonial-1.jpg"
@@ -263,36 +270,36 @@ export const siteData = {
 
   about: {
     headline: "About DeBaldiet Commodities",
-    subHeadline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana.",
+    subHeadline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana and Africa.",
     story: [
-      "Founded in Accra, Ghana, DeBaldiet Commodities (DC) was born out of a desire to bring genuine accountability to Ghanaian importation and trade. For years, individual buyers and commercial enterprises have suffered from inflated local markups, fraudulent brokers, unpredictably long shipping timelines, and subpar product quality.",
-      "DeBaldiet Commodities disrupts this broken model by taking direct responsibility for the entire journey. We are not brokers who vanish when problems arise; we are your direct, accountable trading partner. By managing international sourcing directly at the factory and farm gate level, coordinating secure maritime shipping, and personally supervising customs clearance, we ensure our clients receive exactly what they paid for—at fair, transparent costs.",
-      "Today, DC operates across three vital sectors of the economy: delivering dependable automotive solutions from China, distributing luxury hair and beauty supplies, and powering commercial agricultural commodity trade across Ghana."
+      "Founded in Accra, Ghana, DeBaldiet Commodities (DC) was born out of a desire to bring genuine accountability to trade and logistics across Ghana and the wider African continent. For years, individual buyers and commercial enterprises have suffered from inflated local markups, fraudulent brokers, unpredictably long shipping timelines, and subpar product quality.",
+      "DeBaldiet Commodities disrupts this broken model by taking direct responsibility for the entire journey. We are not brokers who vanish when problems arise; we are your direct, accountable trading partner. By managing international sourcing directly at factory floors and verified vehicle hubs in China, coordinating secure maritime shipping, executing bespoke Buy & Spec customizations, and personally supervising customs clearance, we ensure our clients receive exactly what they paid for—at fair, transparent costs.",
+      "Today, DC operates across vital commercial sectors serving clients across Ghana and Africa: delivering brand-new and certified low-mileage slightly used Chinese SUVs and commercial vehicles, offering custom Buy & Spec vehicle styling, distributing luxury hair and beauty supplies, and powering commercial agricultural commodity trade."
     ],
     vision: {
-      title: "To Be West Africa's Benchmark in Accountable Trade",
-      desc: "To establish DeBaldiet Commodities as Ghana’s most trusted multi-sector trading partner, recognized for eliminating trade opacity and creating financial flexibility for everyday consumers and institutions alike."
+      title: "To Be Africa's Benchmark in Accountable Trade",
+      desc: "To establish DeBaldiet Commodities as Africa’s most trusted multi-sector trading partner, recognized for eliminating trade opacity and creating financial and operational flexibility for everyday consumers and institutions across the continent."
     },
     mission: {
-      title: "Accessible Quality & Total Transparency",
-      desc: "To deliver verified, high-value vehicles, authentic beauty products, and vital food commodities through transparent pricing, rigorous dual-stage inspections, and customer-first financing terms."
+      title: "Accessible Quality & Total Transparency Across Africa",
+      desc: "To deliver verified, high-value vehicles (new and certified low-mileage), custom vehicle speccing, authentic beauty products, and vital food commodities through transparent pricing, rigorous dual-stage inspections, and customer-first terms across Ghana and Africa."
     },
     coreValues: [
       {
         value: "Single Accountability",
-        meaning: "No finger-pointing between suppliers, freight agents, and clearing brokers. From order to driveway, DC takes full responsibility."
+        meaning: "No finger-pointing between suppliers, freight agents, and clearing brokers. From initial sourcing in China to driveway handover across Ghana and Africa, DC takes full responsibility."
       },
       {
         value: "Radical Transparency",
-        meaning: "Every charge—from sourcing price to shipping freight, port duties, and clearance—is fully disclosed. No hidden surprises."
+        meaning: "Every charge—from sourcing price to ocean shipping, port duties, inspection certificates, and clearance—is fully disclosed. No hidden markups or surprises."
       },
       {
-        value: "Dual Inspection",
-        meaning: "We never assume quality; we verify it twice. Technical inspections in the country of origin and physical checks upon arrival."
+        value: "Dual Inspection Assurance",
+        meaning: "We never assume quality; we verify it twice. Rigorous technical, mechanical, and diagnostic inspections in China, followed by physical verification upon arrival."
       },
       {
-        value: "Financial Partnership",
-        meaning: "We bridge financial gaps for our clients through structured terms like our 70/30 plan and institutional bank asset partnerships."
+        value: "Customer-Centric Value",
+        meaning: "We bridge procurement hurdles for our clients through structured terms like our 70/30 plan, custom Buy & Spec vehicle personalization, and responsive aftercare."
       }
     ],
     leadership: {
@@ -301,7 +308,7 @@ export const siteData = {
       location: "Accra, Ghana",
       phone: "+233 55 166 0943",
       email: "debaldietcommodities@gmail.com",
-      quote: "Our business is built on trust and delivered promises. Whether sourcing an electric vehicle from China, delivering virgin hair bundles to an aspiring stylist, or supplying metric tons of staple grains, we ensure that every client experiences seamless efficiency, transparent pricing, and zero hassle.",
+      quote: "Our business is built on trust and delivered promises. Whether sourcing a brand-new or low-mileage Chinese SUV, custom-speccing a vehicle to client taste, delivering virgin hair bundles to an aspiring stylist, or supplying metric tons of staple grains across Ghana and Africa, we ensure that every client experiences seamless efficiency, transparent pricing, and zero hassle.",
       image: "/team-1.jpg"
     }
   },
@@ -309,33 +316,33 @@ export const siteData = {
   services: {
     automotive: {
       vertical: "Vertical 01",
-      badge: "AUTOMOTIVE SOURCING",
-      headline: "Direct Vehicle Importation from China with 70/30 Financing",
-      overview: "Local dealership prices in Ghana often carry 40%–60% markups, while second-hand local vehicles frequently come with hidden mechanical faults. DeBaldiet Commodities manages the entire journey of your car directly from vetted automotive manufacturers and tier-one vehicle hubs in China to your driveway in Ghana.",
+      badge: "AUTOMOTIVE SOURCING & SUVS",
+      headline: "Direct Chinese SUV & Vehicle Importation (Brand New & Low-Mileage Slightly Used)",
+      overview: "Local dealership prices often carry 40%–60% markups. DeBaldiet Commodities specializes in world-class Chinese SUVs and vehicles—including BYD, Haval, Geely, Chery, Tank, and Li Auto. We source both factory-fresh brand new vehicles and certified slightly used vehicles with verified low mileage, pristine interior/mechanical condition, and comprehensive pre-export inspection reports.",
       scope: [
         {
-          stage: "1. Sourcing & Selection",
-          executes: "We match your specifications (sedan, SUV, truck, commercial van, or EV) with verified Chinese automotive suppliers to ensure optimal pricing and condition."
+          stage: "1. Sourcing & Selection (New & Low-Mileage)",
+          executes: "We match your vehicle requirements (compact, mid-size, or full-size Chinese SUV, EV, hybrid, or commercial fleet). We source either factory-fresh brand new or pristine low-mileage slightly used vehicles with guaranteed clean titles."
         },
         {
-          stage: "2. China Inspection",
-          executes: "Physical, diagnostic, and chassis inspection in China to confirm the vehicle satisfies all Chinese export and roadworthiness criteria."
+          stage: "2. Rigorous China Pre-Shipment Inspection",
+          executes: "Comprehensive diagnostic, engine, battery health (for EVs/hybrids), structural, and cosmetic inspection in China to confirm the vehicle satisfies all Chinese export and roadworthiness criteria."
         },
         {
-          stage: "3. Ocean Freight",
-          executes: "Arranging secure containerized or Ro-Ro shipping to Tema Port, Ghana, through trusted international maritime logistics carriers."
+          stage: "3. Optional 'Buy & Spec' Customization",
+          executes: "Before maritime shipment, clients can upgrade upholstery, add custom wheel sets, tech infotainment units, ceramic coatings, or specific regional trim kits directly at source."
         },
         {
-          stage: "4. Port Clearance",
+          stage: "4. Ocean Freight Logistics",
+          executes: "Arranging secure containerized or Ro-Ro shipping to Tema Port, Ghana, through trusted international maritime logistics carriers with milestone tracking."
+        },
+        {
+          stage: "5. Port Clearance & Duty Documentation",
           executes: "Managing all customs documentation, GRA duties, port tariffs, and regulatory clearance paperwork smoothly and legally."
         },
         {
-          stage: "5. Ghana Inspection & Transport",
-          executes: "Post-dock inspection against Ghana Revenue Authority standards followed by direct transportation to the customer's preferred handover location."
-        },
-        {
-          stage: "6. Insurance Arrangement",
-          executes: "Assisting you in setting up comprehensive auto insurance on arrival to ensure your asset is fully protected the moment keys are handed over."
+          stage: "6. Handover & Delivery Across Ghana & Africa",
+          executes: "Post-dock inspection against Ghana Revenue Authority standards followed by direct transportation to the customer's preferred handover location across Ghana and Africa with insurance support."
         }
       ]
     },
@@ -419,7 +426,8 @@ export const siteData = {
       title: "Send Us a Direct Message",
       subText: "Select your area of interest and our team will get in touch within 24 business hours.",
       servicesOptions: [
-        "Vehicle 70/30 Importation",
+        "Vehicle 70/30 Importation (New & Low-Mileage Slightly Used)",
+        "Buy & Spec Customization Request",
         "Hair & Beauty Supplies / Wholesale",
         "Agricultural Produce & Grain Procurement",
         "Bank & Institutional Asset Partnership"
@@ -430,12 +438,13 @@ export const siteData = {
   footer: {
     col1: {
       title: "ABOUT DEBALDIET",
-      text: "DeBaldiet Commodities (DC) is an Accra-based trade and logistics firm managing China vehicle imports, luxury beauty distribution, and bulk agricultural commodity supply."
+      text: "DeBaldiet Commodities (DC) is an Accra-based trade and logistics firm managing China SUV & vehicle imports (new & low-mileage used), custom Buy & Spec services, luxury beauty distribution, and bulk agro-commodities across Ghana and Africa."
     },
     col2: {
       title: "CORE VERTICALS",
       links: [
-        { label: "China Vehicle Importation", href: "/our-services#car-import" },
+        { label: "China SUV Importation (New & Used)", href: "/our-services#car-import" },
+        { label: "Buy & Spec Vehicle Customization", href: "/buy-and-spec" },
         { label: "70/30 Flexible Auto Plan", href: "/our-services#car-import" },
         { label: "Virgin Human Hair & Wigs", href: "/our-services#beauty" },
         { label: "Salon Beauty Wholesale", href: "/our-services#beauty" },

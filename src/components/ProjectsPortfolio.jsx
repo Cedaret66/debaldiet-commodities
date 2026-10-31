@@ -8,19 +8,19 @@ export default function ProjectsPortfolio({ onSelectProject }) {
   const showcase = [
     {
       id: 1,
-      title: 'Direct SUV & Electric Vehicle Imports',
-      category: 'Automotive (70/30 Scheme)',
-      image: '/project-1.jpg',
+      title: 'Chinese SUVs (BYD, Haval, Geely, Chery)',
+      category: 'Automotive (Brand New & Low-Mileage Slightly Used)',
+      image: '/chinese-suv-byd.jpg',
       badge: 'CHINA TO ACCRA',
-      desc: 'Dual-inspected luxury and commercial vehicles shipped via containerized freight directly to Tema Port.'
+      desc: 'Dual-inspected Chinese SUVs (new & low-mileage used) with optional Buy & Spec styling and 70/30 financing.'
     },
     {
       id: 2,
-      title: 'Commercial Haulage Vans & Trucks',
+      title: 'Rugged Off-Road & Fleet SUVs (Tank 300 & Commercial)',
       category: 'Automotive Procurement',
-      image: '/project-2.jpg',
-      badge: 'COMMERCIAL FLEET',
-      desc: 'Heavy-duty transport trucks and delivery vans sourced directly from top-tier Chinese manufacturers.'
+      image: '/chinese-suv-tank300.jpg',
+      badge: 'OFF-ROAD & COMMERCIAL',
+      desc: 'High-performance Chinese SUVs and fleet vehicles sourced directly from tier-one manufacturers and verified hubs.'
     },
     {
       id: 3,

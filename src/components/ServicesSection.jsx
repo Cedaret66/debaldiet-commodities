@@ -10,9 +10,9 @@ export default function ServicesSection() {
     {
       data: services.automotive,
       icon: <Truck className="w-8 h-8 text-[#ff5e14]" />,
-      image: '/project-1.jpg',
+      image: '/chinese-suv-geely.jpg',
       link: '/our-services#car-import',
-      features: ['Direct China Sourcing', 'Dual-Stage Inspection', '70/30 Flexible Financing']
+      features: ['Chinese SUVs (New & Low-Mileage)', 'Buy & Spec Customization', '70/30 Flexible Financing']
     },
     {
       data: services.beauty,

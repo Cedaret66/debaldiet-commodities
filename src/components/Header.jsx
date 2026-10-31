@@ -38,6 +38,9 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
   }, [location.pathname, location.hash]);
 
   const getSubIcon = (label) => {
+    if (label.includes('Buy & Spec')) {
+      return <Sparkles className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
+    }
     if (label.includes('Auto') || label.includes('Automotive')) {
       return <Truck className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
     }
