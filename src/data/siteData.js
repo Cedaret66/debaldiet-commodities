@@ -50,14 +50,14 @@ export const siteData = {
           badge: "FLAGSHIP"
         },
         {
-          label: "Automotive Sourcing",
+          label: "Automotive Sourcing (Buy N Spec)",
           href: "/our-services#car-import",
           desc: "Direct China vehicle importation (Brand New & Low-Mileage Slightly Used)"
         },
         {
-          label: "Buy & Spec Service",
+          label: "Buy N Spec",
           href: "/buy-and-spec",
-          desc: "Custom vehicle styling, trim upgrades, tech & spec modifications",
+          desc: "Dealership vehicle sourcing & bespoke spec modifications",
           badge: "NEW"
         },
         {
@@ -77,7 +77,7 @@ export const siteData = {
         }
       ]
     },
-    { label: "Buy & Spec", href: "/buy-and-spec" },
+    { label: "Buy N Spec", href: "/buy-and-spec" },
     { label: "Partnerships", href: "/partnerships" },
     { label: "Contact Us", href: "/contact-us" }
   ],
@@ -85,9 +85,9 @@ export const siteData = {
   slides: [
     {
       id: 1,
-      pillar: "Automotive Sourcing",
+      pillar: "Buy N Spec Automotive",
       bgImage: "/chinese-suv-byd.jpg",
-      overline: "DIRECT CHINESE SUV & VEHICLE IMPORTATION • CHINA TO ACCRA",
+      overline: "BUY N SPEC • DIRECT CHINESE SUV & VEHICLE IMPORTATION • CHINA TO ACCRA",
       headline: "Quality Chinese SUVs Sourced Direct From China. Brand New & Low-Mileage Slightly Used.",
       body: "Eliminate middlemen, inflated dealer markups, and clearance stress. DeBaldiet Commodities specializes in premium Chinese SUVs (BYD, Haval, Geely, Chery, Tank, Li Auto)—available both brand-new and certified slightly used with low mileage. Enjoy end-to-end sourcing, dual technical inspections, maritime freight, and customs clearance.",
       benefitTag: "FLEXIBLE 70/30 PAYMENT TERMS AVAILABLE",
@@ -127,14 +127,14 @@ export const siteData = {
   corePillars: [
     {
       id: "cars",
-      vertical: "Pillar 01: Automotive",
-      badge: "CARS",
-      title: "Chinese SUV Sourcing & Importation (New & Low-Mileage Slightly Used)",
-      summary: "Turnkey procurement of top Chinese SUVs (BYD, Haval, Geely, Chery, Tank). We handle factory vetting, ocean freight, Tema port customs clearance, and our custom Buy & Spec service.",
+      vertical: "Pillar 01: Buy N Spec (Automotive)",
+      badge: "BUY N SPEC",
+      title: "Buy N Spec: Chinese SUV Sourcing & Dealership (New & Low-Mileage)",
+      summary: "Turnkey dealership procurement of top Chinese SUVs (BYD, Haval, Geely, Chery, Tank). We handle factory vetting, ocean freight, Tema port customs clearance, and our custom Buy N Spec service.",
       highlights: [
         "Brand New & Low-Mileage Slightly Used",
         "70/30 flexible payment plan",
-        "Custom vehicle Buy & Spec modifications",
+        "Custom vehicle Buy N Spec modifications",
         "Dual technical inspections (China + GRA)"
       ],
       linkText: "Explore SUVs →",
@@ -176,9 +176,9 @@ export const siteData = {
   ],
 
   scheme7030: {
-    tagline: "70/30 SPLIT FINANCING FOR NEW & LOW-MILEAGE VEHICLES",
+    tagline: "70/30 SPLIT FINANCING FOR BUY N SPEC VEHICLES",
     headline: "Don't Have the Full Amount Upfront? Our 70/30 Plan Closes the Gap.",
-    intro: "Many buyers want a quality Chinese SUV or vehicle—brand new or certified low-mileage slightly used—but do not have 100% of the capital ready today. We co-invest with you to acquire your car from China, execute optional Buy & Spec styling, ship it, clear it, and deliver it before you pay the remaining balance.",
+    intro: "Many buyers want a quality Chinese SUV or vehicle—brand new or certified low-mileage slightly used—but do not have 100% of the capital ready today. We co-invest with you to acquire your car from China, execute optional Buy N Spec styling, ship it, clear it, and deliver it before you pay the remaining balance.",
     steps: [
       {
         step: 1,
@@ -188,7 +188,7 @@ export const siteData = {
       {
         step: 2,
         title: "DC Tops Up 30% & Specs",
-        desc: "DeBaldiet Commodities covers the remaining 30%, completes the purchase in China immediately, and initiates any requested Buy & Spec custom packages."
+        desc: "DeBaldiet Commodities covers the remaining 30%, completes the purchase in China immediately, and initiates any requested Buy N Spec custom packages."
       },
       {
         step: 3,
@@ -276,8 +276,8 @@ export const siteData = {
     subHeadline: "Bridging Global Sourcing with Reliable Local Execution Across Ghana and Africa.",
     story: [
       "Founded in Accra, Ghana, DeBaldiet Commodities (DC) was born out of a desire to bring genuine accountability to trade and logistics across Ghana and the wider African continent. For years, individual buyers and commercial enterprises have suffered from inflated local markups, fraudulent brokers, unpredictably long shipping timelines, and subpar product quality.",
-      "DeBaldiet Commodities disrupts this broken model by taking direct responsibility for the entire journey. We are not brokers who vanish when problems arise; we are your direct, accountable trading partner. By managing international sourcing directly at factory floors and verified vehicle hubs in China, coordinating secure maritime shipping, executing bespoke Buy & Spec customizations, and personally supervising customs clearance, we ensure our clients receive exactly what they paid for—at fair, transparent costs.",
-      "Today, DC operates across vital commercial sectors serving clients across Ghana and Africa: delivering brand-new and certified low-mileage slightly used Chinese SUVs and commercial vehicles, offering custom Buy & Spec vehicle styling, distributing luxury hair and beauty supplies, and powering commercial agricultural commodity trade."
+      "DeBaldiet Commodities disrupts this broken model by taking direct responsibility for the entire journey. We are not brokers who vanish when problems arise; we are your direct, accountable trading partner. By managing international sourcing directly at factory floors and verified vehicle hubs in China, coordinating secure maritime shipping, executing bespoke Buy N Spec customizations, and personally supervising customs clearance, we ensure our clients receive exactly what they paid for—at fair, transparent costs.",
+      "Today, DC operates across vital commercial sectors serving clients across Ghana and Africa: delivering brand-new and certified low-mileage slightly used Chinese SUVs and commercial vehicles through Buy N Spec, offering custom vehicle styling, distributing luxury hair and beauty supplies, and powering commercial agricultural commodity trade."
     ],
     vision: {
       title: "To Be Africa's Benchmark in Accountable Trade",
@@ -285,7 +285,7 @@ export const siteData = {
     },
     mission: {
       title: "Accessible Quality & Total Transparency Across Africa",
-      desc: "To deliver verified, high-value vehicles (new and certified low-mileage), custom vehicle speccing, authentic beauty products, and vital food commodities through transparent pricing, rigorous dual-stage inspections, and customer-first terms across Ghana and Africa."
+      desc: "To deliver verified, high-value vehicles (new and certified low-mileage), custom vehicle speccing via Buy N Spec, authentic beauty products, and vital food commodities through transparent pricing, rigorous dual-stage inspections, and customer-first terms across Ghana and Africa."
     },
     coreValues: [
       {
@@ -302,7 +302,7 @@ export const siteData = {
       },
       {
         value: "Customer-Centric Value",
-        meaning: "We bridge procurement hurdles for our clients through structured terms like our 70/30 plan, custom Buy & Spec vehicle personalization, and responsive aftercare."
+        meaning: "We bridge procurement hurdles for our clients through structured terms like our 70/30 plan, custom Buy N Spec vehicle personalization, and responsive aftercare."
       }
     ],
     leadership: {
@@ -319,10 +319,10 @@ export const siteData = {
 
   services: {
     automotive: {
-      vertical: "Vertical 01",
-      badge: "AUTOMOTIVE SOURCING & SUVS",
-      headline: "Direct Chinese SUV & Vehicle Importation (Brand New & Low-Mileage Slightly Used)",
-      overview: "Local dealership prices often carry 40%–60% markups. DeBaldiet Commodities specializes in world-class Chinese SUVs and vehicles—including BYD, Haval, Geely, Chery, Tank, and Li Auto. We source both factory-fresh brand new vehicles and certified slightly used vehicles with verified low mileage, pristine interior/mechanical condition, and comprehensive pre-export inspection reports.",
+      vertical: "Vertical 01: Buy N Spec",
+      badge: "BUY N SPEC • AUTOMOTIVE DEALERSHIP & SOURCING",
+      headline: "Buy N Spec: Direct Chinese SUV & Vehicle Importation (Brand New & Low-Mileage Slightly Used)",
+      overview: "Local dealership prices often carry 40%–60% markups. Through Buy N Spec, DeBaldiet Commodities specializes in world-class Chinese SUVs and vehicles—including BYD, Haval, Geely, Chery, Tank, and Li Auto. We source both factory-fresh brand new vehicles and certified slightly used vehicles with verified low mileage, pristine interior/mechanical condition, and comprehensive pre-export inspection reports.",
       scope: [
         {
           stage: "1. Sourcing & Selection (New & Low-Mileage)",
@@ -333,7 +333,7 @@ export const siteData = {
           executes: "Comprehensive diagnostic, engine, battery health (for EVs/hybrids), structural, and cosmetic inspection in China to confirm the vehicle satisfies all Chinese export and roadworthiness criteria."
         },
         {
-          stage: "3. Optional 'Buy & Spec' Customization",
+          stage: "3. Optional 'Buy N Spec' Customization",
           executes: "Before maritime shipment, clients can upgrade upholstery, add custom wheel sets, tech infotainment units, ceramic coatings, or specific regional trim kits directly at source."
         },
         {
@@ -433,7 +433,7 @@ export const siteData = {
       subText: "Select your area of interest and our team will get in touch within 24 business hours.",
       servicesOptions: [
         "Vehicle 70/30 Importation (New & Low-Mileage Slightly Used)",
-        "Buy & Spec Customization Request",
+        "Buy N Spec Dealership & Customization Request",
         "Hair & Beauty Supplies / Wholesale",
         "Agricultural Produce & Grain Procurement",
         "Bank & Institutional Asset Partnership"
@@ -443,10 +443,10 @@ export const siteData = {
 
   buyAndSpec: {
     hero: {
-      tagline: "EXCLUSIVE CHINA-TO-ACCRA BESPOKE AUTOMOTIVE SERVICE",
-      headline: "Buy & Spec Service",
+      tagline: "BUY N SPEC • BESPOKE AUTOMOTIVE DEALERSHIP & CUSTOMIZATION",
+      headline: "Buy N Spec",
       subHeadline: "Purchase Direct from China, Tailor Every Detail to Your Exact Taste Before Shipment.",
-      intro: "Why settle for standard showroom trim? With DeBaldiet Commodities' Buy & Spec service, you choose your desired Chinese SUV—brand new or certified low-mileage slightly used—and customize interior luxury, exterior aesthetics, infotainment, and Africa-ready mechanical upgrades directly at source before ocean freight."
+      intro: "Why settle for standard showroom trim? With DeBaldiet Commodities' Buy N Spec service, you choose your desired Chinese SUV—brand new or certified low-mileage slightly used—and customize interior luxury, exterior aesthetics, infotainment, and Africa-ready mechanical upgrades directly at source before ocean freight."
     },
     packages: [
       {
@@ -564,13 +564,13 @@ export const siteData = {
   footer: {
     col1: {
       title: "ABOUT DEBALDIET",
-      text: "DeBaldiet Commodities (DC) is an Accra-based trade and logistics firm managing China SUV & vehicle imports (new & low-mileage used), custom Buy & Spec services, luxury beauty distribution, and bulk agro-commodities across Ghana and Africa."
+      text: "DeBaldiet Commodities (DC) is an Accra-based trade and logistics firm managing Buy N Spec China SUV & vehicle imports (new & low-mileage used), custom styling, luxury beauty distribution, and bulk agro-commodities across Ghana and Africa."
     },
     col2: {
       title: "CORE VERTICALS",
       links: [
         { label: "China SUV Importation (New & Used)", href: "/our-services#car-import" },
-        { label: "Buy & Spec Vehicle Customization", href: "/buy-and-spec" },
+        { label: "Buy N Spec Dealership & Customization", href: "/buy-and-spec" },
         { label: "70/30 Flexible Auto Plan", href: "/our-services#car-import" },
         { label: "Virgin Human Hair & Wigs", href: "/our-services#beauty" },
         { label: "Salon Beauty Wholesale", href: "/our-services#beauty" },

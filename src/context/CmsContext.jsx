@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { siteData as defaultSiteData } from '../data/siteData';
 
-const STORAGE_KEY = 'debaldiet_cms_content_v2';
+const STORAGE_KEY = 'debaldiet_cms_content_v3';
 const AUTH_KEY = 'debaldiet_cms_auth_v2';
 const CLOUD_SYNC_KEY = 'debaldiet_cloud_sync_config_v2';
 

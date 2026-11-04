@@ -39,7 +39,7 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
   }, [location.pathname, location.hash]);
 
   const getSubIcon = (label) => {
-    if (label.includes('Buy & Spec')) {
+    if (label.includes('Buy N Spec') || label.includes('Buy & Spec') || label.includes('Spec')) {
       return <Sparkles className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
     }
     if (label.includes('Auto') || label.includes('Automotive')) {

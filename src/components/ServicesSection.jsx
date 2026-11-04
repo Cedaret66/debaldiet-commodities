@@ -18,7 +18,7 @@ export default function ServicesSection() {
       icon: <Truck className="w-8 h-8 text-[#ff5e14]" />,
       image: corePillars[0]?.image || '/chinese-suv-geely.jpg',
       link: '/our-services#car-import',
-      features: ['Chinese SUVs (New & Low-Mileage)', 'Buy & Spec Customization', '70/30 Flexible Financing']
+      features: ['Chinese SUVs (New & Low-Mileage)', 'Buy N Spec Customization', '70/30 Flexible Financing']
     },
     {
       key: 'beauty',

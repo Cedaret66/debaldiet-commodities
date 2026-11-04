@@ -103,7 +103,7 @@ export default function BuyAndSpecPage() {
             <span className="inline-flex items-center space-x-2 bg-[#ff5e14] text-white px-3.5 py-1 text-[12px] font-heading uppercase tracking-[2px] font-bold mb-4">
               <Sparkles className="w-3.5 h-3.5" />
               <EditableText path="buyAndSpec.hero.tagline" as="span">
-                {hero.tagline || 'CUSTOM VEHICLE SPECIFICATION SERVICE'}
+                {hero.tagline || 'BUY N SPEC • BESPOKE AUTOMOTIVE SERVICE'}
               </EditableText>
             </span>
             <EditableText
@@ -111,7 +111,7 @@ export default function BuyAndSpecPage() {
               as="h1"
               className="font-heading font-black text-[42px] sm:text-[58px] lg:text-[70px] text-white leading-[1.06] tracking-tight mb-5 block"
             >
-              {hero.headline || 'Buy & Spec Service'}
+              {hero.headline || 'Buy N Spec'}
             </EditableText>
             <EditableText
               path="buyAndSpec.hero.subHeadline"
@@ -139,7 +139,7 @@ export default function BuyAndSpecPage() {
         </div>
       </section>
 
-      {/* 2. How Buy & Spec Works */}
+      {/* 2. How Buy N Spec Works */}
       <section className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="max-w-3xl mb-16">
@@ -155,7 +155,7 @@ export default function BuyAndSpecPage() {
               multiline
               className="text-[#565969] text-[17px] leading-relaxed block"
             >
-              {hero.intro || "When you purchase a vehicle through DeBaldiet Commodities, you don't have to accept off-the-lot limitations. Through our direct supplier network and professional tuning partners in China, we offer our signature 'Buy & Spec' service."}
+              {hero.intro || "When you purchase a vehicle through DeBaldiet Commodities, you don't have to accept off-the-lot limitations. Through our direct supplier network and professional tuning partners in China, we offer our signature 'Buy N Spec' dealership & customization service."}
             </EditableText>
           </div>
 
@@ -279,7 +279,7 @@ export default function BuyAndSpecPage() {
         </div>
       </section>
 
-      {/* 4. Popular Chinese SUVs for Buy & Spec */}
+      {/* 4. Popular Chinese SUVs for Buy N Spec */}
       <section className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
@@ -288,7 +288,7 @@ export default function BuyAndSpecPage() {
                 FEATURED CHINESE SUVS
               </span>
               <h2 className="font-heading font-black text-[36px] sm:text-[48px] text-[#001659] leading-tight">
-                Popular Models Ready for Buy & Spec
+                Popular Models Ready for Buy N Spec
               </h2>
             </div>
             <p className="text-[#565969] text-[16px] max-w-md mt-4 md:mt-0">
@@ -417,7 +417,7 @@ export default function BuyAndSpecPage() {
             GET STARTED TODAY
           </span>
           <h2 className="font-heading font-black text-[36px] sm:text-[48px] text-[#001659] leading-tight mb-6">
-            Ready to Buy and Spec Your Next Vehicle?
+            Ready to Order With Buy N Spec?
           </h2>
           <p className="font-body text-[17px] text-[#565969] max-w-2xl mx-auto mb-8">
             Experience the freedom of tailored automotive ownership backed by our 70/30 financing plan and full accountability across Ghana and Africa.
@@ -427,7 +427,7 @@ export default function BuyAndSpecPage() {
               to="/contact-us"
               className="inline-flex items-center justify-center h-[50px] px-8 bg-[#ff5e14] text-white font-heading font-bold text-[14px] uppercase tracking-[1px] hover:bg-[#001659] transition-colors shadow-lg"
             >
-              Order With Buy & Spec
+              Order With Buy N Spec
             </Link>
             <Link
               to="/our-services"

@@ -12,7 +12,7 @@ export default function ProjectsPortfolio({ onSelectProject }) {
       category: 'Automotive (Brand New & Low-Mileage Slightly Used)',
       image: '/chinese-suv-byd.jpg',
       badge: 'CHINA TO ACCRA',
-      desc: 'Dual-inspected Chinese SUVs (new & low-mileage used) with optional Buy & Spec styling and 70/30 financing.'
+      desc: 'Dual-inspected Chinese SUVs (new & low-mileage used) with optional Buy N Spec styling and 70/30 financing.'
     },
     {
       id: 2,

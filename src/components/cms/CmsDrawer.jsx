@@ -83,7 +83,7 @@ export default function CmsDrawer() {
             { id: 'pillars', label: '3 Verticals', icon: Layers },
             { id: 'scheme', label: '70/30 Plan', icon: Sliders },
             { id: 'about', label: 'About & Values', icon: Type },
-            { id: 'buyandspec', label: 'Buy & Spec', icon: Wrench },
+            { id: 'buyandspec', label: 'Buy N Spec', icon: Wrench },
             { id: 'partnerships', label: 'Partnerships', icon: Building2 },
             { id: 'team', label: 'Team', icon: Users },
             { id: 'contact', label: 'Contact', icon: Phone },
@@ -282,7 +282,7 @@ export default function CmsDrawer() {
             </div>
           )}
 
-          {/* Buy & Spec Tab */}
+          {/* Buy N Spec Tab */}
           {activeTab === 'buyandspec' && (
             <div className="p-4 bg-white border border-gray-200 rounded-md shadow-sm space-y-4">
               <div>
