@@ -24,8 +24,12 @@ export default function CMSAdminPage() {
     <div className="min-h-screen bg-[#001659] flex items-center justify-center p-6 font-body">
       <div className="w-full max-w-md bg-white rounded-lg shadow-2xl p-8 sm:p-10 border border-white/10">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-[#ff5e14] text-white rounded-md mx-auto flex items-center justify-center font-heading font-black text-2xl mb-3 shadow-lg">
-            DC
+          <div className="flex justify-center mb-4">
+            <img
+              src="/logo.png"
+              alt="DeBaldiet Commodities"
+              className="h-12 w-auto object-contain"
+            />
           </div>
           <h1 className="font-heading font-black text-2xl text-[#001659]">
             DeBaldiet CMS Portal

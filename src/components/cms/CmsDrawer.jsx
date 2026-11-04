@@ -46,9 +46,11 @@ export default function CmsDrawer() {
         {/* Header */}
         <div className="p-5 border-b border-gray-200 bg-[#001659] text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded bg-[#ff5e14] flex items-center justify-center font-heading font-black text-white">
-              DC
-            </div>
+            <img
+              src="/logo-icon.png"
+              alt="DC Emblem"
+              className="w-8 h-8 object-contain"
+            />
             <div>
               <h2 className="text-base font-heading font-black text-white">CMS Sections Panel</h2>
               <p className="text-xs text-white/60">Edit website data or configure cloud database</p>

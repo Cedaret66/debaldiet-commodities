@@ -32,18 +32,12 @@ export default function Footer() {
           
           {/* COL 1: ABOUT DEBALDIET */}
           <div className="space-y-6">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-[#ff5e14] text-white flex items-center justify-center font-heading font-black text-xl tracking-wider rounded-sm">
-                DC
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-black text-2xl tracking-tight text-white leading-none">
-                  DeBaldiet
-                </span>
-                <span className="font-heading uppercase text-[10px] tracking-[2.5px] font-bold text-white/60">
-                  Commodities
-                </span>
-              </div>
+            <Link to="/" className="inline-block group py-1">
+              <img
+                src="/logo-white-text.png"
+                alt="DeBaldiet Commodities"
+                className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              />
             </Link>
 
             <h4 className="font-heading font-bold text-[14px] uppercase tracking-[1.5px] text-[#ff5e14]">

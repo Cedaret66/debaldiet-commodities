@@ -65,18 +65,12 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
       <div className="max-w-[1300px] mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo Branding */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-[#001659] text-white flex items-center justify-center font-heading font-black text-xl tracking-wider rounded-sm group-hover:bg-[#ff5e14] transition-colors">
-              DC
-            </div>
-            <div className="flex flex-col">
-              <span className="font-heading font-black text-xl sm:text-2xl tracking-tight text-[#001659] leading-none">
-                DeBaldiet
-              </span>
-              <span className="font-heading uppercase text-[10px] tracking-[2.5px] font-bold text-[#565969]">
-                Commodities
-              </span>
-            </div>
+          <Link to="/" className="flex items-center group py-0.5">
+            <img
+              src="/logo.png"
+              alt="DeBaldiet Commodities"
+              className="h-9 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}

@@ -40,15 +40,11 @@ export default function SideDrawer({ isOpen, onClose }) {
         <div>
           {/* Top Header with Close Button */}
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-            <Link to="/" onClick={onClose}>
+            <Link to="/" onClick={onClose} className="inline-block py-1">
               <img
-                src="https://bridge510.qodeinteractive.com/wp-content/uploads/2024/02/bridge-logo.png"
-                alt="Bridge Logo"
-                className="h-10 w-auto object-contain brightness-0 invert"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://bridge510.qodeinteractive.com/wp-content/uploads/2019/01/footer-logo-01.png';
-                }}
+                src="/logo-white-text.png"
+                alt="DeBaldiet Commodities"
+                className="h-10 w-auto object-contain"
               />
             </Link>
 
