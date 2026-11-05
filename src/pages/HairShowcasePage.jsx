@@ -212,17 +212,19 @@ export default function HairShowcasePage() {
                       )}
                     </div>
 
-                    {/* Hair Details / Bullet Features */}
-                    <div className="space-y-2 mb-6">
-                      <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-[#565969] block">
-                        Quality Guarantees & Features:
+                    {/* Hair Details / Description */}
+                    <div className="mb-6">
+                      <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-[#001659] block mb-1.5">
+                        Details:
                       </span>
-                      {item.details && item.details.map((detail, dIdx) => (
-                        <div key={dIdx} className="flex items-start space-x-2 text-xs text-[#565969]">
-                          <Check className="w-3.5 h-3.5 text-[#ff5e14] shrink-0 mt-0.5" />
-                          <span className="leading-tight">{detail}</span>
-                        </div>
-                      ))}
+                      <EditableText
+                        path={`showcases.hair.items[${idx}].description`}
+                        as="div"
+                        multiline
+                        className="text-[13px] text-[#565969] leading-relaxed whitespace-pre-line block bg-[#f8f9fa] p-3.5 border border-[#e8e8e9] rounded-xs"
+                      >
+                        {item.description || (Array.isArray(item.details) ? item.details.join('\n\n') : '')}
+                      </EditableText>
                     </div>
                   </div>
                 </div>
