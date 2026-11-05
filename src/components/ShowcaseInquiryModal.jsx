@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, MessageSquare, Phone, Send, ShieldCheck, Tag } from 'lucide-react';
+import { calculate70PercentDeposit } from '../utils/pricing';
 
 export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
   const [formData, setFormData] = useState({
@@ -19,8 +20,10 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
   };
 
   const getWhatsAppLink = () => {
+    const deposit = calculate70PercentDeposit(item.price) || item.deposit70;
+    const depositNote = deposit ? ` [70% Deposit: ${deposit}]` : '';
     const text = encodeURIComponent(
-      `Hello DeBaldiet Commodities! I am interested in inquiring about: ${item.name} (${item.price || ''}). Please share landed availability and ordering details.`
+      `Hello DeBaldiet Commodities! I am interested in inquiring about: ${item.name} (${item.price || ''}${depositNote}). Please share landed availability and ordering details.`
     );
     return `https://wa.me/233551660943?text=${text}`;
   };
@@ -68,6 +71,16 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
               <p className="font-heading font-bold text-[#ff5e14] text-base mt-1">
                 {item.price}
               </p>
+              {type === 'cars' && (
+                <div className="mt-2 py-1 px-2 bg-white border border-[#e8e8e9] inline-flex items-center gap-1.5 text-xs font-heading">
+                  <span className="text-[#565969]">70% Initial Deposit:</span>
+                  <span className="text-[#ff5e14] font-bold">
+                    {calculate70PercentDeposit(item.price) || item.deposit70}
+                  </span>
+                  <span className="text-gray-300">•</span>
+                  <span className="text-[#001659] text-[11px]">30% on Handover</span>
+                </div>
+              )}
               {item.specsOverview && (
                 <p className="font-body text-xs text-[#565969] mt-1 line-clamp-1">
                   {item.specsOverview}

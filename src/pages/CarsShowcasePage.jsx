@@ -16,6 +16,7 @@ import EditableImage from '../components/cms/EditableImage';
 import CmsSection from '../components/cms/CmsSection';
 import ShowcaseItemModal from '../components/cms/ShowcaseItemModal';
 import ShowcaseInquiryModal from '../components/ShowcaseInquiryModal';
+import { calculate70PercentDeposit } from '../utils/pricing';
 
 export default function CarsShowcasePage() {
   const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem } = useCms();
@@ -231,17 +232,20 @@ export default function CarsShowcasePage() {
                           </EditableText>
                         </span>
                       </div>
-                      {/* 70/30 Breakdown highlight */}
-                      {car.deposit70 && (
-                        <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">
-                          <span className="text-[#565969] font-medium">70% Initial Deposit:</span>
-                          <span className="text-[#ff5e14] font-bold">
-                            <EditableText path={`showcases.cars.items[${idx}].deposit70`}>
-                              {car.deposit70}
-                            </EditableText>
-                          </span>
-                        </div>
-                      )}
+                      {/* 70/30 Breakdown highlight - Automatically calculated at 70% */}
+                      {(() => {
+                        const autoDeposit = calculate70PercentDeposit(car.price);
+                        const displayDeposit = autoDeposit || car.deposit70;
+                        if (!displayDeposit) return null;
+                        return (
+                          <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">
+                            <span className="text-[#565969] font-medium">70% Initial Deposit:</span>
+                            <span className="text-[#ff5e14] font-black text-sm">
+                              {displayDeposit}
+                            </span>
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Car Details / Description */}

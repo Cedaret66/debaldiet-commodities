@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, Plus, Upload, Sparkles, Check, Car, Layers, Sprout } from 'lucide-react';
+import { X, Plus, Upload, Sparkles, Check, Car, Layers, Sprout, Calculator } from 'lucide-react';
 import { useCms } from '../../context/CmsContext';
+import { calculate70PercentDeposit } from '../../utils/pricing';
 
 export default function ShowcaseItemModal({
   isOpen,
@@ -145,31 +146,52 @@ export default function ShowcaseItemModal({
             />
           </div>
 
-          {/* Pricing & Deposit Grid */}
+          {/* Pricing & Auto 70% Deposit Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[#001659] mb-1">
-                Headline Price / Quote
+                Headline Price / Quote *
               </label>
               <input
                 type="text"
                 value={formData.price}
-                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                onChange={(e) => {
+                  const newPrice = e.target.value;
+                  const autoDeposit = calculate70PercentDeposit(newPrice);
+                  setFormData((prev) => ({
+                    ...prev,
+                    price: newPrice,
+                    deposit70: autoDeposit || prev.deposit70,
+                  }));
+                }}
                 placeholder={meta.pricePlaceholder}
                 className="w-full px-3.5 py-2 text-sm border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
               />
+              <span className="text-[11px] text-[#565969] mt-0.5 block">
+                e.g. $35,000 or $38,000 – $42,000
+              </span>
             </div>
             <div>
-              <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[#001659] mb-1">
-                70% Deposit or Terms Note
-              </label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[#001659]">
+                  70% Initial Deposit
+                </label>
+                {formData.price && calculate70PercentDeposit(formData.price) && (
+                  <span className="text-[10px] text-emerald-600 font-bold uppercase flex items-center gap-0.5">
+                    <Check className="w-3 h-3" /> Auto-calculated
+                  </span>
+                )}
+              </div>
               <input
                 type="text"
                 value={formData.deposit70}
                 onChange={(e) => setFormData({ ...formData, deposit70: e.target.value })}
                 placeholder={meta.depositPlaceholder}
-                className="w-full px-3.5 py-2 text-sm border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
+                className="w-full px-3.5 py-2 text-sm border border-emerald-300 bg-emerald-50/40 rounded focus:border-[#ff5e14] focus:outline-none font-bold text-[#ff5e14]"
               />
+              <span className="text-[11px] text-[#565969] mt-0.5 block">
+                Automatically calculated at 70% of the price.
+              </span>
             </div>
           </div>
 
