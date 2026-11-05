@@ -78,6 +78,28 @@ export const siteData = {
       ]
     },
     { label: "Buy N Spec", href: "/buy-and-spec" },
+    {
+      label: "Showcases",
+      href: "/showcases/cars",
+      dropdown: [
+        {
+          label: "Chinese SUVs & Cars",
+          href: "/showcases/cars",
+          desc: "Explore top Chinese SUVs with specs, 70/30 financing & landed pricing",
+          badge: "POPULAR"
+        },
+        {
+          label: "Luxury Hair & Wigs",
+          href: "/showcases/hair",
+          desc: "100% human virgin bundles, raw hair, HD lace wigs & salon supplies"
+        },
+        {
+          label: "Agricultural Produce",
+          href: "/showcases/agriculture",
+          desc: "Premium food crops, grains & export commodities directly from farm-gates"
+        }
+      ]
+    },
     { label: "Partnerships", href: "/partnerships" },
     { label: "Contact Us", href: "/contact-us" }
   ],
@@ -561,6 +583,434 @@ export const siteData = {
     }
   ],
 
+  showcases: {
+    cars: {
+      headline: "Chinese SUV & Vehicle Showcase",
+      tagline: "DIRECT FROM FACTORY & HUBS IN CHINA • BRAND NEW & LOW-MILEAGE",
+      subHeadline: "Explore top-tier Chinese SUVs available for immediate China-to-Accra procurement. Backed by our 70/30 financing plan, dual pre-export inspections, and optional Buy N Spec bespoke customizations.",
+      items: [
+        {
+          id: "byd-song-plus",
+          name: "BYD Song Plus (EV & DM-i Hybrid)",
+          brand: "BYD",
+          category: "New Energy SUV",
+          condition: "Brand New & Certified Low-Mileage",
+          price: "$24,800 – $28,900",
+          deposit70: "$17,360",
+          balance30: "$7,440",
+          currency: "USD Landed Tema",
+          year: "2024 / 2025",
+          mileage: "0 – 12,500 km",
+          transmission: "E-CVT Automatic",
+          powertrain: "1.5L DM-i Super Hybrid / Pure EV",
+          range: "Up to 1,200 km combined",
+          image: "/chinese-suv-byd.jpg",
+          badge: "FLAGSHIP HYBRID",
+          specsOverview: "Blade Battery • 15.6\" Rotatable DiLink Screen • Panoramic Sunroof • PM2.5 Air Purifier",
+          details: [
+            "Ultra-safe BYD Blade Battery chemistry with zero thermal runaway risk",
+            "Level-2 driving assist with 360-degree high-definition surround cameras",
+            "Heated & ventilated electric front seats with wireless smartphone charging",
+            "Eligible for Buy N Spec English UI localization & custom Nappa interior"
+          ]
+        },
+        {
+          id: "geely-monjaro",
+          name: "Geely Monjaro (Xingyue L)",
+          brand: "Geely",
+          category: "Executive Luxury SUV",
+          condition: "Brand New & Certified Low-Mileage",
+          price: "$27,500 – $32,000",
+          deposit70: "$19,250",
+          balance30: "$8,250",
+          currency: "USD Landed Tema",
+          year: "2024 / 2025",
+          mileage: "0 – 10,000 km",
+          transmission: "Aisin 8-Speed Automatic",
+          powertrain: "2.0TD Turbocharged (238 HP)",
+          range: "BorgWarner 6th-Gen 4WD",
+          image: "/chinese-suv-geely.jpg",
+          badge: "EXECUTIVE PICK",
+          specsOverview: "Volvo CMA Platform • Triple 12.3\" Cinema Screens • Bose Audio • Matrix LED",
+          details: [
+            "Co-developed with Volvo engineering for maximum crash & chassis safety",
+            "Triple-screen front dashboard spanning over 1 meter with 4K clarity",
+            "10-speaker Bose surround sound system with active noise cancellation",
+            "Available with Buy N Spec black-edition aero styling & forged wheels"
+          ]
+        },
+        {
+          id: "haval-h6-gt",
+          name: "Haval H6 GT (Coupe & Standard)",
+          brand: "Haval / GWM",
+          category: "Sport Performance SUV",
+          condition: "Brand New & Certified Low-Mileage",
+          price: "$22,900 – $26,500",
+          deposit70: "$16,030",
+          balance30: "$6,870",
+          currency: "USD Landed Tema",
+          year: "2024 / 2025",
+          mileage: "0 – 15,000 km",
+          transmission: "7-Speed Wet Dual-Clutch",
+          powertrain: "2.0T High-Output Turbo (211 HP)",
+          range: "Intelligent All-Wheel Drive",
+          image: "/chinese-suv-haval.jpg",
+          badge: "BEST VALUE",
+          specsOverview: "Coupe Styling • Dual Exhaust Sound • Heads-Up Display • 10.25\" Digital Cockpit",
+          details: [
+            "One of China's most proven and durable SUV platforms over 10 consecutive years",
+            "Aggressive aerodynamic body styling with dual rear spoilers and Brembo-style calipers",
+            "Full active safety suite including lane keep, emergency braking & blind-spot detection",
+            "Customizable with Buy N Spec ceramic thermal tint & all-weather floor mats"
+          ]
+        },
+        {
+          id: "chery-tiggo-8-pro",
+          name: "Chery Tiggo 8 Pro Max",
+          brand: "Chery",
+          category: "7-Seater Family & Executive",
+          condition: "Brand New & Certified Low-Mileage",
+          price: "$25,200 – $28,900",
+          deposit70: "$17,640",
+          balance30: "$7,560",
+          currency: "USD Landed Tema",
+          year: "2024 / 2025",
+          mileage: "0 – 9,800 km",
+          transmission: "7-Speed Dual-Clutch (DCT)",
+          powertrain: "2.0TGDI Turbo (254 HP / 390 Nm)",
+          range: "Intelligent All-Wheel Drive (AWD)",
+          image: "/chinese-suv-chery.jpg",
+          badge: "7 SEATER",
+          specsOverview: "3-Row Seating • Dual 12.3\" Curved Displays • Sony 8-Speaker Audio • Ambient Light",
+          details: [
+            "Spacious 7-seat configuration with fold-flat second and third rows for massive cargo",
+            "Award-winning 2.0TGDI engine producing sports-car level 254 HP and 390 Nm torque",
+            "Aircraft-style gear shifter with wireless dual 50W cooled phone charging pads",
+            "Buy N Spec options: diamond-quilted leather re-trim and rear entertainment units"
+          ]
+        },
+        {
+          id: "tank-300",
+          name: "GWM Tank 300 Off-Road 4x4",
+          brand: "Tank / GWM",
+          category: "Rugged Off-Road Luxury",
+          condition: "Brand New & Certified Low-Mileage",
+          price: "$34,500 – $39,800",
+          deposit70: "$24,150",
+          balance30: "$10,350",
+          currency: "USD Landed Tema",
+          year: "2024 / 2025",
+          mileage: "0 – 8,500 km",
+          transmission: "ZF 8-Speed Automatic",
+          powertrain: "2.0T Turbocharged Petrol (227 HP)",
+          range: "Heavy-Duty Part-Time 4WD",
+          image: "/chinese-suv-tank300.jpg",
+          badge: "OFF-ROAD KING",
+          specsOverview: "Ladder Frame Chassis • 3 Differential Locks • Tank Turn Mode • 700mm Wading",
+          details: [
+            "Iconic boxy retro design built on a rugged high-strength steel ladder frame",
+            "Front, center, and rear mechanical differential locks with crawl control mode",
+            "Aviation-inspired luxury interior with dual 12.3\" screens and analogue central clock",
+            "Available with Buy N Spec heavy-duty all-terrain tire upgrade & roof overland gear"
+          ]
+        },
+        {
+          id: "liauto-l7",
+          name: "Li Auto L7 / L8 Extended-Range SUV",
+          brand: "Li Auto",
+          category: "Ultra-Luxury Flagship SUV",
+          condition: "Brand New & Certified Low-Mileage",
+          price: "$43,500 – $48,000",
+          deposit70: "$30,450",
+          balance30: "$13,050",
+          currency: "USD Landed Tema",
+          year: "2024 / 2025",
+          mileage: "0 – 14,000 km",
+          transmission: "Dual-Motor Intelligent AWD",
+          powertrain: "1.5T Range Extender + Dual Motors (449 HP)",
+          range: "1,315 km CLTC Combined Range",
+          image: "/chinese-suv-liauto.jpg",
+          badge: "ULTRA LUXURY",
+          specsOverview: "Magic Carpet Air Suspension • Dual 15.7\" 3K OLED Screens • 21-Speaker Dolby Atmos",
+          details: [
+            "Flagship executive SUV combining EV whisper-quiet driving with zero range anxiety",
+            "Adaptive air suspension that automatically adjusts ground clearance based on road sensors",
+            "Front passenger entertainment display and rear fold-down 3K theater screen",
+            "Available with Buy N Spec stealth satin PPF wrap and executive seat customizations"
+          ]
+        }
+      ]
+    },
+
+    hair: {
+      headline: "Luxury Virgin Hair & Salon Showcase",
+      tagline: "100% UNPROCESSED VIRGIN HUMAN HAIR • WHOLESALE & RETAIL",
+      subHeadline: "Supplying individual clients and commercial salons across Ghana and Africa with single-donor virgin hair bundles, flawless HD lace wigs, transparent closures, and bulk salon cartons.",
+      items: [
+        {
+          id: "cambodian-bone-straight",
+          name: "Raw Cambodian Bone Straight Bundles (10A Grade)",
+          category: "Raw Human Hair Bundles",
+          price: "$135 – $240 / 3-Bundle Deal",
+          localPrice: "From GH₵ 1,950 / Set",
+          grade: "10A Raw Unprocessed Single Donor",
+          origin: "Cambodian Temple Hair",
+          lengths: "12\" – 32\" Available",
+          color: "Natural 1B (Bleaches to #613)",
+          texture: "Silky Bone Straight",
+          image: "/feature-interior.jpg",
+          badge: "BEST SELLER",
+          specsOverview: "Single Donor • Cuticles Intact • Double Drawn • Zero Shedding • 3+ Years Lifespan",
+          details: [
+            "Collected from a single healthy young donor with intact, unidirectional cuticles",
+            "Thick and full from root to tip without thin straggly ends (Double Drawn standard)",
+            "Remains silky and bone straight even after washing; holds curls when heat-styled",
+            "Tiered wholesale packages available for salons ordering 10 bundles or more"
+          ]
+        },
+        {
+          id: "hd-13x6-frontal-wig",
+          name: "HD Transparent 13x6 Lace Frontal Wig (Bone Straight)",
+          category: "HD Lace Frontal Wigs",
+          price: "$195 – $320 / Unit",
+          localPrice: "From GH₵ 2,800 / Unit",
+          grade: "100% Virgin Human Hair (200% Density)",
+          origin: "Raw Cuticle-Aligned Virgin Hair",
+          lengths: "16\" – 34\" Available",
+          color: "Natural Black #1B",
+          texture: "Precision Pressed Straight",
+          image: "/home-hero-bg-alt.jpg",
+          badge: "HD MELT LACE",
+          specsOverview: "13x6 Deep Parting • Invisible Swiss HD Lace • Pre-Plucked • Bleached Knots",
+          details: [
+            "Ultra-thin Swiss HD lace that melts seamlessly into all skin tones upon application",
+            "Deep 6-inch parting space allows side parts, middle parts, and half-up styles",
+            "Pre-plucked natural graduated hairline with delicate baby hairs for instant wear",
+            "Constructed on breathable, adjustable cap with security combs and elastic band"
+          ]
+        },
+        {
+          id: "burmese-curly-bundles",
+          name: "Burmese Curly Virgin Hair Bundles (Raw Collection)",
+          category: "Curly & Textured Hair",
+          price: "$145 – $260 / 3-Bundle Deal",
+          localPrice: "From GH₵ 2,100 / Set",
+          grade: "100% Raw Burmese Hair",
+          origin: "Burma Single Donor",
+          lengths: "14\" – 30\" Available",
+          color: "Natural Deep Brown / Black",
+          texture: "High-Luster Exotic Curly",
+          image: "/news-2.jpg",
+          badge: "RAW CURLS",
+          specsOverview: "Steam Textured • Never Chemically Treated • Voluminous • Holds Moisture",
+          details: [
+            "Naturally coarse and bouncy curls that mimic full-bodied African hair textures",
+            "Retains deep curl pattern after shampooing; defines beautifully with leave-in conditioner",
+            "Can be safely colored, heat-styled straight, and reverts back to curls when wet",
+            "Popular choice for protective weaves, custom wigs, and high-volume sew-ins"
+          ]
+        },
+        {
+          id: "brazilian-body-wave",
+          name: "100% Brazilian Body Wave Luxury Bundle Deal",
+          category: "Body Wave Bundles",
+          price: "$120 – $210 / 3-Bundle Deal",
+          localPrice: "From GH₵ 1,750 / Set",
+          grade: "Grade 10A Virgin Weave",
+          origin: "Brazilian Cuticle Aligned",
+          lengths: "12\" – 30\" Available",
+          color: "Natural 1B",
+          texture: "Classic S-Pattern Body Wave",
+          image: "/project-2.jpg",
+          badge: "TOP VALUE",
+          specsOverview: "Soft Waves • High Bounce & Luster • Full Weight 100g ± 5g Per Bundle",
+          details: [
+            "The timeless classic everyday wave with effortless bounce and natural shine",
+            "Double machine weft reinforced with glue tracking to eliminate shedding entirely",
+            "Bleaches to honey blonde (#27) or platinum (#613) without brittleness",
+            "Wholesale salon pricing available with scheduled delivery across Accra and Kumasi"
+          ]
+        },
+        {
+          id: "glueless-5x5-bob",
+          name: "Glueless Ready-To-Wear 5x5 Closure Bob Unit",
+          category: "Glueless Units",
+          price: "$110 – $155 / Unit",
+          localPrice: "From GH₵ 1,600 / Unit",
+          grade: "Virgin Human Hair (180% Density)",
+          origin: "Vietnamese Virgin Hair",
+          lengths: "10\" – 14\" Precision Cut",
+          color: "Jet Black #1 / Natural #1B",
+          texture: "Blunt Cut Sleek Bob",
+          image: "/news-1.jpg",
+          badge: "GLUELESS WEAR",
+          specsOverview: "5x5 HD Closure • Zero Glue Required • 30-Second Install • Adjustable Band",
+          details: [
+            "Ready to wear straight out of the box with zero glue, tape, or salon appointment needed",
+            "Expertly blunt-cut bob that holds its crisp silhouette without flyaways",
+            "Built-in elastic band and anti-slip silicone interior for secure all-day wear",
+            "Perfect for busy professional women, travel, and protective daily styling"
+          ]
+        },
+        {
+          id: "wholesale-salon-master-carton",
+          name: "Commercial Salon Wholesale Master Pack (50 Bundles Mixed)",
+          category: "Wholesale Salon Carton",
+          price: "$1,750 / Master Carton",
+          localPrice: "GH₵ 25,500 / Carton",
+          grade: "Grade 10A / Raw Cambodian Mixed",
+          origin: "Direct China/Cambodia Import",
+          lengths: "Mixed Assortment: 14\" (10), 18\" (15), 22\" (15), 26\" (10)",
+          color: "Natural Black #1B",
+          texture: "Assorted (Bone Straight & Body Wave)",
+          image: "/project-5.jpg",
+          badge: "WHOLESALE ONLY",
+          specsOverview: "50 Certified Bundles • Bulk MOQ • High Profit Margins for Salons • Fast Handover",
+          details: [
+            "Tailored specifically for beauty salon owners, stylists, and hair entrepreneurs",
+            "Eliminates retail middlemen markup, boosting salon gross margins by 45%–60%",
+            "Guaranteed uniform quality across every bundle with inspection certification",
+            "Regular bi-weekly restock delivery schedules available across Ghana"
+          ]
+        }
+      ]
+    },
+
+    agriculture: {
+      headline: "Agricultural Commodities Showcase",
+      tagline: "COMMERCIAL STAPLE GRAINS & CASH CROPS • DIRECT FARM-GATE SUPPLY",
+      subHeadline: "Bridging agrarian cooperatives and commercial grain hubs across Ghana with wholesale buyers, industrial food processors, poultry feed millers, and institutional export markets.",
+      items: [
+        {
+          id: "yellow-white-maize",
+          name: "Commercial Grade-1 Yellow & White Maize",
+          category: "Grains & Cereals",
+          price: "$310 – $340 / Metric Ton",
+          localPrice: "GH₵ 340 / 50kg Sack",
+          origin: "Bono, Ahafo & Northern Regions, Ghana",
+          moisture: "< 12.5% Certified Dry",
+          purity: "98.5% Machine Cleaned",
+          packaging: "50kg & 100kg Polypropylene Sacks",
+          moq: "10 Metric Tons (Commercial Order)",
+          image: "/feature-product.jpg",
+          badge: "HIGH DEMAND",
+          specsOverview: "Dual Cleaned • Weevil Free • Aflatoxin Tested • Direct Warehouse Delivery",
+          details: [
+            "High-energy starch content tailored for poultry and livestock feed formulations",
+            "Rigorous moisture testing (<12.5%) guarantees long storage life without spoilage",
+            "Free from stones, foreign matter, and broken kernels via mechanical screening",
+            "Flexible bulk supply contracts with milestone delivery to Tema or buyer depots"
+          ]
+        },
+        {
+          id: "long-grain-rice",
+          name: "Long Grain Parboiled & Fragrant White Rice",
+          category: "Grains & Cereals",
+          price: "$580 – $640 / Metric Ton",
+          localPrice: "GH₵ 490 / 50kg Sack",
+          origin: "Volta Basin & Imported Benchmark Stock",
+          moisture: "< 13.0%",
+          purity: "99.0% Sorted & Polished",
+          packaging: "25kg & 50kg Branded Moisture-Proof Bags",
+          moq: "5 Metric Tons",
+          image: "/project-3.jpg",
+          badge: "STAPLE CROP",
+          specsOverview: "5% Broken Maximum • Double Polished • Non-Sticky Grain • High Yield",
+          details: [
+            "Premium long-grain varieties that cook fluffy, separate cleanly, and taste delicious",
+            "Double-sorted through color-sorting cameras to remove discolored or chalky grains",
+            "Supplied directly to institutional kitchens, supermarkets, and wholesale distributors",
+            "Bulk containerized transport available with full GRA and food standards clearance"
+          ]
+        },
+        {
+          id: "high-protein-soybeans",
+          name: "High-Protein Commercial Soybeans",
+          category: "Oilseeds & Legumes",
+          price: "$460 – $510 / Metric Ton",
+          localPrice: "GH₵ 520 / 50kg Sack",
+          origin: "Northern & Upper East Agrarian Hubs",
+          moisture: "< 11.0%",
+          purity: "98.0% Mechanically Sifted",
+          packaging: "50kg Heavy-Duty Jute / PP Bags",
+          moq: "10 Metric Tons",
+          image: "/project-4.jpg",
+          badge: "HIGH PROTEIN",
+          specsOverview: "Crude Protein > 38% • Oil Content 18%–20% • Non-GMO Verified",
+          details: [
+            "Essential raw ingredient for edible oil extraction and high-protein poultry meal cake",
+            "Farm-gate aggregation directly from vetted smallholder farmer cooperatives",
+            "Consistently exceeds 38% crude protein levels based on laboratory assay tests",
+            "Prompt dispatch from regional aggregation depots to industrial processing mills"
+          ]
+        },
+        {
+          id: "commercial-sorghum",
+          name: "Industrial White & Red Sorghum Grains",
+          category: "Grains & Cereals",
+          price: "$340 – $380 / Metric Ton",
+          localPrice: "GH₵ 380 / 50kg Sack",
+          origin: "Upper West & Savannah Regions",
+          moisture: "< 12.0%",
+          purity: "98.0%",
+          packaging: "50kg Double-Stitched Sacks",
+          moq: "10 Metric Tons",
+          image: "/project-1.jpg",
+          badge: "BREWERY GRADE",
+          specsOverview: "Brewery Quality • High Germination Rate • Cleaned & Graded • Low Tannin",
+          details: [
+            "Specially screened for regional commercial beverage breweries and porridge processors",
+            "Drought-resistant climate crop aggregated with full traceability to farm clusters",
+            "Low tannin levels and high fermentable sugar content for maximum brewery yields",
+            "Year-round supply assurance through structured buffer warehouse storage"
+          ]
+        },
+        {
+          id: "raw-cashew-nuts",
+          name: "Raw Dried Cashew Nuts (RCN - Grade A)",
+          category: "Export Cash Crops",
+          price: "$1,150 – $1,280 / Metric Ton",
+          localPrice: "Inquire for Daily Farm-Gate Spot",
+          origin: "Bono Region & West African Cashew Belt",
+          moisture: "8.0% – 9.0% Sun-Dried",
+          purity: "Outturn (KOR): 48 – 50 lbs",
+          packaging: "80kg Natural Jute Bags",
+          moq: "15 Metric Tons (1 Container)",
+          image: "/feature-graphic.jpg",
+          badge: "EXPORT GRADE",
+          specsOverview: "KOR 48–50 lbs • Nut Count 180–200/kg • Certified Sun-Dried • Ocean Freight Ready",
+          details: [
+            "Premium grade raw cashew nuts sorted for high kernel output and minimal defect rates",
+            "Properly sun-dried on clean concrete drying beds to reach optimal 8% moisture",
+            "Independently inspected by international surveying agencies (SGS / Bureau Veritas)",
+            "Containerized stuffing and customs export documentation handled end-to-end"
+          ]
+        },
+        {
+          id: "shea-butter-natural",
+          name: "100% Pure Organic Unrefined Shea Butter",
+          category: "Cosmetic & Food Oils",
+          price: "$1,850 – $2,100 / Metric Ton",
+          localPrice: "From GH₵ 650 / 25kg Tub",
+          origin: "Northern Ghana Women's Cooperatives",
+          moisture: "< 0.5%",
+          purity: "100% Natural Grade-A Unrefined",
+          packaging: "25kg Food-Grade Waxed Boxes / Steel Drums",
+          moq: "1 Metric Ton",
+          image: "/home-accordion-img.jpg",
+          badge: "ORGANIC RAW",
+          specsOverview: "Creamy Ivory Hue • Mild Nutty Aroma • Zero Hexane / Chemicals • Fair Trade",
+          details: [
+            "Traditionally handcrafted by experienced women’s cooperatives in Northern Ghana",
+            "Retains all natural vitamins A, E, and F for deep cosmetic skin & hair moisturization",
+            "Extensively supplied to international skincare brands, cosmetics labs, and soaps",
+            "Certified organic, fair-trade compliant, and laboratory tested for purity"
+          ]
+        }
+      ]
+    }
+  },
+
   footer: {
     col1: {
       title: "ABOUT DEBALDIET",
@@ -569,6 +1019,9 @@ export const siteData = {
     col2: {
       title: "CORE VERTICALS",
       links: [
+        { label: "Showcase: Chinese SUVs & Cars", href: "/showcases/cars" },
+        { label: "Showcase: Luxury Virgin Hair", href: "/showcases/hair" },
+        { label: "Showcase: Agricultural Produce", href: "/showcases/agriculture" },
         { label: "China SUV Importation (New & Used)", href: "/our-services#car-import" },
         { label: "Buy N Spec Dealership & Customization", href: "/buy-and-spec" },
         { label: "70/30 Flexible Auto Plan", href: "/our-services#car-import" },

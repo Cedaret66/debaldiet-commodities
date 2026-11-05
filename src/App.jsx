@@ -26,6 +26,9 @@ import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 import BuyAndSpecPage from './pages/BuyAndSpecPage';
 import CMSAdminPage from './pages/CMSAdminPage';
+import CarsShowcasePage from './pages/CarsShowcasePage';
+import HairShowcasePage from './pages/HairShowcasePage';
+import AgriShowcasePage from './pages/AgriShowcasePage';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -125,6 +128,12 @@ function AppLayout() {
               <Route path="/about-us" element={<AboutPage />} />
               <Route path="/our-services" element={<ServicesPage />} />
               <Route path="/buy-and-spec" element={<BuyAndSpecPage />} />
+              <Route path="/showcases/cars" element={<CarsShowcasePage />} />
+              <Route path="/showcases/hair" element={<HairShowcasePage />} />
+              <Route path="/showcases/agriculture" element={<AgriShowcasePage />} />
+              <Route path="/cars" element={<CarsShowcasePage />} />
+              <Route path="/hair" element={<HairShowcasePage />} />
+              <Route path="/agriculture" element={<AgriShowcasePage />} />
               <Route path="/partnerships" element={<PartnershipsPage />} />
               <Route path="/our-team" element={<TeamPage />} />
               <Route path="/blog" element={<BlogPage />} />

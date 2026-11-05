@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ChevronRight, Truck, Sparkles, Sprout, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, Truck, Car, Sparkles, Sprout, ArrowRight, ShieldCheck, Layers } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Header({ onOpenSearch, onOpenDrawer }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [openMobileDropdowns, setOpenMobileDropdowns] = useState({});
   const location = useLocation();
   const { content } = useContent();
 
@@ -35,23 +35,31 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
   // Close menus on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-    setMobileDropdownOpen(false);
+    setOpenMobileDropdowns({});
   }, [location.pathname, location.hash]);
 
+  const toggleMobileDropdown = (label) => {
+    setOpenMobileDropdowns((prev) => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+  };
+
   const getSubIcon = (label) => {
-    if (label.includes('Buy N Spec') || label.includes('Buy & Spec') || label.includes('Spec')) {
-      return <Sparkles className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
+    const l = (label || '').toLowerCase();
+    if (l.includes('car') || l.includes('suv')) {
+      return <Car className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
     }
-    if (label.includes('Auto') || label.includes('Automotive')) {
+    if (l.includes('auto') || l.includes('truck')) {
       return <Truck className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
     }
-    if (label.includes('Beauty')) {
+    if (l.includes('hair') || l.includes('wig') || l.includes('beauty') || l.includes('spec')) {
       return <Sparkles className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
     }
-    if (label.includes('Agriculture')) {
+    if (l.includes('agri') || l.includes('produce') || l.includes('grain')) {
       return <Sprout className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
     }
-    return <ShieldCheck className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
+    return <Layers className="w-4 h-4 text-[#ff5e14] flex-shrink-0" />;
   };
 
   return (
@@ -77,7 +85,12 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
           <nav className="hidden lg:flex items-center space-x-7" aria-label="Main Navigation">
             {content.navLinks.map((link) => {
               if (link.dropdown) {
-                const isServicesActive = location.pathname.startsWith('/our-services');
+                const isDropdownActive =
+                  location.pathname === link.href ||
+                  link.dropdown.some((sub) => {
+                    const cleanSub = sub.href.split('#')[0];
+                    return location.pathname === cleanSub || (cleanSub !== '/' && location.pathname.startsWith(cleanSub));
+                  });
 
                 return (
                   <div key={link.label} className="relative group py-2">
@@ -85,14 +98,14 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
                     <NavLink
                       to={link.href}
                       className={`relative font-heading uppercase text-[13px] font-bold tracking-[1.2px] transition-colors duration-200 py-1 flex items-center space-x-1 group ${
-                        isServicesActive ? 'text-[#ff5e14]' : 'text-[#001659] hover:text-[#ff5e14]'
+                        isDropdownActive ? 'text-[#ff5e14]' : 'text-[#001659] hover:text-[#ff5e14]'
                       }`}
                     >
                       <span>{link.label}</span>
                       <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
                       <span
                         className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#ff5e14] transition-transform duration-300 origin-left ${
-                          isServicesActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          isDropdownActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                         }`}
                       />
                     </NavLink>
@@ -188,21 +201,24 @@ export default function Header({ onOpenSearch, onOpenDrawer }) {
           <nav className="flex flex-col space-y-3">
             {content.navLinks.map((link) => {
               if (link.dropdown) {
+                const isOpen = !!openMobileDropdowns[link.label];
+
                 return (
                   <div key={link.label} className="border-b border-gray-100 pb-2">
                     <button
-                      onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                      type="button"
+                      onClick={() => toggleMobileDropdown(link.label)}
                       className="w-full flex items-center justify-between font-heading uppercase text-sm font-bold tracking-widest py-2 text-[#001659]"
                     >
                       <span>{link.label}</span>
                       <ChevronDown
                         className={`w-4 h-4 text-[#ff5e14] transition-transform duration-200 ${
-                          mobileDropdownOpen ? 'rotate-180' : ''
+                          isOpen ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
 
-                    {mobileDropdownOpen && (
+                    {isOpen && (
                       <div className="pl-4 pr-2 py-2 space-y-2 bg-[#f8f9fa] border-l-2 border-[#ff5e14] my-2">
                         {link.dropdown.map((subItem, sIdx) => (
                           <Link
