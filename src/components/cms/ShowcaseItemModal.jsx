@@ -94,8 +94,17 @@ export default function ShowcaseItemModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn font-body">
-      <div className="relative w-full max-w-xl bg-white border border-[#001659]/20 shadow-2xl rounded-sm overflow-hidden text-[#303030]">
+    <div
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn font-body"
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+    >
+      <div
+        className="relative w-full max-w-xl bg-white border border-[#001659]/20 shadow-2xl rounded-sm overflow-hidden text-[#303030]"
+        style={{ overscrollBehavior: 'contain' }}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="bg-[#001659] text-white px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -114,7 +123,13 @@ export default function ShowcaseItemModal({
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 space-y-4 max-h-[82vh] overflow-y-auto"
+          style={{ overscrollBehavior: 'contain' }}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+        >
           {/* Item Name */}
           <div>
             <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[#001659] mb-1">

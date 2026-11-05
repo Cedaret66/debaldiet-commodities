@@ -77,8 +77,11 @@ export default function EditableText({
             onChange={(e) => setDraft(e.target.value)}
             onKeyDown={handleKeyDown}
             onBlur={handleSave}
-            rows={Math.max(2, String(draft).split('\n').length)}
-            className={`w-full bg-[#001659] text-white border-2 border-[#ff5e14] rounded-sm p-2 text-inherit font-inherit outline-none shadow-2xl resize-y ${className}`}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            rows={Math.max(3, Math.min(10, String(draft).split('\n').length))}
+            style={{ overscrollBehavior: 'contain' }}
+            className={`w-full bg-[#001659] text-white border-2 border-[#ff5e14] rounded-sm p-3 text-inherit font-inherit outline-none shadow-2xl resize-y overflow-y-auto max-h-[320px] ${className}`}
           />
         ) : (
           <input

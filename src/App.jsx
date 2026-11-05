@@ -9,7 +9,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SearchModal from './components/SearchModal';
 import SideDrawer from './components/SideDrawer';
 import ProjectModal from './components/ProjectModal';
-import { CmsProvider } from './context/CmsContext';
+import { CmsProvider, useCms } from './context/CmsContext';
 
 // CMS In-Place Components
 import AdminToolbar from './components/cms/AdminToolbar';
@@ -39,6 +39,7 @@ function AppLayout() {
   const [selectedProject, setSelectedProject] = useState(null);
   const location = useLocation();
   const smootherRef = useRef(null);
+  const { isDrawerOpen: isCmsDrawerOpen, imageModalState } = useCms();
 
   // Check if current page is the secret login route
   const isLoginPage = location.pathname === '/admin' || location.pathname === '/cms-portal';
@@ -53,13 +54,38 @@ function AppLayout() {
         content: '#smooth-content',
         smooth: 1.2,
         effects: true,
-        normalizeScroll: true,
+        normalizeScroll: false, // Disabled to allow textareas, modals & CMS drawers to scroll vertically without hijacking
         smoothTouch: 0.1,
       });
     });
 
     return () => ctx.revert();
   }, [isLoginPage]);
+
+  // Pause page background scrolling when CMS drawer or any overlay modal is open
+  useEffect(() => {
+    const isAnyOverlayActive =
+      Boolean(isCmsDrawerOpen) ||
+      Boolean(isDrawerOpen) ||
+      Boolean(isSearchOpen) ||
+      Boolean(selectedProject) ||
+      Boolean(imageModalState?.isOpen);
+
+    if (smootherRef.current) {
+      smootherRef.current.paused(isAnyOverlayActive);
+    }
+    
+    // Prevent document body scrolling while drawer or modal is open
+    if (isAnyOverlayActive) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isCmsDrawerOpen, isDrawerOpen, isSearchOpen, selectedProject, imageModalState?.isOpen]);
 
   // On page/route changes: refresh ScrollSmoother and trigger fade-in animations
   useEffect(() => {

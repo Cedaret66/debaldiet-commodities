@@ -84,8 +84,17 @@ export default function ImageUploadModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md font-body">
-      <div className="relative w-full max-w-lg rounded-2xl bg-[#001659] border border-white/20 p-6 sm:p-7 shadow-2xl text-white overflow-hidden">
+    <div
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md font-body"
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+    >
+      <div
+        className="relative w-full max-w-lg rounded-2xl bg-[#001659] border border-white/20 p-6 sm:p-7 shadow-2xl text-white overflow-hidden max-h-[90vh] overflow-y-auto"
+        style={{ overscrollBehavior: 'contain' }}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10">
           <div className="flex items-center gap-2.5">

@@ -41,8 +41,17 @@ export default function CmsDrawer() {
   if (!isDrawerOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[115] flex justify-end bg-black/70 backdrop-blur-sm animate-fadeIn font-body">
-      <div className="w-full max-w-xl h-full bg-[#f8f9fa] border-l border-gray-300 flex flex-col shadow-2xl overflow-hidden text-[#303030]">
+    <div
+      className="fixed inset-0 z-[115] flex justify-end bg-black/70 backdrop-blur-sm animate-fadeIn font-body"
+      onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+    >
+      <div
+        className="w-full max-w-xl h-full bg-[#f8f9fa] border-l border-gray-300 flex flex-col shadow-2xl overflow-hidden text-[#303030]"
+        style={{ overscrollBehavior: 'contain' }}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+      >
         {/* Header */}
         <div className="p-5 border-b border-gray-200 bg-[#001659] text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -108,7 +117,12 @@ export default function CmsDrawer() {
         </div>
 
         {/* Tab Body Scrollable */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div
+          className="flex-1 overflow-y-auto p-6 space-y-6"
+          style={{ overscrollBehavior: 'contain' }}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+        >
           {/* Hero Tab */}
           {activeTab === 'hero' && (
             <div className="space-y-6">
