@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sprout, Check, ArrowRight, ChevronRight, Package, Scale, ShieldCheck, MapPin } from 'lucide-react';
+import { Sprout, ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
@@ -186,28 +186,6 @@ export default function AgriShowcasePage() {
                         <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">
                           <span className="text-[#565969] font-medium">Spot / Local Price:</span>
                           <span className="text-[#ff5e14] font-bold">{item.localPrice}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Quick Specs Badges */}
-                    <div className="grid grid-cols-2 gap-2 mb-4 text-xs font-body text-[#565969]">
-                      {item.origin && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2 col-span-2">
-                          <MapPin className="w-3.5 h-3.5 text-[#ff5e14] shrink-0" />
-                          <span className="truncate">{item.origin}</span>
-                        </div>
-                      )}
-                      {item.moisture && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2">
-                          <Scale className="w-3.5 h-3.5 text-[#ff5e14]" />
-                          <span>{item.moisture}</span>
-                        </div>
-                      )}
-                      {item.moq && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2">
-                          <Package className="w-3.5 h-3.5 text-[#ff5e14]" />
-                          <span className="truncate">MOQ: {item.moq}</span>
                         </div>
                       )}
                     </div>

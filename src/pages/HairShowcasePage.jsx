@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Check, ArrowRight, ChevronRight, Scissors, Heart, Award, ShieldCheck } from 'lucide-react';
+import { Sparkles, ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
@@ -186,28 +186,6 @@ export default function HairShowcasePage() {
                         <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#001659] flex items-center justify-between text-xs font-heading">
                           <span className="text-[#565969] font-medium">Local Wholesale Estimate:</span>
                           <span className="text-[#001659] font-bold">{item.localPrice}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Quick Specs Badges */}
-                    <div className="grid grid-cols-2 gap-2 mb-4 text-xs font-body text-[#565969]">
-                      {item.lengths && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2">
-                          <Scissors className="w-3.5 h-3.5 text-[#ff5e14]" />
-                          <span className="truncate">{item.lengths}</span>
-                        </div>
-                      )}
-                      {item.origin && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2">
-                          <Award className="w-3.5 h-3.5 text-[#ff5e14]" />
-                          <span className="truncate">{item.origin}</span>
-                        </div>
-                      )}
-                      {item.color && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2 col-span-2">
-                          <Sparkles className="w-3.5 h-3.5 text-[#ff5e14] shrink-0" />
-                          <span className="truncate">{item.color}</span>
                         </div>
                       )}
                     </div>

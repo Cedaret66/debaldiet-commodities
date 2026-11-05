@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Car, Truck, Sparkles, ShieldCheck, ChevronRight, SlidersHorizontal, Check, ArrowRight, Gauge, Fuel, Calendar, Wrench } from 'lucide-react';
+import { Car, Truck, Sparkles, ShieldCheck, ChevronRight, SlidersHorizontal, ArrowRight, Wrench } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
@@ -185,28 +185,6 @@ export default function CarsShowcasePage() {
                         <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">
                           <span className="text-[#565969] font-medium">70% Initial Deposit:</span>
                           <span className="text-[#ff5e14] font-bold">{car.deposit70}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Quick Specs Badges */}
-                    <div className="grid grid-cols-2 gap-2 mb-4 text-xs font-body text-[#565969]">
-                      {car.year && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2">
-                          <Calendar className="w-3.5 h-3.5 text-[#ff5e14]" />
-                          <span>{car.year}</span>
-                        </div>
-                      )}
-                      {car.mileage && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2">
-                          <Gauge className="w-3.5 h-3.5 text-[#ff5e14]" />
-                          <span>{car.mileage}</span>
-                        </div>
-                      )}
-                      {car.powertrain && (
-                        <div className="flex items-center space-x-1.5 bg-[#f8f9fa] p-2 col-span-2">
-                          <Fuel className="w-3.5 h-3.5 text-[#ff5e14] shrink-0" />
-                          <span className="truncate">{car.powertrain}</span>
                         </div>
                       )}
                     </div>
