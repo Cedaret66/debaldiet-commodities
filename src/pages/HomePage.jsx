@@ -11,67 +11,70 @@ import TeamSection from '../components/TeamSection';
 import SkillsPieCharts from '../components/SkillsPieCharts';
 import AccordionSection from '../components/AccordionSection';
 import LatestNews from '../components/LatestNews';
+import CmsSection from '../components/cms/CmsSection';
 
 export default function HomePage({ onSelectProject }) {
   return (
     <div className="w-full bg-white font-body selection:bg-brand-orange selection:text-white">
-      {/* 1. Hero Revolution Slider (Node 4294967305) */}
-      <HeroSlider />
+      {/* 1. Hero Revolution Slider */}
+      <CmsSection id="home-hero" name="Hero Slider Banner">
+        <HeroSlider />
+      </CmsSection>
 
-      {/* 2. Services Header & 4 Cards (Nodes 4294967350 & 4294967355) */}
-      <div className="fade-in-scroll">
+      {/* 2. Services Header & 4 Cards */}
+      <CmsSection id="home-features" name="3 Core Verticals & Banners" className="fade-in-scroll">
         <FeatureBanners />
-      </div>
+      </CmsSection>
 
-      {/* 3. Full Project Management Section (Node 4294967432) */}
-      <div className="fade-in-scroll">
+      {/* 3. Full Project Management Section */}
+      <CmsSection id="home-7030" name="70/30 Structured Capital Scheme" className="fade-in-scroll">
         <ProjectManagement />
-      </div>
+      </CmsSection>
 
-      {/* 4. Featured Projects Showcase (Node 4294967462) */}
-      <div className="fade-in-scroll">
+      {/* 4. Featured Projects Showcase */}
+      <CmsSection id="home-portfolio" name="Showcase Portfolio Grid" className="fade-in-scroll">
         <ProjectsPortfolio onSelectProject={onSelectProject} />
-      </div>
+      </CmsSection>
 
-      {/* 5. Specialized Services Grid: Interior, Graphic, Product (Node 4294967604) */}
-      <div className="fade-in-scroll">
+      {/* 5. Specialized Services Grid */}
+      <CmsSection id="home-services" name="Core Logistics & Solutions" className="fade-in-scroll">
         <ServicesSection />
-      </div>
+      </CmsSection>
 
-      {/* 6. Full-Width Parallax Management Feature (Node 4294967677) */}
-      <div className="fade-in-scroll">
+      {/* 6. Full-Width Parallax Management Feature */}
+      <CmsSection id="home-parallax" name="Quality Assurance Guarantee" className="fade-in-scroll">
         <ParallaxBanner />
-      </div>
+      </CmsSection>
 
-      {/* 7. Numerical Stats Counters (Node 4294967697) */}
-      <div className="fade-in-scroll">
+      {/* 7. Numerical Stats Counters */}
+      <CmsSection id="home-stats" name="Performance Metrics & Stats" className="fade-in-scroll">
         <StatsCounter />
-      </div>
+      </CmsSection>
 
-      {/* 8. Client Testimonials Slider (Node 4294967746) */}
-      <div className="fade-in-scroll">
+      {/* 8. Client Testimonials Slider */}
+      <CmsSection id="home-testimonials" name="Client Testimonials" className="fade-in-scroll">
         <TestimonialsSlider />
-      </div>
+      </CmsSection>
 
-      {/* 9. Professionals Leadership Team (Node 4294967912) */}
-      <div className="fade-in-scroll">
+      {/* 9. Leadership Team */}
+      <CmsSection id="home-team" name="Executive Leadership" className="fade-in-scroll">
         <TeamSection />
-      </div>
+      </CmsSection>
 
-      {/* 10. Performance & Skill Progress Rings (Node 4294967952) */}
-      <div className="fade-in-scroll">
+      {/* 10. Performance & Progress */}
+      <CmsSection id="home-skills" name="Operational Standards" className="fade-in-scroll">
         <SkillsPieCharts />
-      </div>
+      </CmsSection>
 
-      {/* 11. Accordions Section (Node 4294967997) */}
-      <div className="fade-in-scroll">
+      {/* 11. Accordions Section */}
+      <CmsSection id="home-faq" name="Frequently Asked Questions" className="fade-in-scroll">
         <AccordionSection />
-      </div>
+      </CmsSection>
 
-      {/* 12. Latest News & Articles Grid (Node 4294968050) */}
-      <div className="fade-in-scroll">
+      {/* 12. Latest News & Articles Grid */}
+      <CmsSection id="home-news" name="Market News & Intelligence" className="fade-in-scroll">
         <LatestNews />
-      </div>
+      </CmsSection>
     </div>
   );
 }

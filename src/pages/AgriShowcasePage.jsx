@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sprout, ArrowRight, ChevronRight, ShieldCheck } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import {
+  Sprout,
+  ArrowRight,
+  ChevronRight,
+  Plus,
+  Trash2,
+  Copy,
+  PlusCircle,
+} from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
+import CmsSection from '../components/cms/CmsSection';
+import ShowcaseItemModal from '../components/cms/ShowcaseItemModal';
 import ShowcaseInquiryModal from '../components/ShowcaseInquiryModal';
 
 export default function AgriShowcasePage() {
-  const { content } = useContent();
+  const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem } = useCms();
   const showcaseData = content.showcases?.agriculture || {};
   const agriItems = showcaseData.items || [];
 
   const [selectedFilter, setSelectedFilter] = useState('ALL');
   const [selectedItem, setSelectedItem] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const categories = ['ALL', 'GRAINS & CEREALS', 'OILSEEDS & LEGUMES', 'EXPORT CROPS', 'COSMETIC OILS'];
 
@@ -36,7 +47,7 @@ export default function AgriShowcasePage() {
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
       {/* 1. Hero Title Banner */}
-      <section className="relative w-full py-[80px] lg:py-[100px] bg-[#001659] text-white overflow-hidden">
+      <CmsSection id="agri-hero" name="Hero & Overview" className="relative w-full py-[80px] lg:py-[100px] bg-[#001659] text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: `url('/feature-product.jpg')` }}
@@ -73,44 +84,56 @@ export default function AgriShowcasePage() {
               multiline
               className="font-body text-[16px] sm:text-[18px] text-white/85 leading-relaxed font-light mb-8 block"
             >
-              {showcaseData.subHeadline || 'Bridging agrarian cooperatives and commercial grain hubs across Ghana with wholesale buyers, industrial food processors, poultry feed millers, and institutional export markets.'}
+              {showcaseData.subHeadline || 'Aggregating yellow maize, parboiled rice, high-protein soybeans, and export-grade cashew directly from verified farmer clusters across Bono, Ahafo, and Northern Ghana.'}
             </EditableText>
 
             {/* Quick Stats Badges */}
             <div className="flex flex-wrap gap-4 pt-2">
               <div className="bg-white/10 backdrop-blur-xs border border-white/15 px-4 py-2">
-                <span className="block text-[#ff5e14] font-heading font-black text-xl">Farm Gate</span>
-                <span className="text-[11px] text-white/80 font-heading uppercase tracking-wider">Direct Aggregation</span>
-              </div>
-              <div className="bg-white/10 backdrop-blur-xs border border-white/15 px-4 py-2">
                 <span className="block text-[#ff5e14] font-heading font-black text-xl">&lt; 12.5%</span>
-                <span className="text-[11px] text-white/80 font-heading uppercase tracking-wider">Moisture Guaranteed</span>
+                <span className="text-[11px] text-white/80 font-heading uppercase tracking-wider">Moisture Assured</span>
               </div>
               <div className="bg-white/10 backdrop-blur-xs border border-white/15 px-4 py-2">
-                <span className="block text-[#ff5e14] font-heading font-black text-xl">100+ MT</span>
-                <span className="text-[11px] text-white/80 font-heading uppercase tracking-wider">Bulk Supply Capacity</span>
+                <span className="block text-[#ff5e14] font-heading font-black text-xl">Direct</span>
+                <span className="text-[11px] text-white/80 font-heading uppercase tracking-wider">Farm-Gate Aggregation</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-xs border border-white/15 px-4 py-2">
+                <span className="block text-[#ff5e14] font-heading font-black text-xl">Tema CIF</span>
+                <span className="text-[11px] text-white/80 font-heading uppercase tracking-wider">Port & Local Depot Delivery</span>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 2. Main Showcase Grid Section */}
-      <section className="w-full py-[80px] bg-[#f8f9fa] fade-in-scroll">
+      <CmsSection id="agri-grid" name="Agro-Commodities Catalog Grid" className="w-full py-[80px] bg-[#f8f9fa] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           {/* Header Controls & Filter Pills */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-12">
             <div>
               <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-1">
-                COMMODITY CATALOG
+                COMMODITY CATALOG ({agriItems.length})
               </span>
               <h2 className="font-heading font-black text-[30px] sm:text-[38px] text-[#001659] leading-tight">
                 Staple Grains & Export Crops In Stock
               </h2>
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-2">
+            {/* Actions & Filters */}
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Add New Commodity Button (Visible in Edit Mode) */}
+              {isEditMode && (
+                <button
+                  type="button"
+                  onClick={() => setIsAddModalOpen(true)}
+                  className="px-4 py-2 bg-[#ff5e14] hover:bg-[#e04f0e] text-white text-xs font-heading font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md transition-all mr-2"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>+ Add New Commodity</span>
+                </button>
+              )}
+
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -132,8 +155,34 @@ export default function AgriShowcasePage() {
             {filteredItems.map((item, idx) => (
               <div
                 key={item.id || idx}
-                className="bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-2xl hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group"
+                className="relative bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-2xl hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group"
               >
+                {/* Admin Card Action Bar */}
+                {isEditMode && (
+                  <div className="absolute top-2 right-2 z-30 flex items-center gap-1 bg-[#001659]/90 backdrop-blur-sm p-1 rounded border border-white/20 shadow-lg">
+                    <button
+                      type="button"
+                      onClick={() => duplicateShowcaseItem('agriculture', idx)}
+                      className="p-1 text-white/80 hover:text-white hover:bg-white/20 rounded transition-colors"
+                      title="Duplicate this commodity"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (window.confirm(`Delete "${item.name}" from showcase?`)) {
+                          deleteShowcaseItem('agriculture', idx);
+                        }
+                      }}
+                      className="p-1 text-red-400 hover:text-white hover:bg-red-500 rounded transition-colors"
+                      title="Delete this commodity"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+
                 <div>
                   {/* Image Container with Badge */}
                   <div className="relative w-full h-[250px] overflow-hidden bg-gray-100">
@@ -148,7 +197,7 @@ export default function AgriShowcasePage() {
                       {item.category || 'COMMODITY'}
                     </div>
                     {/* Badge Top Right */}
-                    {item.badge && (
+                    {item.badge && !isEditMode && (
                       <div className="absolute top-3 right-3 bg-[#ff5e14] text-white px-3 py-1 text-[10px] font-heading font-black uppercase tracking-widest shadow-sm">
                         {item.badge}
                       </div>
@@ -185,7 +234,11 @@ export default function AgriShowcasePage() {
                       {item.localPrice && (
                         <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">
                           <span className="text-[#565969] font-medium">Spot / Local Price:</span>
-                          <span className="text-[#ff5e14] font-bold">{item.localPrice}</span>
+                          <span className="text-[#ff5e14] font-bold">
+                            <EditableText path={`showcases.agriculture.items[${idx}].localPrice`}>
+                              {item.localPrice}
+                            </EditableText>
+                          </span>
                         </div>
                       )}
                     </div>
@@ -225,10 +278,28 @@ export default function AgriShowcasePage() {
                 </div>
               </div>
             ))}
+
+            {/* In Edit Mode: Dedicated "+ Add Commodity" Dashed Card */}
+            {isEditMode && (
+              <div
+                onClick={() => setIsAddModalOpen(true)}
+                className="cursor-pointer border-2 border-dashed border-[#ff5e14]/60 hover:border-[#ff5e14] hover:bg-[#ff5e14]/5 transition-all p-8 flex flex-col items-center justify-center min-h-[400px] text-center group rounded-xs"
+              >
+                <div className="w-14 h-14 rounded-full bg-[#ff5e14]/10 text-[#ff5e14] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <PlusCircle className="w-8 h-8" />
+                </div>
+                <h4 className="font-heading font-black text-lg text-[#001659] uppercase tracking-wide mb-1">
+                  + Add New Commodity
+                </h4>
+                <p className="text-xs text-[#565969] max-w-xs leading-relaxed">
+                  Click to add grains, legumes, export crops or vegetable oils with moisture assays and rate notes.
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Bottom Bulk Supply Banner */}
-          <div className="mt-16 bg-[#001659] text-white p-8 lg:p-12 border-l-4 border-[#ff5e14] flex flex-col lg:flex-row items-center justify-between gap-8">
+          <CmsSection id="agri-cta" name="Offtake & Tender Inquiry CTA" className="mt-16 bg-[#001659] text-white p-8 lg:p-12 border-l-4 border-[#ff5e14] flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
               <span className="font-heading font-bold text-xs uppercase tracking-[2px] text-[#ff5e14] block mb-2">
                 COMMERCIAL OFF-TAKE AGREEMENTS
@@ -248,9 +319,16 @@ export default function AgriShowcasePage() {
                 Inquire For Forward Contracts
               </Link>
             </div>
-          </div>
+          </CmsSection>
         </div>
-      </section>
+      </CmsSection>
+
+      {/* Add Item Modal */}
+      <ShowcaseItemModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        category="agriculture"
+      />
 
       {/* Inquiry Modal */}
       {selectedItem && (

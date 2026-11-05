@@ -17,6 +17,7 @@ import {
 import { useCms } from '../context/CmsContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
+import CmsSection from '../components/cms/CmsSection';
 
 export default function BuyAndSpecPage() {
   const { content } = useCms();
@@ -93,7 +94,9 @@ export default function BuyAndSpecPage() {
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
       {/* 1. Hero Title Banner */}
-      <section
+      <CmsSection
+        id="buyandspec-hero"
+        name="Buy N Spec Hero Banner"
         className="relative w-full py-[110px] lg:py-[140px] bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url('/chinese-suv-byd.jpg')` }}
       >
@@ -137,10 +140,10 @@ export default function BuyAndSpecPage() {
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 2. How Buy N Spec Works */}
-      <section className="w-full py-[110px] bg-white fade-in-scroll">
+      <CmsSection id="buyandspec-concept" name="Concept & 4-Step Process" className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="max-w-3xl mb-16">
             <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
@@ -190,10 +193,10 @@ export default function BuyAndSpecPage() {
             ))}
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 3. Available Spec Categories */}
-      <section className="w-full py-[110px] bg-[#f8f9fa] border-y border-[#e8e8e9] fade-in-scroll">
+      <CmsSection id="buyandspec-packages" name="Customization Packages" className="w-full py-[110px] bg-[#f8f9fa] border-y border-[#e8e8e9] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
@@ -277,10 +280,10 @@ export default function BuyAndSpecPage() {
             ))}
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 4. Popular Chinese SUVs for Buy N Spec */}
-      <section className="w-full py-[110px] bg-white fade-in-scroll">
+      <CmsSection id="buyandspec-models" name="Popular Models for Speccing" className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div>
@@ -350,10 +353,10 @@ export default function BuyAndSpecPage() {
             ))}
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 5. Quality & Dual Inspection Assurance */}
-      <section className="w-full py-[100px] bg-[#001659] text-white fade-in-scroll">
+      <CmsSection id="buyandspec-inspection" name="Dual-Stage Inspection Guarantee" className="w-full py-[100px] bg-[#001659] text-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8">
@@ -408,10 +411,10 @@ export default function BuyAndSpecPage() {
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 6. Bottom Call to Action */}
-      <section className="w-full py-[100px] bg-white fade-in-scroll">
+      <CmsSection id="buyandspec-cta" name="Order Spec CTA" className="w-full py-[100px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6 text-center">
           <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-3">
             GET STARTED TODAY
@@ -437,7 +440,7 @@ export default function BuyAndSpecPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </CmsSection>
     </div>
   );
 }

@@ -186,6 +186,98 @@ export function CmsProvider({ children }) {
     });
   };
 
+  // Add a new item to a showcase array (cars, hair, agriculture)
+  const addShowcaseItem = (category, newItem) => {
+    setContent((prev) => {
+      const showcase = prev.showcases?.[category] || {};
+      const currentItems = showcase.items || [];
+      const updatedItems = [newItem, ...currentItems];
+      const next = {
+        ...prev,
+        showcases: {
+          ...prev.showcases,
+          [category]: {
+            ...showcase,
+            items: updatedItems,
+          },
+        },
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch (e) {
+        console.warn('Storage quota error:', e);
+      }
+      return next;
+    });
+    showToast(`Added new item to ${category} showcase!`, 'success');
+  };
+
+  // Delete an item from a showcase array
+  const deleteShowcaseItem = (category, index) => {
+    setContent((prev) => {
+      const showcase = prev.showcases?.[category] || {};
+      const currentItems = showcase.items || [];
+      const updatedItems = currentItems.filter((_, idx) => idx !== index);
+      const next = {
+        ...prev,
+        showcases: {
+          ...prev.showcases,
+          [category]: {
+            ...showcase,
+            items: updatedItems,
+          },
+        },
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch (e) {
+        console.warn('Storage quota error:', e);
+      }
+      return next;
+    });
+    showToast(`Item removed from ${category} showcase.`, 'info');
+  };
+
+  // Duplicate an item in a showcase array
+  const duplicateShowcaseItem = (category, index) => {
+    setContent((prev) => {
+      const showcase = prev.showcases?.[category] || {};
+      const currentItems = showcase.items || [];
+      const itemToClone = currentItems[index];
+      if (!itemToClone) return prev;
+      
+      const clonedItem = {
+        ...JSON.parse(JSON.stringify(itemToClone)),
+        id: `${itemToClone.id || 'item'}-copy-${Date.now()}`,
+        name: `${itemToClone.name || 'Item'} (Copy)`,
+      };
+      
+      const updatedItems = [
+        ...currentItems.slice(0, index + 1),
+        clonedItem,
+        ...currentItems.slice(index + 1),
+      ];
+
+      const next = {
+        ...prev,
+        showcases: {
+          ...prev.showcases,
+          [category]: {
+            ...showcase,
+            items: updatedItems,
+          },
+        },
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch (e) {
+        console.warn('Storage quota error:', e);
+      }
+      return next;
+    });
+    showToast(`Item duplicated in ${category} showcase!`, 'success');
+  };
+
   // Save changes explicitly
   const saveChanges = async () => {
     setIsSaving(true);
@@ -315,6 +407,9 @@ export function CmsProvider({ children }) {
         content,
         updateField,
         updateContent,
+        addShowcaseItem,
+        deleteShowcaseItem,
+        duplicateShowcaseItem,
         getNestedValue: (path) => getNestedValue(content, path),
         saveChanges,
         discardChanges,
@@ -354,6 +449,9 @@ export function useCms() {
       setIsDrawerOpen: () => {},
       updateField: () => {},
       updateContent: () => {},
+      addShowcaseItem: () => {},
+      deleteShowcaseItem: () => {},
+      duplicateShowcaseItem: () => {},
       getNestedValue: (path) => getNestedValue(defaultSiteData, path),
       saveChanges: () => {},
       discardChanges: () => {},

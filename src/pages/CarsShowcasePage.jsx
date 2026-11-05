@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Car, Truck, Sparkles, ShieldCheck, ChevronRight, SlidersHorizontal, ArrowRight, Wrench } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import {
+  Car,
+  ChevronRight,
+  ArrowRight,
+  Wrench,
+  Plus,
+  Trash2,
+  Copy,
+  PlusCircle,
+} from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
+import CmsSection from '../components/cms/CmsSection';
+import ShowcaseItemModal from '../components/cms/ShowcaseItemModal';
 import ShowcaseInquiryModal from '../components/ShowcaseInquiryModal';
 
 export default function CarsShowcasePage() {
-  const { content } = useContent();
+  const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem } = useCms();
   const showcaseData = content.showcases?.cars || {};
   const cars = showcaseData.items || [];
 
   const [selectedFilter, setSelectedFilter] = useState('ALL');
   const [selectedCar, setSelectedCar] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const categories = ['ALL', 'HYBRID & EV', 'EXECUTIVE LUXURY', 'RUGGED 4X4', '7-SEATER'];
 
@@ -36,7 +48,7 @@ export default function CarsShowcasePage() {
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
       {/* 1. Hero Title Banner */}
-      <section className="relative w-full py-[80px] lg:py-[100px] bg-[#001659] text-white overflow-hidden">
+      <CmsSection id="cars-hero" name="Hero & Overview" className="relative w-full py-[80px] lg:py-[100px] bg-[#001659] text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: `url('/chinese-suv-byd.jpg')` }}
@@ -93,24 +105,37 @@ export default function CarsShowcasePage() {
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 2. Main Showcase Grid Section */}
-      <section className="w-full py-[80px] bg-[#f8f9fa] fade-in-scroll">
+      <CmsSection id="cars-grid" name="Featured Chinese SUVs Grid" className="w-full py-[80px] bg-[#f8f9fa] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           {/* Header Controls & Filter Pills */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-12">
             <div>
               <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-1">
-                AVAILABLE MODELS
+                AVAILABLE MODELS ({cars.length})
               </span>
               <h2 className="font-heading font-black text-[30px] sm:text-[38px] text-[#001659] leading-tight">
                 Featured Chinese SUVs Ready to Ship
               </h2>
             </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap gap-2">
+            {/* Actions & Filters */}
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Add New Vehicle Button (Visible in Edit Mode) */}
+              {isEditMode && (
+                <button
+                  type="button"
+                  onClick={() => setIsAddModalOpen(true)}
+                  className="px-4 py-2 bg-[#ff5e14] hover:bg-[#e04f0e] text-white text-xs font-heading font-black uppercase tracking-wider flex items-center gap-1.5 shadow-md transition-all mr-2"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>+ Add New Vehicle</span>
+                </button>
+              )}
+
+              {/* Category Filter Pills */}
               {categories.map((cat) => (
                 <button
                   key={cat}
@@ -132,8 +157,34 @@ export default function CarsShowcasePage() {
             {filteredCars.map((car, idx) => (
               <div
                 key={car.id || idx}
-                className="bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-2xl hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group"
+                className="relative bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-2xl hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group"
               >
+                {/* Admin Card Action Bar (Visible in Edit Mode) */}
+                {isEditMode && (
+                  <div className="absolute top-2 right-2 z-30 flex items-center gap-1 bg-[#001659]/90 backdrop-blur-sm p-1 rounded border border-white/20 shadow-lg">
+                    <button
+                      type="button"
+                      onClick={() => duplicateShowcaseItem('cars', idx)}
+                      className="p-1 text-white/80 hover:text-white hover:bg-white/20 rounded transition-colors"
+                      title="Duplicate this vehicle"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (window.confirm(`Delete "${car.name}" from showcase?`)) {
+                          deleteShowcaseItem('cars', idx);
+                        }
+                      }}
+                      className="p-1 text-red-400 hover:text-white hover:bg-red-500 rounded transition-colors"
+                      title="Delete this vehicle"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+
                 <div>
                   {/* Image Container with Badge */}
                   <div className="relative w-full h-[250px] overflow-hidden bg-gray-100">
@@ -148,7 +199,7 @@ export default function CarsShowcasePage() {
                       {car.brand || 'CHINESE SUV'}
                     </div>
                     {/* Badge Top Right */}
-                    {car.badge && (
+                    {car.badge && !isEditMode && (
                       <div className="absolute top-3 right-3 bg-[#ff5e14] text-white px-3 py-1 text-[10px] font-heading font-black uppercase tracking-widest shadow-sm">
                         {car.badge}
                       </div>
@@ -184,7 +235,11 @@ export default function CarsShowcasePage() {
                       {car.deposit70 && (
                         <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">
                           <span className="text-[#565969] font-medium">70% Initial Deposit:</span>
-                          <span className="text-[#ff5e14] font-bold">{car.deposit70}</span>
+                          <span className="text-[#ff5e14] font-bold">
+                            <EditableText path={`showcases.cars.items[${idx}].deposit70`}>
+                              {car.deposit70}
+                            </EditableText>
+                          </span>
                         </div>
                       )}
                     </div>
@@ -225,10 +280,28 @@ export default function CarsShowcasePage() {
                 </div>
               </div>
             ))}
+
+            {/* In Edit Mode: Dedicated "+ Add Vehicle" Dashed Card at End of Grid */}
+            {isEditMode && (
+              <div
+                onClick={() => setIsAddModalOpen(true)}
+                className="cursor-pointer border-2 border-dashed border-[#ff5e14]/60 hover:border-[#ff5e14] hover:bg-[#ff5e14]/5 transition-all p-8 flex flex-col items-center justify-center min-h-[400px] text-center group rounded-xs"
+              >
+                <div className="w-14 h-14 rounded-full bg-[#ff5e14]/10 text-[#ff5e14] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <PlusCircle className="w-8 h-8" />
+                </div>
+                <h4 className="font-heading font-black text-lg text-[#001659] uppercase tracking-wide mb-1">
+                  + Add New Vehicle
+                </h4>
+                <p className="text-xs text-[#565969] max-w-xs leading-relaxed">
+                  Click to add a new car to this showcase with full images, landed pricing, and copy-paste specs.
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Bottom 70/30 Callout Banner */}
-          <div className="mt-16 bg-[#001659] text-white p-8 lg:p-12 border-l-4 border-[#ff5e14] flex flex-col lg:flex-row items-center justify-between gap-8">
+          <CmsSection id="cars-cta" name="70/30 Custom Sourcing CTA" className="mt-16 bg-[#001659] text-white p-8 lg:p-12 border-l-4 border-[#ff5e14] flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
               <span className="font-heading font-bold text-xs uppercase tracking-[2px] text-[#ff5e14] block mb-2">
                 FLEXIBLE AUTO FINANCING
@@ -254,9 +327,16 @@ export default function CarsShowcasePage() {
                 Explore Buy N Spec
               </Link>
             </div>
-          </div>
+          </CmsSection>
         </div>
-      </section>
+      </CmsSection>
+
+      {/* Add Item Modal */}
+      <ShowcaseItemModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        category="cars"
+      />
 
       {/* Inquiry Modal */}
       {selectedCar && (

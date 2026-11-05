@@ -4,6 +4,7 @@ import { CheckCircle2, ShieldCheck, MapPin, Phone, Mail, ArrowRight, Quote, Awar
 import { useCms } from '../context/CmsContext';
 import EditableText from '../components/cms/EditableText';
 import EditableImage from '../components/cms/EditableImage';
+import CmsSection from '../components/cms/CmsSection';
 
 export default function AboutPage() {
   const { content } = useCms();
@@ -12,8 +13,10 @@ export default function AboutPage() {
 
   return (
     <div className="w-full bg-white font-body selection:bg-[#ff5e14] selection:text-white">
-      {/* 1. Title Banner - Height 535px */}
-      <section
+      {/* 1. Title Banner */}
+      <CmsSection
+        id="about-hero"
+        name="About Overview Hero"
         className="relative w-full h-[535px] bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url('/about-title-bg.jpg')` }}
       >
@@ -40,10 +43,10 @@ export default function AboutPage() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 2. Company Overview & Our Story */}
-      <section className="w-full py-[110px] bg-white fade-in-scroll">
+      <CmsSection id="about-story" name="Our Story & Vision" className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Photo & Badge */}
@@ -105,10 +108,10 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 3. Mission & Vision */}
-      <section className="w-full py-[100px] bg-[#f8f9fa] border-y border-[#e8e8e9] fade-in-scroll">
+      <CmsSection id="about-vision" name="Mission & Vision" className="w-full py-[100px] bg-[#f8f9fa] border-y border-[#e8e8e9] fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Vision */}
@@ -168,10 +171,10 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 4. Core Values Matrix */}
-      <section className="w-full py-[110px] bg-white fade-in-scroll">
+      <CmsSection id="about-values" name="4 Core Values" className="w-full py-[110px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="max-w-2xl mb-12">
             <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
@@ -215,10 +218,10 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 5. Executive Profile & Leadership Message */}
-      <section className="w-full py-[110px] bg-[#00235a] text-white fade-in-scroll">
+      <CmsSection id="about-leadership" name="Executive Profile & Statement" className="w-full py-[110px] bg-[#00235a] text-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8">
@@ -288,10 +291,10 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </CmsSection>
 
       {/* 6. Testimonials Slider */}
-      <section className="w-full py-[120px] bg-white fade-in-scroll">
+      <CmsSection id="about-testimonials" name="Client Endorsements" className="w-full py-[120px] bg-white fade-in-scroll">
         <div className="max-w-[1300px] mx-auto px-6">
           <div className="mb-12">
             <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
@@ -376,7 +379,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </CmsSection>
     </div>
   );
 }
