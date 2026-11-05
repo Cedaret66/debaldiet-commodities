@@ -142,7 +142,7 @@ export default function ShowcaseItemModal({
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder={meta.namePlaceholder}
-              className="w-full px-3.5 py-2 text-sm border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
+              className="w-full px-3.5 py-2 text-sm text-[#111827] bg-white border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
             />
           </div>
 
@@ -268,7 +268,7 @@ export default function ShowcaseItemModal({
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Paste item specs, description, features or assay details..."
-              className="w-full px-3.5 py-2 text-xs border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none font-mono"
+              className="w-full px-3.5 py-2 text-xs text-[#111827] bg-white border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none font-mono"
             />
             <p className="text-[11px] text-[#565969] mt-1">
               Line breaks and paragraphs will appear formatted directly on the card.

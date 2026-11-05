@@ -80,8 +80,12 @@ export default function EditableText({
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
             rows={Math.max(3, Math.min(10, String(draft).split('\n').length))}
-            style={{ overscrollBehavior: 'contain' }}
-            className={`w-full bg-[#001659] text-white border-2 border-[#ff5e14] rounded-sm p-3 text-inherit font-inherit outline-none shadow-2xl resize-y overflow-y-auto max-h-[320px] ${className}`}
+            style={{
+              overscrollBehavior: 'contain',
+              color: '#111827',
+              backgroundColor: '#ffffff',
+            }}
+            className="w-full text-[#111827] bg-white border-2 border-[#ff5e14] rounded-sm p-3 text-sm font-body leading-relaxed outline-none shadow-2xl resize-y overflow-y-auto max-h-[320px] ring-2 ring-[#ff5e14]/25"
           />
         ) : (
           <input
@@ -91,9 +95,16 @@ export default function EditableText({
             onChange={(e) => setDraft(e.target.value)}
             onKeyDown={handleKeyDown}
             onBlur={handleSave}
-            className={`w-full bg-[#001659] text-white border-2 border-[#ff5e14] rounded-sm px-2 py-1 text-inherit font-inherit outline-none shadow-2xl ${className}`}
+            style={{
+              color: '#111827',
+              backgroundColor: '#ffffff',
+            }}
+            className="w-full text-[#111827] bg-white border-2 border-[#ff5e14] rounded-sm px-3 py-1.5 text-sm font-body outline-none shadow-2xl ring-2 ring-[#ff5e14]/25"
           />
         )}
+        <span className="block mt-1 text-[10px] text-[#ff5e14] font-heading font-bold uppercase tracking-wider">
+          {multiline ? 'Click outside to save • Esc to cancel' : 'Press Enter or click outside to save • Esc to cancel'}
+        </span>
       </span>
     );
   }
