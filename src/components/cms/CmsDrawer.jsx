@@ -12,6 +12,7 @@ import {
   Save,
   Check,
   Upload,
+  Download,
   ExternalLink,
   Database,
   Wrench,
@@ -37,6 +38,36 @@ export default function CmsDrawer() {
   const [activeTab, setActiveTab] = useState('hero');
   const [supabaseUrl, setSupabaseUrl] = useState(cloudConfig?.supabaseUrl || '');
   const [supabaseKey, setSupabaseKey] = useState(cloudConfig?.supabaseAnonKey || '');
+
+  const handleExportBackup = () => {
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(content, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute('href', dataStr);
+    downloadAnchor.setAttribute('download', `debaldiet-content-backup-${new Date().toISOString().slice(0, 10)}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  };
+
+  const handleImportBackup = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const parsed = JSON.parse(event.target.result);
+          if (parsed && typeof parsed === 'object') {
+            updateContent(parsed);
+            saveChanges();
+            alert('Backup restored successfully!');
+          }
+        } catch (err) {
+          alert('Invalid backup JSON file.');
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
 
   if (!isDrawerOpen) return null;
 
@@ -66,6 +97,28 @@ export default function CmsDrawer() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleExportBackup}
+              className="p-1.5 rounded bg-white/10 hover:bg-emerald-500/20 text-white/80 hover:text-emerald-400 transition-colors flex items-center gap-1 text-xs font-heading"
+              title="Download backup JSON of all edits"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Export</span>
+            </button>
+            <label
+              className="p-1.5 rounded bg-white/10 hover:bg-sky-500/20 text-white/80 hover:text-sky-400 transition-colors flex items-center gap-1 text-xs font-heading cursor-pointer"
+              title="Restore content from a backup JSON file"
+            >
+              <Upload className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Import</span>
+              <input
+                type="file"
+                accept=".json,application/json"
+                onChange={handleImportBackup}
+                className="hidden"
+              />
+            </label>
             <button
               type="button"
               onClick={resetToDefault}

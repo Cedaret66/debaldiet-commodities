@@ -5,6 +5,36 @@ const STORAGE_KEY = 'debaldiet_cms_content_v4';
 const AUTH_KEY = 'debaldiet_cms_auth_v2';
 const CLOUD_SYNC_KEY = 'debaldiet_cloud_sync_config_v2';
 
+const LEGACY_STORAGE_KEYS = [
+  'debaldiet_cms_content_v4',
+  'debaldiet_cms_content_v3',
+  'debaldiet_cms_content_v2',
+  'debaldiet_cms_content_v1',
+  'debaldiet_cms_content',
+  'debaldiet_content',
+];
+
+function loadPersistedContent() {
+  for (const key of LEGACY_STORAGE_KEYS) {
+    try {
+      const saved = localStorage.getItem(key);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object') {
+          // Always ensure the active key has the latest data
+          if (key !== STORAGE_KEY) {
+            localStorage.setItem(STORAGE_KEY, saved);
+          }
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn(`Error reading stored key ${key}:`, e);
+    }
+  }
+  return null;
+}
+
 const CmsContext = createContext(null);
 
 // Get deep property by dot notation (e.g. "slides[0].headline" or "about.subHeadline")
@@ -74,9 +104,9 @@ export function CmsProvider({ children }) {
   // Content state (Draft vs Saved)
   const [content, setContent] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = loadPersistedContent();
       if (saved) {
-        return deepMerge(defaultSiteData, JSON.parse(saved));
+        return deepMerge(defaultSiteData, saved);
       }
     } catch (e) {
       console.warn('Error reading saved CMS content:', e);
@@ -86,9 +116,9 @@ export function CmsProvider({ children }) {
 
   const [savedContent, setSavedContent] = useState(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
+      const saved = loadPersistedContent();
       if (saved) {
-        return deepMerge(defaultSiteData, JSON.parse(saved));
+        return deepMerge(defaultSiteData, saved);
       }
     } catch {
       // ignore
