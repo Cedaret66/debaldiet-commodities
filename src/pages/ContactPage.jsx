@@ -114,7 +114,7 @@ export default function ContactPage() {
                       as="div"
                       className="font-heading font-bold text-[18px] text-[#001659]"
                     >
-                      {headquarters.whatsapp || '+234 54 148 3758'}
+                      {headquarters.whatsapp || '+233 54 148 3758'}
                     </EditableText>
                   </div>
                 </div>

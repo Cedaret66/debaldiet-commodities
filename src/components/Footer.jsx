@@ -69,7 +69,7 @@ export default function Footer() {
                 <MessageCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
                 <span>WhatsApp: </span>
                 <EditableText path="company.whatsapp" as="span">
-                  {company.whatsapp || '+234 54 148 3758'}
+                  {company.whatsapp || '+233 54 148 3758'}
                 </EditableText>
               </div>
             </div>

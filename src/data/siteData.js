@@ -11,7 +11,7 @@ export const siteData = {
     headquarters: "Accra, Ghana",
     address: "Accra, Ghana",
     phoneHotline: "+233 55 166 0943",
-    whatsapp: "+234 54 148 3758",
+    whatsapp: "+233 54 148 3758",
     email: "debaldietcommodities@gmail.com",
     hours: "Mon – Sat: 8:00 AM – 5:30 PM | Sun: Closed",
     socials: [
@@ -24,7 +24,7 @@ export const siteData = {
   
   topBar: {
     phone: "+233 55 166 0943",
-    whatsapp: "+234 54 148 3758",
+    whatsapp: "+233 54 148 3758",
     email: "debaldietcommodities@gmail.com",
     hours: "Mon – Sat: 8:00 AM – 5:30 PM | Sun: Closed",
     address: "Accra, Ghana",
@@ -446,7 +446,7 @@ export const siteData = {
       name: "DeBaldiet Commodities (DC)",
       location: "Accra, Ghana",
       phone: "+233 55 166 0943",
-      whatsapp: "+234 54 148 3758",
+      whatsapp: "+233 54 148 3758",
       email: "debaldietcommodities@gmail.com",
       schedule: "Mon – Sat: 8:00 AM – 5:30 PM | Sunday: Closed"
     },

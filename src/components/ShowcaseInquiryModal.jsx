@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, MessageSquare, Phone, Send, ShieldCheck, Tag } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 import { calculate70PercentDeposit } from '../utils/pricing';
 
 export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
+  const { content } = useCms();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -25,7 +27,9 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
     const text = encodeURIComponent(
       `Hello DeBaldiet Commodities! I am interested in inquiring about: ${item.name} (${item.price || ''}${depositNote}). Please share landed availability and ordering details.`
     );
-    return `https://wa.me/233551660943?text=${text}`;
+    const waRaw = content?.company?.whatsapp || '+233 54 148 3758';
+    const waClean = waRaw.replace(/[^0-9]/g, '') || '233541483758';
+    return `https://wa.me/${waClean}?text=${text}`;
   };
 
   return (

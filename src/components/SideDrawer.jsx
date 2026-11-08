@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { X, Clock, MapPin, Phone, Mail, ChevronRight, Twitter, Facebook, Linkedin, Instagram } from 'lucide-react';
-import { siteData } from '../data/siteData';
+import { useCms } from '../context/CmsContext';
 
 export default function SideDrawer({ isOpen, onClose }) {
-  const { topBar, navLinks } = siteData;
+  const { content } = useCms();
+  const topBar = content?.topBar || {};
+  const company = content?.company || {};
+  const navLinks = content?.navLinks || [];
 
   // Close on Escape key
   useEffect(() => {
@@ -102,16 +105,16 @@ export default function SideDrawer({ isOpen, onClose }) {
                 <MapPin className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="font-heading font-bold uppercase tracking-wider text-white">Location</div>
-                  <div>7300-7398 Colonial Rd, Brooklyn, NY 11209</div>
+                  <div>{company.address || 'Plot 14, Spintex Road, Accra, Ghana'}</div>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3 text-gray-200">
                 <Phone className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-heading font-bold uppercase tracking-wider text-white">Telephone</div>
-                  <div>+ (123) 1234-567-8901</div>
-                  <div className="text-gray-400">+ (123) 1234-567-8902</div>
+                  <div className="font-heading font-bold uppercase tracking-wider text-white">Telephone / WhatsApp</div>
+                  <div>{company.phoneHotline || '+233 55 166 0943'}</div>
+                  <div className="text-brand-orange">{company.whatsapp || '+233 54 148 3758'} (WhatsApp)</div>
                 </div>
               </div>
 
@@ -119,8 +122,8 @@ export default function SideDrawer({ isOpen, onClose }) {
                 <Mail className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="font-heading font-bold uppercase tracking-wider text-white">Email Address</div>
-                  <a href="mailto:bridge@qodeinteractive.com" className="hover:text-brand-orange transition-colors">
-                    bridge@qodeinteractive.com
+                  <a href={`mailto:${company.email || 'info@debaldietcommodities.com'}`} className="hover:text-brand-orange transition-colors">
+                    {company.email || 'info@debaldietcommodities.com'}
                   </a>
                 </div>
               </div>
