@@ -141,7 +141,16 @@ export function CmsProvider({ children }) {
   const [cloudConfig, setCloudConfig] = useState(() => {
     try {
       const saved = localStorage.getItem(CLOUD_SYNC_KEY);
-      return saved ? JSON.parse(saved) : null;
+      if (saved) return JSON.parse(saved);
+      // Fallback to environment variables if configured on Vercel/hosting
+      if (import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        return {
+          provider: 'supabase',
+          supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
+          supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+        };
+      }
+      return null;
     } catch {
       return null;
     }
