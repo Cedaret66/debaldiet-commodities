@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCms } from '../context/CmsContext';
-import { Lock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Lock, ArrowRight, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 
 export default function CMSAdminPage() {
   const { isAuthenticated, login } = useCms();
   const [passwordInput, setPasswordInput] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -46,18 +47,27 @@ export default function CMSAdminPage() {
             </label>
             <div className="relative">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="Enter access code..."
                 autoFocus
-                className="w-full h-12 pl-4 pr-10 bg-[#f8f9fa] border border-[#d2d4d8] rounded-sm text-sm focus:outline-none focus:border-[#001659] focus:bg-white transition-all"
+                className="w-full h-12 pl-4 pr-11 bg-[#f8f9fa] border border-[#d2d4d8] rounded-sm text-sm text-[#111827] focus:outline-none focus:border-[#001659] focus:bg-white transition-all font-mono"
               />
-              <Lock className="w-4 h-4 text-gray-400 absolute right-3.5 top-1/2 -translate-y-1/2" />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#001659] p-1 transition-colors"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
             </div>
-            <p className="text-[11px] text-gray-400 mt-1.5">
-              Default Master Passkey: <code className="text-[#ff5e14]">debaldiet2026!</code>
-            </p>
           </div>
 
           {error && (

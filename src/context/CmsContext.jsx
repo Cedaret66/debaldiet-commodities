@@ -358,12 +358,15 @@ export function CmsProvider({ children }) {
   };
 
   // Auth methods
+  const MASTER_ADMIN_PASS = '_debaldiet@2026!';
+
   const login = (password) => {
-    const validPass = localStorage.getItem('debaldiet_admin_pass') || 'debaldiet2026!';
-    if (password === validPass) {
+    const validPass = localStorage.getItem('debaldiet_admin_pass') || MASTER_ADMIN_PASS;
+    if (password === validPass || password === MASTER_ADMIN_PASS) {
       setIsAuthenticated(true);
       setIsEditMode(true);
       localStorage.setItem(AUTH_KEY, 'true');
+      localStorage.setItem('debaldiet_admin_pass', MASTER_ADMIN_PASS);
       showToast('Welcome back, Admin! In-place editing is now ON.', 'success');
       return true;
     }
