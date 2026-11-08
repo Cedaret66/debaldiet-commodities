@@ -79,6 +79,9 @@ function deepMerge(target, source) {
   return output;
 }
 
+const DEFAULT_SUPABASE_URL = 'https://rquximezzpgqdfschjba.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxdXhpbWV6enBncWRmc2NoamJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQxNDIzMzUsImV4cCI6MjEwOTcxODMzNX0.MnNJ2qYTLaw6CwIxAk1Ngf7VZ-RoCfVpYQXzHIyF14k';
+
 export function CmsProvider({ children }) {
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -141,18 +144,26 @@ export function CmsProvider({ children }) {
   const [cloudConfig, setCloudConfig] = useState(() => {
     try {
       const saved = localStorage.getItem(CLOUD_SYNC_KEY);
-      if (saved) return JSON.parse(saved);
-      // Fallback to environment variables if configured on Vercel/hosting
-      if (import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY) {
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.supabaseUrl && parsed?.supabaseAnonKey) return parsed;
+      }
+      const url = import.meta.env.VITE_SUPABASE_URL || DEFAULT_SUPABASE_URL;
+      const key = import.meta.env.VITE_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY;
+      if (url && key) {
         return {
           provider: 'supabase',
-          supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
-          supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+          supabaseUrl: url,
+          supabaseAnonKey: key,
         };
       }
       return null;
     } catch {
-      return null;
+      return {
+        provider: 'supabase',
+        supabaseUrl: DEFAULT_SUPABASE_URL,
+        supabaseAnonKey: DEFAULT_SUPABASE_ANON_KEY,
+      };
     }
   });
   const [isSyncing, setIsSyncing] = useState(false);
@@ -171,6 +182,7 @@ export function CmsProvider({ children }) {
   useEffect(() => {
     if (!cloudConfig || !cloudConfig.supabaseUrl || !cloudConfig.supabaseAnonKey) return;
 
+    let isMounted = true;
     async function fetchRemote() {
       try {
         setIsSyncing(true);
@@ -182,7 +194,7 @@ export function CmsProvider({ children }) {
         });
         if (res.ok) {
           const rows = await res.json();
-          if (rows?.[0]?.data) {
+          if (rows?.[0]?.data && isMounted) {
             const merged = { ...defaultSiteData, ...rows[0].data };
             setContent(merged);
             setSavedContent(merged);
@@ -192,11 +204,18 @@ export function CmsProvider({ children }) {
       } catch (err) {
         console.warn('Cloud pull error:', err);
       } finally {
-        setIsSyncing(false);
+        if (isMounted) setIsSyncing(false);
       }
     }
 
     fetchRemote();
+
+    // Auto-sync polling every 20 seconds to keep all devices and users in sync
+    const interval = setInterval(fetchRemote, 20000);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, [cloudConfig]);
 
   // Update a single field path (e.g. "slides[0].headline", "about.subHeadline")
