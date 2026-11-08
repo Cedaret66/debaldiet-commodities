@@ -8,7 +8,7 @@ export default function ShowcaseItemModal({
   onClose,
   category = 'cars', // 'cars' | 'hair' | 'agriculture'
 }) {
-  const { addShowcaseItem } = useCms();
+  const { addShowcaseItem, uploadImageFile } = useCms();
 
   const categoryTitles = {
     cars: {
@@ -81,9 +81,16 @@ export default function ShowcaseItemModal({
     onClose();
   };
 
-  const handleImageFileChange = (e) => {
+  const handleImageFileChange = async (e) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (typeof uploadImageFile === 'function') {
+        const cdnUrl = await uploadImageFile(file);
+        if (cdnUrl) {
+          setFormData((prev) => ({ ...prev, image: cdnUrl }));
+          return;
+        }
+      }
       const reader = new FileReader();
       reader.onload = (uploadEvent) => {
         if (uploadEvent.target?.result) {

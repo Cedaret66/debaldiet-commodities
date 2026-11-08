@@ -433,12 +433,39 @@ export function CmsProvider({ children }) {
   };
 
   const uploadImageFile = async (file, path) => {
+    // If Supabase cloud is configured, upload directly to public storage for fast CDN delivery
+    if (cloudConfig?.supabaseUrl && cloudConfig?.supabaseAnonKey && file) {
+      try {
+        const cleanName = (file.name || 'image.jpg').replace(/[^a-zA-Z0-9.-]/g, '_');
+        const fileName = `${Date.now()}-${cleanName}`;
+        const uploadRes = await fetch(`${cloudConfig.supabaseUrl}/storage/v1/object/cms-media/${fileName}`, {
+          method: 'POST',
+          headers: {
+            apikey: cloudConfig.supabaseAnonKey,
+            Authorization: `Bearer ${cloudConfig.supabaseAnonKey}`,
+            'Content-Type': file.type || 'image/jpeg',
+          },
+          body: file,
+        });
+
+        if (uploadRes.ok) {
+          const publicUrl = `${cloudConfig.supabaseUrl}/storage/v1/object/public/cms-media/${fileName}`;
+          if (path) updateField(path, publicUrl);
+          showToast('Image uploaded to cloud CDN successfully!', 'success');
+          closeImageUpload();
+          return publicUrl;
+        }
+      } catch (err) {
+        console.warn('Storage upload failed, falling back to local base64:', err);
+      }
+    }
+
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const base64 = e.target?.result;
         if (base64) {
-          updateField(path, base64);
+          if (path) updateField(path, base64);
           showToast('Image updated successfully!', 'success');
         }
         closeImageUpload();
