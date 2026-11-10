@@ -18,7 +18,7 @@ import ShowcaseItemModal from '../components/cms/ShowcaseItemModal';
 import ShowcaseInquiryModal from '../components/ShowcaseInquiryModal';
 
 export default function HairShowcasePage() {
-  const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem } = useCms();
+  const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem, updateField } = useCms();
   const showcaseData = content.showcases?.hair || {};
   const hairItems = showcaseData.items || [];
 
@@ -166,17 +166,19 @@ export default function HairShowcasePage() {
                 key={item.id || idx}
                 className="relative bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-2xl hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group"
               >
-                {/* Admin Card Action Bar */}
+                {/* Admin Card Action Bar (Visible in Edit Mode on Top Left) */}
                 {isEditMode && (
-                  <div className="absolute top-2 right-2 z-30 flex items-center gap-1 bg-[#001659]/90 backdrop-blur-sm p-1 rounded border border-white/20 shadow-lg">
+                  <div className="absolute top-2.5 left-2.5 z-30 flex items-center gap-1.5 bg-[#001659]/95 backdrop-blur-sm px-2 py-1 rounded shadow-lg border border-white/20">
                     <button
                       type="button"
                       onClick={() => duplicateShowcaseItem('hair', idx)}
-                      className="p-1 text-white/80 hover:text-white hover:bg-white/20 rounded transition-colors"
+                      className="p-1 text-white/90 hover:text-white hover:bg-white/20 rounded transition-colors flex items-center gap-1 text-[10px] font-heading font-bold uppercase tracking-wider"
                       title="Duplicate this product"
                     >
                       <Copy className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Copy</span>
                     </button>
+                    <span className="text-white/30 text-xs">|</span>
                     <button
                       type="button"
                       onClick={() => {
@@ -184,10 +186,11 @@ export default function HairShowcasePage() {
                           deleteShowcaseItem('hair', idx);
                         }
                       }}
-                      className="p-1 text-red-400 hover:text-white hover:bg-red-500 rounded transition-colors"
+                      className="p-1 text-red-300 hover:text-white hover:bg-red-500 rounded transition-colors flex items-center gap-1 text-[10px] font-heading font-bold uppercase tracking-wider"
                       title="Delete this product"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Delete</span>
                     </button>
                   </div>
                 )}
@@ -201,14 +204,53 @@ export default function HairShowcasePage() {
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Category Tag Top Left */}
-                    <div className="absolute top-3 left-3 bg-[#001659] text-white px-3 py-1 text-[11px] font-heading font-bold uppercase tracking-wider shadow-sm">
-                      {item.grade || '100% VIRGIN'}
-                    </div>
-                    {/* Badge Top Right */}
-                    {item.badge && !isEditMode && (
-                      <div className="absolute top-3 right-3 bg-[#ff5e14] text-white px-3 py-1 text-[10px] font-heading font-black uppercase tracking-widest shadow-sm">
-                        {item.badge}
+                    {/* Availability Tag (Admin Editable in Edit Mode) */}
+                    {isEditMode ? (
+                      <div
+                        className="absolute top-3 right-3 z-30 flex items-center bg-white/95 backdrop-blur-xs p-1 rounded shadow-md border border-[#001659]/20"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => updateField(`showcases.hair.items[${idx}].availability`, 'available')}
+                          className={`px-2 py-0.5 text-[10px] font-heading font-black uppercase tracking-wider rounded-xs transition-colors flex items-center space-x-1 ${
+                            (item.availability || 'available').toLowerCase() !== 'sold'
+                              ? 'bg-emerald-600 text-white shadow-sm'
+                              : 'text-gray-500 hover:text-emerald-700 hover:bg-emerald-50'
+                          }`}
+                          title="Set status to Available"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                          <span>Available</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateField(`showcases.hair.items[${idx}].availability`, 'sold')}
+                          className={`ml-1 px-2 py-0.5 text-[10px] font-heading font-black uppercase tracking-wider rounded-xs transition-colors flex items-center space-x-1 ${
+                            (item.availability || '').toLowerCase() === 'sold'
+                              ? 'bg-red-600 text-white shadow-sm'
+                              : 'text-gray-500 hover:text-red-700 hover:bg-red-50'
+                          }`}
+                          title="Set status to Sold"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                          <span>Sold</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <div
+                        className={`absolute top-3 right-3 px-3 py-1 text-[10px] font-heading font-black uppercase tracking-widest shadow-md rounded-xs flex items-center space-x-1.5 text-white z-10 ${
+                          (item.availability || '').toLowerCase() === 'sold'
+                            ? 'bg-red-600'
+                            : 'bg-emerald-600'
+                        }`}
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full bg-white ${
+                            (item.availability || '').toLowerCase() === 'sold' ? 'animate-pulse' : ''
+                          }`}
+                        />
+                        <span>{(item.availability || '').toLowerCase() === 'sold' ? 'SOLD' : 'AVAILABLE'}</span>
                       </div>
                     )}
                     {/* Texture Pill Bottom Left */}

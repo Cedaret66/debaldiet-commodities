@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Plus, Upload, Sparkles, Check, Car, Layers, Sprout, Calculator } from 'lucide-react';
 import { useCms } from '../../context/CmsContext';
 import { calculate70PercentDeposit } from '../../utils/pricing';
@@ -103,17 +104,19 @@ export default function ShowcaseItemModal({
     }
   };
 
-  return (
+  const modalContent = (
     <div
-      className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn font-body"
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn font-body"
       onWheel={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
+      onClick={onClose}
     >
       <div
-        className="relative w-full max-w-xl bg-white border border-[#001659]/20 shadow-2xl rounded-sm overflow-hidden text-[#303030]"
+        className="relative w-full max-w-xl bg-white border border-[#001659]/20 shadow-2xl rounded-sm overflow-hidden text-[#303030] my-auto"
         style={{ overscrollBehavior: 'contain' }}
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="bg-[#001659] text-white px-6 py-4 flex items-center justify-between">
@@ -338,4 +341,6 @@ export default function ShowcaseItemModal({
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 }

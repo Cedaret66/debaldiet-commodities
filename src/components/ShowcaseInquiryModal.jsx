@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, CheckCircle, MessageSquare, Phone, Send, ShieldCheck, Tag } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
 import { calculate70PercentDeposit } from '../utils/pricing';
@@ -13,6 +14,20 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
     notes: ''
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Close on Escape & Lock body scroll
+  useEffect(() => {
+    const origOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = origOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
   if (!item) return null;
 
@@ -35,9 +50,18 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
     return `https://wa.me/${waClean}?text=${text}`;
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#001659]/80 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden max-h-[92vh] flex flex-col">
+  const modalContent = (
+    <div
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-[#001659]/85 backdrop-blur-sm animate-fadeIn"
+      style={{ overscrollBehavior: 'contain' }}
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden max-h-[90vh] flex flex-col my-auto text-[#303030]"
+        onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+      >
         {/* Header bar */}
         <div className="flex items-center justify-between px-6 py-4 bg-[#001659] text-white shrink-0">
           <div className="flex items-center space-x-2">
@@ -252,4 +276,6 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 }
