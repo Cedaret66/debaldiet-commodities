@@ -257,9 +257,14 @@ export default function CarsShowcasePage() {
                         <span>{(car.availability || '').toLowerCase() === 'sold' ? 'SOLD' : 'AVAILABLE'}</span>
                       </div>
                     )}
-                    {/* Condition Pill Bottom Left */}
-                    <div className="absolute bottom-3 left-3 bg-black/75 backdrop-blur-xs text-white px-2.5 py-1 text-[10px] font-heading uppercase tracking-wider">
-                      {car.condition || 'New & Low-Mileage'}
+                    {/* Condition Pill Bottom Left (Editable in Edit Mode) */}
+                    <div className="absolute bottom-3 left-3 z-20 bg-black/80 backdrop-blur-xs text-white px-2.5 py-1 text-[10px] font-heading uppercase tracking-wider rounded-xs border border-white/10 max-w-[85%] shadow-sm">
+                      <EditableText
+                        path={`showcases.cars.items[${idx}].condition`}
+                        placeholder="Condition / Tag"
+                      >
+                        {car.condition || 'Brand New & Certified Low-Mileage'}
+                      </EditableText>
                     </div>
                   </div>
 

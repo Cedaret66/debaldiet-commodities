@@ -253,12 +253,15 @@ export default function HairShowcasePage() {
                         <span>{(item.availability || '').toLowerCase() === 'sold' ? 'SOLD' : 'AVAILABLE'}</span>
                       </div>
                     )}
-                    {/* Texture Pill Bottom Left */}
-                    {item.texture && (
-                      <div className="absolute bottom-3 left-3 bg-black/75 backdrop-blur-xs text-white px-2.5 py-1 text-[10px] font-heading uppercase tracking-wider">
-                        {item.texture}
-                      </div>
-                    )}
+                    {/* Texture Pill Bottom Left (Editable in Edit Mode) */}
+                    <div className="absolute bottom-3 left-3 z-20 bg-black/80 backdrop-blur-xs text-white px-2.5 py-1 text-[10px] font-heading uppercase tracking-wider rounded-xs border border-white/10 max-w-[85%] shadow-sm">
+                      <EditableText
+                        path={`showcases.hair.items[${idx}].texture`}
+                        placeholder="Texture / Spec"
+                      >
+                        {item.texture || '100% Virgin Hair'}
+                      </EditableText>
+                    </div>
                   </div>
 
                   {/* Card Body */}

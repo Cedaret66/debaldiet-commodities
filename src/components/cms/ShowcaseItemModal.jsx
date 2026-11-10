@@ -56,6 +56,7 @@ export default function ShowcaseItemModal({
     category: '',
     badge: 'NEW ARRIVAL',
     brand: '',
+    condition: category === 'cars' ? 'Brand New & Certified Low-Mileage' : (category === 'hair' ? '100% Virgin Hair' : 'Export Poly Bags'),
     availability: 'available', // 'available' | 'sold'
     image: meta.defaultImg,
     description: meta.sampleDesc,
@@ -75,6 +76,7 @@ export default function ShowcaseItemModal({
       category: formData.category.trim() || 'Featured',
       badge: formData.badge.trim(),
       brand: formData.brand.trim() || 'DIRECT SOURCING',
+      condition: formData.condition.trim() || 'Brand New & Certified Low-Mileage',
       availability: formData.availability || 'available',
       image: formData.image.trim() || meta.defaultImg,
       description: formData.description.trim(),
@@ -266,6 +268,20 @@ export default function ShowcaseItemModal({
                 className="w-full px-3.5 py-2 text-sm border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
               />
             </div>
+          </div>
+
+          {/* Bottom Dark Tag / Condition */}
+          <div>
+            <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[#001659] mb-1">
+              Image Tag / Condition (Bottom-Left Tag)
+            </label>
+            <input
+              type="text"
+              value={formData.condition}
+              onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
+              placeholder="e.g. Brand New & Certified Low-Mileage"
+              className="w-full px-3.5 py-2 text-sm border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
+            />
           </div>
 
           {/* Image URL or Upload */}
