@@ -55,6 +55,7 @@ export default function ShowcaseItemModal({
     category: '',
     badge: 'NEW ARRIVAL',
     brand: '',
+    availability: 'available', // 'available' | 'sold'
     image: meta.defaultImg,
     description: meta.sampleDesc,
   });
@@ -73,6 +74,7 @@ export default function ShowcaseItemModal({
       category: formData.category.trim() || 'Featured',
       badge: formData.badge.trim(),
       brand: formData.brand.trim() || 'DIRECT SOURCING',
+      availability: formData.availability || 'available',
       image: formData.image.trim() || meta.defaultImg,
       description: formData.description.trim(),
     };
@@ -199,6 +201,39 @@ export default function ShowcaseItemModal({
               <span className="text-[11px] text-[#565969] mt-0.5 block">
                 Automatically calculated at 70% of the price.
               </span>
+            </div>
+          </div>
+
+          {/* Availability Status */}
+          <div>
+            <label className="block text-xs font-heading font-bold uppercase tracking-wider text-[#001659] mb-1.5">
+              Availability Status
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setFormData((prev) => ({ ...prev, availability: 'available' }))}
+                className={`py-2 px-3 text-xs font-heading font-black uppercase tracking-wider rounded border transition-all flex items-center justify-center space-x-2 cursor-pointer ${
+                  formData.availability !== 'sold'
+                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                    : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-current" />
+                <span>Available</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormData((prev) => ({ ...prev, availability: 'sold' }))}
+                className={`py-2 px-3 text-xs font-heading font-black uppercase tracking-wider rounded border transition-all flex items-center justify-center space-x-2 cursor-pointer ${
+                  formData.availability === 'sold'
+                    ? 'bg-red-600 text-white border-red-600 shadow-sm'
+                    : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-current" />
+                <span>Sold</span>
+              </button>
             </div>
           </div>
 

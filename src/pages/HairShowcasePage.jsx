@@ -4,6 +4,7 @@ import {
   Sparkles,
   ArrowRight,
   ChevronRight,
+  ChevronDown,
   Plus,
   Trash2,
   Copy,
@@ -24,6 +25,14 @@ export default function HairShowcasePage() {
   const [selectedFilter, setSelectedFilter] = useState('ALL');
   const [selectedItem, setSelectedItem] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const toggleDetails = (idx) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   const categories = ['ALL', 'RAW BUNDLES', 'HD LACE WIGS', 'GLUELESS UNITS', 'WHOLESALE CARTONS'];
 
@@ -243,19 +252,41 @@ export default function HairShowcasePage() {
                       )}
                     </div>
 
-                    {/* Hair Details / Description */}
+                    {/* Hair Details / Description (Collapsible) */}
                     <div className="mb-6">
-                      <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-[#001659] block mb-1.5">
-                        Details:
-                      </span>
-                      <EditableText
-                        path={`showcases.hair.items[${idx}].description`}
-                        as="div"
-                        multiline
-                        className="text-[13px] text-[#565969] leading-relaxed whitespace-pre-line block bg-[#f8f9fa] p-3.5 border border-[#e8e8e9] rounded-xs"
+                      <button
+                        type="button"
+                        onClick={() => toggleDetails(idx)}
+                        className="w-full flex items-center justify-between py-2 px-3 bg-[#f8f9fa] hover:bg-[#eef1f6] border border-[#e8e8e9] rounded-xs text-left transition-colors cursor-pointer group/toggle"
+                        aria-expanded={expandedItems[idx] || false}
                       >
-                        {item.description || (Array.isArray(item.details) ? item.details.join('\n\n') : '')}
-                      </EditableText>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-[#001659]">
+                            Details:
+                          </span>
+                          <span className="text-[11px] text-[#ff5e14] font-semibold">
+                            {expandedItems[idx] ? 'Hide Details ▲' : 'Show Details ▼'}
+                          </span>
+                        </div>
+                        <ChevronDown
+                          className={`w-4 h-4 text-[#001659] transition-transform duration-200 ${
+                            expandedItems[idx] ? 'rotate-180 text-[#ff5e14]' : ''
+                          }`}
+                        />
+                      </button>
+
+                      {(expandedItems[idx] || isEditMode) && (
+                        <div className="mt-2 animate-fadeIn">
+                          <EditableText
+                            path={`showcases.hair.items[${idx}].description`}
+                            as="div"
+                            multiline
+                            className="text-[13px] text-[#0d1527] leading-relaxed whitespace-pre-line block bg-[#f8f9fa] p-3.5 border border-[#e8e8e9] rounded-xs"
+                          >
+                            {item.description || (Array.isArray(item.details) ? item.details.join('\n\n') : '')}
+                          </EditableText>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

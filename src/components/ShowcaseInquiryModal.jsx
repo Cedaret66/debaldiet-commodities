@@ -21,11 +21,14 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
     setSubmitted(true);
   };
 
+  const isSold = (item.availability || '').toLowerCase() === 'sold';
+
   const getWhatsAppLink = () => {
     const deposit = calculate70PercentDeposit(item.price) || item.deposit70;
     const depositNote = deposit ? ` [70% Deposit: ${deposit}]` : '';
+    const statusNote = isSold ? ' [UNIT IS SOLD - Inquiring for direct sourcing of same model under 70/30 scheme]' : '';
     const text = encodeURIComponent(
-      `Hello DeBaldiet Commodities! I am interested in inquiring about: ${item.name} (${item.price || ''}${depositNote}). Please share landed availability and ordering details.`
+      `Hello DeBaldiet Commodities! I am interested in inquiring about: ${item.name} (${item.price || ''}${depositNote})${statusNote}. Please share landed availability and ordering details.`
     );
     const waRaw = content?.company?.whatsapp || '+233 54 148 3758';
     const waClean = waRaw.replace(/[^0-9]/g, '') || '233541483758';
@@ -54,6 +57,17 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
 
         {/* Scrollable body */}
         <div className="p-6 overflow-y-auto space-y-6">
+          {/* Sold Notice if applicable */}
+          {isSold && (
+            <div className="bg-red-50 border border-red-200 px-4 py-2.5 rounded-xs flex items-center justify-between text-xs text-red-800">
+              <span className="font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                This vehicle unit is currently marked SOLD
+              </span>
+              <span className="text-red-700 font-medium hidden sm:inline">Direct factory sourcing available</span>
+            </div>
+          )}
+
           {/* Selected Item Card Preview */}
           <div className="flex flex-col sm:flex-row items-center gap-4 p-4 bg-[#f8f9fa] border border-[#e8e8e9]">
             <div className="w-full sm:w-36 h-28 shrink-0 overflow-hidden bg-gray-200">
@@ -64,11 +78,21 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
               />
             </div>
             <div className="flex-1 w-full text-left">
-              {item.badge && (
-                <span className="inline-block bg-[#001659] text-white font-heading font-black text-[9px] uppercase tracking-widest px-2 py-0.5 mb-1.5">
-                  {item.badge}
+              <div className="flex items-center gap-2 mb-1.5">
+                <span
+                  className={`inline-flex items-center gap-1 text-white font-heading font-black text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-xs ${
+                    isSold ? 'bg-red-600' : 'bg-emerald-600'
+                  }`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full bg-white ${isSold ? 'animate-pulse' : ''}`} />
+                  {isSold ? 'SOLD' : 'AVAILABLE'}
                 </span>
-              )}
+                {item.badge && (
+                  <span className="inline-block bg-[#001659] text-white font-heading font-black text-[9px] uppercase tracking-widest px-2 py-0.5">
+                    {item.badge}
+                  </span>
+                )}
+              </div>
               <h3 className="font-heading font-bold text-lg text-[#001659] leading-snug">
                 {item.name}
               </h3>

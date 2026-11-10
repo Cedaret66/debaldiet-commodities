@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import {
   Car,
   ChevronRight,
+  ChevronDown,
   ArrowRight,
   Wrench,
   Plus,
   Trash2,
   Copy,
   PlusCircle,
+  CheckCircle2,
 } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
 import EditableText from '../components/cms/EditableText';
@@ -19,13 +21,21 @@ import ShowcaseInquiryModal from '../components/ShowcaseInquiryModal';
 import { calculate70PercentDeposit } from '../utils/pricing';
 
 export default function CarsShowcasePage() {
-  const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem } = useCms();
+  const { content, isEditMode, deleteShowcaseItem, duplicateShowcaseItem, updateField } = useCms();
   const showcaseData = content.showcases?.cars || {};
   const cars = showcaseData.items || [];
 
   const [selectedFilter, setSelectedFilter] = useState('ALL');
   const [selectedCar, setSelectedCar] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [expandedCars, setExpandedCars] = useState({});
+
+  const toggleDetails = (idx) => {
+    setExpandedCars((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
 
   const categories = ['ALL', 'HYBRID & EV', 'EXECUTIVE LUXURY', 'RUGGED 4X4', '7-SEATER'];
 
@@ -195,14 +205,53 @@ export default function CarsShowcasePage() {
                       alt={car.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Brand Tag Top Left */}
-                    <div className="absolute top-3 left-3 bg-[#001659] text-white px-3 py-1 text-[11px] font-heading font-bold uppercase tracking-wider shadow-sm">
-                      {car.brand || 'CHINESE SUV'}
-                    </div>
-                    {/* Badge Top Right */}
-                    {car.badge && !isEditMode && (
-                      <div className="absolute top-3 right-3 bg-[#ff5e14] text-white px-3 py-1 text-[10px] font-heading font-black uppercase tracking-widest shadow-sm">
-                        {car.badge}
+                    {/* Availability Tag (Admin Editable in Edit Mode) */}
+                    {isEditMode ? (
+                      <div
+                        className="absolute top-3 right-3 z-30 flex items-center bg-white/95 backdrop-blur-xs p-1 rounded shadow-md border border-[#001659]/20"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => updateField(`showcases.cars.items[${idx}].availability`, 'available')}
+                          className={`px-2 py-0.5 text-[10px] font-heading font-black uppercase tracking-wider rounded-xs transition-colors flex items-center space-x-1 ${
+                            (car.availability || 'available').toLowerCase() !== 'sold'
+                              ? 'bg-emerald-600 text-white shadow-sm'
+                              : 'text-gray-500 hover:text-emerald-700 hover:bg-emerald-50'
+                          }`}
+                          title="Set status to Available"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                          <span>Available</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateField(`showcases.cars.items[${idx}].availability`, 'sold')}
+                          className={`ml-1 px-2 py-0.5 text-[10px] font-heading font-black uppercase tracking-wider rounded-xs transition-colors flex items-center space-x-1 ${
+                            (car.availability || '').toLowerCase() === 'sold'
+                              ? 'bg-red-600 text-white shadow-sm'
+                              : 'text-gray-500 hover:text-red-700 hover:bg-red-50'
+                          }`}
+                          title="Set status to Sold"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                          <span>Sold</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <div
+                        className={`absolute top-3 right-3 px-3 py-1 text-[10px] font-heading font-black uppercase tracking-widest shadow-md rounded-xs flex items-center space-x-1.5 text-white z-10 ${
+                          (car.availability || '').toLowerCase() === 'sold'
+                            ? 'bg-red-600'
+                            : 'bg-emerald-600'
+                        }`}
+                      >
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full bg-white ${
+                            (car.availability || '').toLowerCase() === 'sold' ? 'animate-pulse' : ''
+                          }`}
+                        />
+                        <span>{(car.availability || '').toLowerCase() === 'sold' ? 'SOLD' : 'AVAILABLE'}</span>
                       </div>
                     )}
                     {/* Condition Pill Bottom Left */}
@@ -248,19 +297,42 @@ export default function CarsShowcasePage() {
                       })()}
                     </div>
 
-                    {/* Car Details / Description */}
+                    {/* Car Details / Description (Collapsible) */}
                     <div className="mb-6">
-                      <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-[#001659] block mb-1.5">
-                        Details:
-                      </span>
-                      <EditableText
-                        path={`showcases.cars.items[${idx}].description`}
-                        as="div"
-                        multiline
-                        className="text-[13px] text-[#565969] leading-relaxed whitespace-pre-line block bg-[#f8f9fa] p-3.5 border border-[#e8e8e9] rounded-xs"
+                      <button
+                        type="button"
+                        onClick={() => toggleDetails(idx)}
+                        className="w-full flex items-center justify-between py-2 px-3 bg-[#f8f9fa] hover:bg-[#eef1f6] border border-[#e8e8e9] rounded-xs text-left transition-colors cursor-pointer group/toggle"
+                        aria-expanded={expandedCars[idx] || false}
                       >
-                        {car.description || (Array.isArray(car.details) ? car.details.join('\n\n') : '')}
-                      </EditableText>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-[#001659]">
+                            Details:
+                          </span>
+                          <span className="text-[11px] text-[#ff5e14] font-semibold">
+                            {expandedCars[idx] ? 'Hide Details ▲' : 'Show Details ▼'}
+                          </span>
+                        </div>
+                        <ChevronDown
+                          className={`w-4 h-4 text-[#001659] transition-transform duration-200 ${
+                            expandedCars[idx] ? 'rotate-180 text-[#ff5e14]' : ''
+                          }`}
+                        />
+                      </button>
+
+                      {/* Expanded or in Edit Mode */}
+                      {(expandedCars[idx] || isEditMode) && (
+                        <div className="mt-2 animate-fadeIn">
+                          <EditableText
+                            path={`showcases.cars.items[${idx}].description`}
+                            as="div"
+                            multiline
+                            className="text-[13px] text-[#0d1527] leading-relaxed whitespace-pre-line block bg-[#f8f9fa] p-3.5 border border-[#e8e8e9] rounded-xs"
+                          >
+                            {car.description || (Array.isArray(car.details) ? car.details.join('\n\n') : '')}
+                          </EditableText>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -269,9 +341,17 @@ export default function CarsShowcasePage() {
                 <div className="p-6 pt-0 space-y-2">
                   <button
                     onClick={() => setSelectedCar(car)}
-                    className="w-full py-3 bg-[#001659] text-white font-heading font-bold text-xs uppercase tracking-wider hover:bg-[#ff5e14] transition-colors flex items-center justify-center space-x-2"
+                    className={`w-full py-3 text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center space-x-2 ${
+                      (car.availability || '').toLowerCase() === 'sold'
+                        ? 'bg-[#1b253d] hover:bg-[#001659]'
+                        : 'bg-[#001659] hover:bg-[#ff5e14]'
+                    }`}
                   >
-                    <span>Inquire / Order Car</span>
+                    <span>
+                      {(car.availability || '').toLowerCase() === 'sold'
+                        ? 'Inquire for Similar Unit'
+                        : 'Inquire / Order Car'}
+                    </span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <Link
