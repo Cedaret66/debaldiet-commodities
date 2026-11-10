@@ -170,17 +170,19 @@ export default function CarsShowcasePage() {
                 key={car.id || idx}
                 className="relative bg-white border border-[#e8e8e9] overflow-hidden hover:shadow-2xl hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group"
               >
-                {/* Admin Card Action Bar (Visible in Edit Mode) */}
+                {/* Admin Card Action Bar (Visible in Edit Mode on Top Left) */}
                 {isEditMode && (
-                  <div className="absolute top-2 right-2 z-30 flex items-center gap-1 bg-[#001659]/90 backdrop-blur-sm p-1 rounded border border-white/20 shadow-lg">
+                  <div className="absolute top-2.5 left-2.5 z-30 flex items-center gap-1.5 bg-[#001659]/95 backdrop-blur-sm px-2 py-1 rounded shadow-lg border border-white/20">
                     <button
                       type="button"
                       onClick={() => duplicateShowcaseItem('cars', idx)}
-                      className="p-1 text-white/80 hover:text-white hover:bg-white/20 rounded transition-colors"
+                      className="p-1 text-white/90 hover:text-white hover:bg-white/20 rounded transition-colors flex items-center gap-1 text-[10px] font-heading font-bold uppercase tracking-wider"
                       title="Duplicate this vehicle"
                     >
                       <Copy className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Copy</span>
                     </button>
+                    <span className="text-white/30 text-xs">|</span>
                     <button
                       type="button"
                       onClick={() => {
@@ -188,10 +190,11 @@ export default function CarsShowcasePage() {
                           deleteShowcaseItem('cars', idx);
                         }
                       }}
-                      className="p-1 text-red-400 hover:text-white hover:bg-red-500 rounded transition-colors"
+                      className="p-1 text-red-300 hover:text-white hover:bg-red-500 rounded transition-colors flex items-center gap-1 text-[10px] font-heading font-bold uppercase tracking-wider"
                       title="Delete this vehicle"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Delete</span>
                     </button>
                   </div>
                 )}
