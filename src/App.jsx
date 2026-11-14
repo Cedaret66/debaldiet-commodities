@@ -15,6 +15,7 @@ import { CmsProvider, useCms } from './context/CmsContext';
 import AdminToolbar from './components/cms/AdminToolbar';
 import CmsDrawer from './components/cms/CmsDrawer';
 import ImageUploadModal from './components/cms/ImageUploadModal';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 // Dedicated Pages
 import HomePage from './pages/HomePage';
@@ -173,6 +174,9 @@ function AppLayout() {
           <Footer />
         </div>
       </div>
+
+      {/* Global Floating WhatsApp Chat Button on Every Page */}
+      <FloatingWhatsApp />
 
       {/* Floating In-Place Admin Toolbar (Visible after Admin Login) */}
       <AdminToolbar />
