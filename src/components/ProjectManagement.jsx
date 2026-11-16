@@ -75,15 +75,23 @@ export default function ProjectManagement() {
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 pb-6 border-b border-gray-100">
             <div>
               <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-1">
-                TRUST BADGES
+                <EditableText path="scheme7030.trustTag" as="span">
+                  {scheme7030.trustTag || 'TRUST BADGES'}
+                </EditableText>
               </span>
-              <h3 className="font-heading font-black text-[26px] sm:text-[32px] text-[#001659]">
-                Operational Excellence & Dual-Stage Inspection
-              </h3>
+              <EditableText
+                path="scheme7030.trustHeadline"
+                as="h3"
+                className="font-heading font-black text-[26px] sm:text-[32px] text-[#001659] block"
+              >
+                {scheme7030.trustHeadline || 'Operational Excellence & Dual-Stage Inspection'}
+              </EditableText>
             </div>
             <div className="mt-4 md:mt-0 flex items-center space-x-2 text-xs font-heading font-bold uppercase tracking-widest text-[#ff5e14]">
               <ShieldCheck className="w-5 h-5 text-[#ff5e14]" />
-              <span>Full Accountability Guarantee</span>
+              <EditableText path="scheme7030.trustBadge" as="span">
+                {scheme7030.trustBadge || 'Full Accountability Guarantee'}
+              </EditableText>
             </div>
           </div>
 

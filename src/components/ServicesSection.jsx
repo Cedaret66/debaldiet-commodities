@@ -46,15 +46,28 @@ export default function ServicesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <span className="font-heading uppercase text-[13px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-              DIVERSIFIED OPERATIONS
+              <EditableText path="services.sectionTag" as="span">
+                {services.sectionTag || 'DIVERSIFIED OPERATIONS'}
+              </EditableText>
             </span>
-            <h2 className="font-heading font-black text-[38px] sm:text-[50px] lg:text-[60px] text-[#001659] leading-tight tracking-tight">
-              Our 3 Core Verticals
-            </h2>
+            <EditableText
+              path="services.heading"
+              as="h2"
+              className="font-heading font-black text-[38px] sm:text-[50px] lg:text-[60px] text-[#001659] leading-tight tracking-tight block"
+            >
+              {services.heading || 'Our 3 Core Verticals'}
+            </EditableText>
           </div>
-          <p className="text-[#565969] text-[16px] max-w-md mt-4 md:mt-0">
-            Tailored supply chains, rigorous quality screening, and customer-first terms across vehicles, hair care, and agri-trade.
-          </p>
+          <div className="max-w-md mt-4 md:mt-0">
+            <EditableText
+              path="services.subheading"
+              as="p"
+              multiline
+              className="text-[#565969] text-[16px] leading-relaxed block"
+            >
+              {services.subheading || 'Tailored supply chains, rigorous quality screening, and customer-first terms across vehicles, hair care, and agri-trade.'}
+            </EditableText>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
@@ -75,8 +88,10 @@ export default function ServicesSection() {
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md p-3 shadow-md z-10 pointer-events-none">
                   {item.icon}
                 </div>
-                <div className="absolute top-4 right-4 bg-[#001659] text-white px-3 py-1 font-heading font-black text-[11px] uppercase tracking-wider z-10 pointer-events-none">
-                  {item.data.badge}
+                <div className="absolute top-4 right-4 bg-[#001659] text-white px-3 py-1 font-heading font-black text-[11px] uppercase tracking-wider z-10">
+                  <EditableText path={`services.${item.key}.badge`} as="span">
+                    {item.data.badge}
+                  </EditableText>
                 </div>
               </div>
 
@@ -84,7 +99,9 @@ export default function ServicesSection() {
               <div className="p-8 flex flex-col justify-between flex-grow">
                 <div>
                   <span className="font-heading uppercase text-[12px] font-bold tracking-[1.5px] text-[#ff5e14] block mb-2">
-                    {item.data.vertical}
+                    <EditableText path={`services.${item.key}.vertical`} as="span">
+                      {item.data.vertical}
+                    </EditableText>
                   </span>
                   <EditableText
                     path={`services.${item.key}.headline`}

@@ -41,7 +41,9 @@ export default function Footer() {
             </Link>
 
             <h4 className="font-heading font-bold text-[14px] uppercase tracking-[1.5px] text-[#ff5e14]">
-              {footer.col1?.title || 'ABOUT DEBALDIET'}
+              <EditableText path="footer.col1.title" as="span">
+                {footer.col1?.title || 'ABOUT DEBALDIET'}
+              </EditableText>
             </h4>
             <EditableText
               path="footer.col1.text"
@@ -78,7 +80,9 @@ export default function Footer() {
           {/* COL 2: CORE VERTICALS */}
           <div>
             <h4 className="font-heading font-bold text-[14px] uppercase tracking-[1.5px] text-[#ff5e14] mb-6">
-              {footer.col2?.title || 'CORE VERTICALS'}
+              <EditableText path="footer.col2.title" as="span">
+                {footer.col2?.title || 'CORE VERTICALS'}
+              </EditableText>
             </h4>
 
             <ul className="space-y-3.5 text-[15px]">
@@ -99,7 +103,9 @@ export default function Footer() {
           {/* COL 3: NEWSLETTER SIGNUP */}
           <div>
             <h4 className="font-heading font-bold text-[14px] uppercase tracking-[1.5px] text-[#ff5e14] mb-6">
-              {footer.col3?.title || 'NEWSLETTER SIGNUP'}
+              <EditableText path="footer.col3.title" as="span">
+                {footer.col3?.title || 'NEWSLETTER SIGNUP'}
+              </EditableText>
             </h4>
 
             <EditableText
@@ -129,7 +135,9 @@ export default function Footer() {
                   type="submit"
                   className="w-full h-[46px] bg-[#ff5e14] hover:bg-white hover:text-[#001659] text-white font-heading font-bold text-[13px] uppercase tracking-[1.5px] transition-all duration-300"
                 >
-                  Subscribe Now
+                  <EditableText path="footer.col3.buttonText" as="span">
+                    {footer.col3?.buttonText || 'Subscribe Now'}
+                  </EditableText>
                 </button>
               </form>
             )}

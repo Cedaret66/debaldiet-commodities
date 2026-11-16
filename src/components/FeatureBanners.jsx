@@ -7,7 +7,7 @@ import EditableImage from './cms/EditableImage';
 
 export default function FeatureBanners() {
   const { content } = useCms();
-  const { intro, corePillars } = content;
+  const { intro = {}, corePillars = [] } = content;
 
   return (
     <section className="w-full pt-[100px] pb-[90px] bg-white font-body">
@@ -29,7 +29,7 @@ export default function FeatureBanners() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
           {corePillars.map((pillar, idx) => (
             <div
-              key={pillar.id}
+              key={pillar.id || idx}
               className="group bg-white border border-[#e8e8e9] hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
             >
               {/* Photo top */}
@@ -41,8 +41,10 @@ export default function FeatureBanners() {
                   title={`Change ${pillar.title} Image`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 right-4 bg-[#001659] text-white px-3 py-1 font-heading font-black text-[11px] uppercase tracking-widest z-10 pointer-events-none">
-                  {pillar.badge}
+                <div className="absolute top-4 right-4 bg-[#001659] text-white px-3 py-1 font-heading font-black text-[11px] uppercase tracking-widest z-10">
+                  <EditableText path={`corePillars[${idx}].badge`} as="span">
+                    {pillar.badge}
+                  </EditableText>
                 </div>
               </div>
 
@@ -50,7 +52,9 @@ export default function FeatureBanners() {
               <div className="p-8 flex flex-col justify-between flex-grow">
                 <div>
                   <span className="font-heading uppercase text-[12px] font-bold tracking-[1.5px] text-[#565969] block mb-2">
-                    {pillar.vertical}
+                    <EditableText path={`corePillars[${idx}].vertical`} as="span">
+                      {pillar.vertical}
+                    </EditableText>
                   </span>
                   <h3 className="font-heading font-black text-[22px] leading-tight text-[#001659] mb-4">
                     <EditableText path={`corePillars[${idx}].title`}>{pillar.title}</EditableText>
@@ -61,10 +65,12 @@ export default function FeatureBanners() {
 
                   {/* Highlights list */}
                   <ul className="space-y-3 mb-8">
-                    {pillar.highlights.map((highlight, hIdx) => (
+                    {(pillar.highlights || []).map((highlight, hIdx) => (
                       <li key={hIdx} className="flex items-start space-x-3 text-[14px] text-[#303030]">
                         <CheckCircle2 className="w-4 h-4 text-[#ff5e14] flex-shrink-0 mt-0.5" />
-                        <span>{highlight}</span>
+                        <EditableText path={`corePillars[${idx}].highlights[${hIdx}]`} as="span">
+                          {highlight}
+                        </EditableText>
                       </li>
                     ))}
                   </ul>
@@ -76,8 +82,10 @@ export default function FeatureBanners() {
                     to={pillar.link}
                     className="inline-flex items-center space-x-2 font-heading uppercase text-[13px] font-bold tracking-[1px] text-[#001659] group-hover:text-[#ff5e14] transition-colors"
                   >
-                    <span>{pillar.linkText}</span>
-                    <ArrowRight className="w-4 h-4 text-[#ff5e14] group-hover:translate-x-1 transition-transform" />
+                    <EditableText path={`corePillars[${idx}].linkText`} as="span">
+                      {pillar.linkText}
+                    </EditableText>
+                    <ArrowRight className="w-4 h-4 text-[#ff5e14] group-hover:translate-x-1 transition-transform ml-1" />
                   </Link>
                 </div>
               </div>

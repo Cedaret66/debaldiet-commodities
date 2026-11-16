@@ -8,6 +8,7 @@ export default function TestimonialsSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
   const { content } = useCms();
   const testimonials = content.testimonials || [];
+  const testimonialsSection = content.testimonialsSection || {};
 
   return (
     <section className="w-full py-[120px] bg-white font-body">
@@ -15,15 +16,28 @@ export default function TestimonialsSlider() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <span className="font-heading uppercase text-[13px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-              SOCIAL PROOF & REVIEWS
+              <EditableText path="testimonialsSection.tagline" as="span">
+                {testimonialsSection.tagline || 'SOCIAL PROOF & REVIEWS'}
+              </EditableText>
             </span>
-            <h2 className="font-heading font-black text-[38px] sm:text-[50px] lg:text-[60px] text-[#001659] leading-tight tracking-tight">
-              Client Testimonials
-            </h2>
+            <EditableText
+              path="testimonialsSection.heading"
+              as="h2"
+              className="font-heading font-black text-[38px] sm:text-[50px] lg:text-[60px] text-[#001659] leading-tight tracking-tight block"
+            >
+              {testimonialsSection.heading || 'Client Testimonials'}
+            </EditableText>
           </div>
-          <p className="text-[#565969] text-[16px] max-w-md mt-4 md:mt-0">
-            Real feedback from private automotive importers, commercial beauty salons, and agricultural distribution partners across Ghana and Africa.
-          </p>
+          <div className="max-w-md mt-4 md:mt-0">
+            <EditableText
+              path="testimonialsSection.subheading"
+              as="p"
+              multiline
+              className="text-[#565969] text-[16px] block"
+            >
+              {testimonialsSection.subheading || 'Real feedback from private automotive importers, commercial beauty salons, and agricultural distribution partners across Ghana and Africa.'}
+            </EditableText>
+          </div>
         </div>
 
         {/* Testimonial Cards Slider */}
@@ -49,7 +63,9 @@ export default function TestimonialsSlider() {
                     </div>
                     <div>
                       <span className="inline-block bg-[#ff5e14] text-white text-[11px] font-heading font-black uppercase tracking-wider px-2.5 py-0.5 mb-1.5">
-                        {item.clientType}
+                        <EditableText path={`testimonials[${actualIdx}].clientType`} as="span">
+                          {item.clientType}
+                        </EditableText>
                       </span>
                       <div className="flex items-center space-x-1 text-amber-400">
                         {[...Array(5)].map((_, sIdx) => (

@@ -1,7 +1,11 @@
 import React from 'react';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
 
 export default function SkillsPieCharts() {
-  const items = [
+  const { content } = useCms();
+  const operationalStandards = content.operationalStandards || {};
+  const items = operationalStandards.items || [
     {
       percentage: 100,
       subtitle: 'GRA & TECHNICAL CHECKS',
@@ -27,9 +31,10 @@ export default function SkillsPieCharts() {
       <div className="max-w-[1300px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {items.map((item, idx) => {
+            const num = Number(String(item.percentage).replace(/[^0-9]/g, '')) || 0;
             const radius = 56;
             const circumference = 2 * Math.PI * radius;
-            const strokeDashoffset = circumference - (item.percentage / 100) * circumference;
+            const strokeDashoffset = circumference - (Math.min(100, Math.max(0, num)) / 100) * circumference;
 
             return (
               <div key={idx} className="flex items-center space-x-6">
@@ -57,21 +62,35 @@ export default function SkillsPieCharts() {
                     />
                   </svg>
                   <span className="absolute font-heading font-black text-[26px] text-[#001659]">
-                    {item.percentage}%
+                    <EditableText path={`operationalStandards.items[${idx}].percentage`} as="span">
+                      {item.percentage}
+                    </EditableText>
+                    %
                   </span>
                 </div>
 
                 {/* Details */}
                 <div>
                   <span className="font-heading uppercase text-[11px] font-bold tracking-[1.5px] text-[#ff5e14] block mb-1">
-                    {item.subtitle}
+                    <EditableText path={`operationalStandards.items[${idx}].subtitle`} as="span">
+                      {item.subtitle}
+                    </EditableText>
                   </span>
-                  <h4 className="font-heading font-bold text-[22px] text-[#001659] mb-1">
+                  <EditableText
+                    path={`operationalStandards.items[${idx}].title`}
+                    as="h4"
+                    className="font-heading font-bold text-[22px] text-[#001659] mb-1 block"
+                  >
                     {item.title}
-                  </h4>
-                  <p className="font-body text-[14px] text-[#565969] leading-snug">
+                  </EditableText>
+                  <EditableText
+                    path={`operationalStandards.items[${idx}].desc`}
+                    as="p"
+                    multiline
+                    className="font-body text-[14px] text-[#565969] leading-snug block"
+                  >
                     {item.desc}
-                  </p>
+                  </EditableText>
                 </div>
               </div>
             );

@@ -201,6 +201,12 @@ export const siteData = {
     tagline: "70/30 SPLIT FINANCING FOR BUY N SPEC VEHICLES",
     headline: "Don't Have the Full Amount Upfront? Our 70/30 Plan Closes the Gap.",
     intro: "Many buyers want a quality Chinese SUV or vehicle—brand new or certified low-mileage slightly used—but do not have 100% of the capital ready today. We co-invest with you to acquire your car from China, execute optional Buy N Spec styling, ship it, clear it, and deliver it before you pay the remaining balance.",
+    trustTag: "TRUST BADGES",
+    trustHeadline: "Operational Excellence & Dual-Stage Inspection",
+    trustBadge: "Full Accountability Guarantee",
+    btnOrderText: "Start Vehicle Order",
+    btnLearnText: "How 70/30 Works",
+    bannerImage: "/chinese-suv-tank300.jpg",
     steps: [
       {
         step: 1,
@@ -265,6 +271,12 @@ export const siteData = {
       subtext: "AUTOMOTIVE • BEAUTY & HAIR • AGRICULTURE"
     }
   ],
+
+  testimonialsSection: {
+    tagline: "SOCIAL PROOF & REVIEWS",
+    heading: "Client Testimonials",
+    subheading: "Real feedback from private automotive importers, commercial beauty salons, and agricultural distribution partners across Ghana and Africa."
+  },
 
   testimonials: [
     {
@@ -340,6 +352,9 @@ export const siteData = {
   },
 
   services: {
+    sectionTag: "DIVERSIFIED OPERATIONS",
+    heading: "Our 3 Core Verticals",
+    subheading: "Tailored supply chains, rigorous quality screening, and customer-first terms across vehicles, hair care, and agri-trade.",
     automotive: {
       vertical: "Vertical 01: Buy N Spec",
       badge: "BUY N SPEC • AUTOMOTIVE DEALERSHIP & SOURCING",
@@ -552,6 +567,11 @@ export const siteData = {
     ]
   },
 
+  teamSection: {
+    tagline: "ACCOUNTABLE OPERATIONS",
+    heading: "Leadership Across Our 3 Pillars"
+  },
+
   team: [
     {
       name: "Joshua King Kotey",
@@ -582,6 +602,140 @@ export const siteData = {
       bio: 'Leading farm-gate aggregation, grain quality screening, and commercial bulk supply contracts for processors.'
     }
   ],
+
+  portfolio: {
+    tagline: 'DELIVERED COMMODITIES & VEHICLES',
+    headline: 'Procurement Showcase',
+    items: [
+      {
+        id: 1,
+        title: 'Chinese SUVs (BYD, Haval, Geely, Chery)',
+        category: 'Automotive (Brand New & Low-Mileage Slightly Used)',
+        image: '/chinese-suv-byd.jpg',
+        badge: 'CHINA TO ACCRA',
+        desc: 'Dual-inspected Chinese SUVs (new & low-mileage used) with optional Buy N Spec styling and 70/30 financing.'
+      },
+      {
+        id: 2,
+        title: 'Rugged Off-Road & Fleet SUVs (Tank 300 & Commercial)',
+        category: 'Automotive Procurement',
+        image: '/chinese-suv-tank300.jpg',
+        badge: 'OFF-ROAD & COMMERCIAL',
+        desc: 'High-performance Chinese SUVs and fleet vehicles sourced directly from tier-one manufacturers and verified hubs.'
+      },
+      {
+        id: 3,
+        title: '100% Virgin Human Hair & HD Lace Wigs',
+        category: 'Beauty & Hair Care',
+        image: '/project-3.jpg',
+        badge: 'SALON WHOLESALE',
+        desc: 'Single donor straight, body wave, and deep wave bundles with intact cuticles and custom HD lace frontals.'
+      },
+      {
+        id: 4,
+        title: 'Bulk Maize, Rice & Sorghum Supplies',
+        category: 'Agricultural Commodities',
+        image: '/project-4.jpg',
+        badge: 'STAPLE CROPS',
+        desc: 'Direct farm-gate aggregation delivering high-purity yellow maize, white rice, and sorghum to food processors.'
+      },
+      {
+        id: 5,
+        title: 'Soybeans, Legumes & Animal Feed Inputs',
+        category: 'Commercial Agro-Trade',
+        image: '/project-5.jpg',
+        badge: 'GRAIN TRADE',
+        desc: 'Screened oilseeds and raw agricultural inputs for commercial feed mills and institutional buyers.'
+      }
+    ]
+  },
+
+  operationalStandards: {
+    items: [
+      {
+        percentage: 100,
+        subtitle: 'GRA & TECHNICAL CHECKS',
+        title: 'Dual Inspection',
+        desc: 'China pre-shipment diagnostics and Ghana port arrival roadworthiness verification.'
+      },
+      {
+        percentage: 70,
+        subtitle: 'FINANCIAL PARTNERSHIP',
+        title: '70/30 Model',
+        desc: '70% deposit secures and clears your vehicle; pay the final 30% on handover.'
+      },
+      {
+        percentage: 99,
+        subtitle: 'SCHEDULE ADHERENCE',
+        title: 'On-Time Delivery',
+        desc: 'Guaranteed 4 to 6 weeks China-to-Tema shipping timeline with live tracking.'
+      }
+    ]
+  },
+
+  faq: {
+    tagline: 'FREQUENTLY ASKED QUESTIONS',
+    heading: 'Clear Answers on Procurement & Terms',
+    bannerTag: 'TRADE ACCOUNTABILITY',
+    bannerTitle: 'Zero Hidden Fees. 100% Traceability.',
+    bannerImage: '/home-accordion-img.jpg',
+    items: [
+      {
+        title: 'How does the 70/30 vehicle financing plan work?',
+        content: 'Select your desired vehicle model (sedan, SUV, truck, or EV). You pay 70% of the total vehicle cost into our secured account. DeBaldiet Commodities tops up the remaining 30% and completes the direct factory or dealership purchase in China immediately. We manage shipping, port customs clearance, and local transit. You inspect the car in Accra and only pay the final 30% upon handover.'
+      },
+      {
+        title: 'What does the dual-stage inspection cover?',
+        content: 'Every vehicle undergoes two thorough assessments: Stage 1 in China prior to container loading (verifying mechanical systems, engine health, chassis integrity, and electronics) and Stage 2 in Ghana upon arrival at Tema Port (confirming compliance with Ghana Revenue Authority benchmarks and DVLA roadworthiness standards).'
+      },
+      {
+        title: 'How do salon wholesale hair supplies work?',
+        content: 'We partner directly with beauty salon directors, stylists, and cosmetics retailers across Ghana. We supply 100% authentic virgin human hair bundles, custom HD lace frontals, closures, and organic treatment formulations at tiered wholesale pricing with low Minimum Order Quantities (MOQs) and scheduled restocking.'
+      },
+      {
+        title: 'Which agricultural commodities do you supply in bulk?',
+        content: 'DC connects farm cooperatives directly with commercial processors, millers, and wholesale distributors. We regularly supply yellow and white maize, polished rice, sorghum, millet, soybeans, groundnuts, cowpeas, and raw feed mill inputs with rigorous moisture content and purity grading.'
+      }
+    ]
+  },
+
+  news: {
+    tagline: 'MARKET BRIEFS & ANNOUNCEMENTS',
+    heading: 'Latest Insights & Shipments',
+    viewAllText: 'View All Updates',
+    articles: [
+      {
+        id: 1,
+        title: 'Incoming China Vehicle Shipments & Ro-Ro Schedules for Accra Importers',
+        date: '24 October, 2026',
+        author: 'Joshua King Kotey',
+        category: 'AUTOMOTIVE IMPORT',
+        image: '/news-1.jpg',
+        excerpt: 'Key vessel docking updates at Tema Port, customs clearance timelines, and how the 70/30 scheme accelerates vehicle release.',
+        content: 'Local dealership prices in Ghana often carry 40%–60% markups, while second-hand local vehicles frequently come with hidden mechanical faults. DeBaldiet Commodities manages the entire journey of your car directly from vetted automotive manufacturers and tier-one vehicle hubs in China to your driveway in Ghana.'
+      },
+      {
+        id: 2,
+        title: 'Virgin Hair Bundles & HD Lace Wigs: Wholesale Supply Guide for Ghanaian Salons',
+        date: '18 October, 2026',
+        author: 'Sarah Mensah',
+        category: 'BEAUTY & SALON',
+        image: '/news-2.jpg',
+        excerpt: 'How top Accra beauty salons maintain 40%+ retail margins with DeBaldiet’s single-donor raw hair and transparent lace closures.',
+        content: 'Quality in the hair and beauty industry cannot be faked. DeBaldiet Commodities curates, imports, and distributes authentic hair products and styling supplies. We cater to everyday women who demand long-lasting glamour as well as commercial salons seeking reliable wholesale partners.'
+      },
+      {
+        id: 3,
+        title: 'Commercial Grain Market Analysis: Securing High-Grade Maize & Sorghum',
+        date: '10 October, 2026',
+        author: 'Kofi Osei',
+        category: 'AGRI-COMMODITIES',
+        image: '/news-3.jpg',
+        excerpt: 'Screening for moisture content and purity: why structured farm-gate sourcing prevents post-harvest industrial losses.',
+        content: 'Agriculture is the backbone of regional commerce. DeBaldiet Commodities operates active supply lines connecting agrarian farming cooperatives with urban distributors, industrial processors, institutional kitchens, and export buyers.'
+      }
+    ]
+  },
 
   showcases: {
     cars: {

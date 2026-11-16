@@ -1,27 +1,14 @@
 import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
+import EditableImage from './cms/EditableImage';
 
 export default function AccordionSection() {
   const [openIndex, setOpenIndex] = useState(0);
-
-  const accordions = [
-    {
-      title: 'How does the 70/30 vehicle financing plan work?',
-      content: 'Select your desired vehicle model (sedan, SUV, truck, or EV). You pay 70% of the total vehicle cost into our secured account. DeBaldiet Commodities tops up the remaining 30% and completes the direct factory or dealership purchase in China immediately. We manage shipping, port customs clearance, and local transit. You inspect the car in Accra and only pay the final 30% upon handover.'
-    },
-    {
-      title: 'What does the dual-stage inspection cover?',
-      content: 'Every vehicle undergoes two thorough assessments: Stage 1 in China prior to container loading (verifying mechanical systems, engine health, chassis integrity, and electronics) and Stage 2 in Ghana upon arrival at Tema Port (confirming compliance with Ghana Revenue Authority benchmarks and DVLA roadworthiness standards).'
-    },
-    {
-      title: 'How do salon wholesale hair supplies work?',
-      content: 'We partner directly with beauty salon directors, stylists, and cosmetics retailers across Ghana. We supply 100% authentic virgin human hair bundles, custom HD lace frontals, closures, and organic treatment formulations at tiered wholesale pricing with low Minimum Order Quantities (MOQs) and scheduled restocking.'
-    },
-    {
-      title: 'Which agricultural commodities do you supply in bulk?',
-      content: 'DC connects farm cooperatives directly with commercial processors, millers, and wholesale distributors. We regularly supply yellow and white maize, polished rice, sorghum, millet, soybeans, groundnuts, cowpeas, and raw feed mill inputs with rigorous moisture content and purity grading.'
-    }
-  ];
+  const { content } = useCms();
+  const faq = content.faq || {};
+  const accordions = faq.items || [];
 
   return (
     <section className="w-full py-[110px] bg-white font-body">
@@ -30,18 +17,28 @@ export default function AccordionSection() {
           {/* Left: Image (651px) */}
           <div className="lg:col-span-6">
             <div className="w-full h-[455px] overflow-hidden shadow-lg border border-gray-100 relative">
-              <img
-                src="/home-accordion-img.jpg"
+              <EditableImage
+                path="faq.bannerImage"
+                src={faq.bannerImage || '/home-accordion-img.jpg'}
                 alt="DeBaldiet Logistics"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                title="Change FAQ Banner Image"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001659]/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
-                <span className="font-heading uppercase text-xs tracking-widest text-[#ff5e14] font-bold mb-1">
-                  TRADE ACCOUNTABILITY
+              <div className="absolute inset-0 bg-gradient-to-t from-[#001659]/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none">
+                <span className="font-heading uppercase text-xs tracking-widest text-[#ff5e14] font-bold mb-1 pointer-events-auto">
+                  <EditableText path="faq.bannerTag" as="span">
+                    {faq.bannerTag || 'TRADE ACCOUNTABILITY'}
+                  </EditableText>
                 </span>
-                <h3 className="font-heading font-black text-2xl sm:text-3xl text-white">
-                  Zero Hidden Fees. 100% Traceability.
-                </h3>
+                <div className="pointer-events-auto">
+                  <EditableText
+                    path="faq.bannerTitle"
+                    as="h3"
+                    className="font-heading font-black text-2xl sm:text-3xl text-white block"
+                  >
+                    {faq.bannerTitle || 'Zero Hidden Fees. 100% Traceability.'}
+                  </EditableText>
+                </div>
               </div>
             </div>
           </div>
@@ -50,11 +47,17 @@ export default function AccordionSection() {
           <div className="lg:col-span-6">
             <div className="mb-8">
               <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-                FREQUENTLY ASKED QUESTIONS
+                <EditableText path="faq.tagline" as="span">
+                  {faq.tagline || 'FREQUENTLY ASKED QUESTIONS'}
+                </EditableText>
               </span>
-              <h2 className="font-heading font-black text-[32px] sm:text-[40px] text-[#001659] leading-tight">
-                Clear Answers on Procurement & Terms
-              </h2>
+              <EditableText
+                path="faq.heading"
+                as="h2"
+                className="font-heading font-black text-[32px] sm:text-[40px] text-[#001659] leading-tight block"
+              >
+                {faq.heading || 'Clear Answers on Procurement & Terms'}
+              </EditableText>
             </div>
 
             <div className="space-y-4">
@@ -66,21 +69,36 @@ export default function AccordionSection() {
                     key={idx}
                     className="border border-[#e8e8e9] transition-colors"
                   >
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? -1 : idx)}
-                      className="w-full py-4 px-6 flex items-center justify-between text-left focus:outline-none"
-                    >
-                      <span className="font-heading font-bold text-[18px] sm:text-[20px] text-[#001659]">
-                        {acc.title}
-                      </span>
-                      <span className="w-7 h-7 rounded-full border border-[#001659]/20 flex items-center justify-center text-[#001659] flex-shrink-0 ml-4">
+                    <div className="w-full py-4 px-6 flex items-center justify-between text-left">
+                      <div className="flex-grow pr-4">
+                        <EditableText
+                          path={`faq.items[${idx}].title`}
+                          as="h4"
+                          className="font-heading font-bold text-[18px] sm:text-[20px] text-[#001659] block cursor-pointer"
+                        >
+                          {acc.title}
+                        </EditableText>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setOpenIndex(isOpen ? -1 : idx)}
+                        className="w-7 h-7 rounded-full border border-[#001659]/20 flex items-center justify-center text-[#001659] flex-shrink-0 ml-4 hover:border-[#ff5e14] hover:text-[#ff5e14] transition-colors"
+                        aria-label={isOpen ? "Collapse FAQ" : "Expand FAQ"}
+                      >
                         {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-                      </span>
-                    </button>
+                      </button>
+                    </div>
 
                     {isOpen && (
                       <div className="px-6 pb-6 text-body text-[15px] text-[#565969] leading-relaxed border-t border-gray-100 pt-4">
-                        {acc.content}
+                        <EditableText
+                          path={`faq.items[${idx}].content`}
+                          as="p"
+                          multiline
+                          className="block"
+                        >
+                          {acc.content}
+                        </EditableText>
                       </div>
                     )}
                   </div>

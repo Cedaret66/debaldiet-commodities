@@ -75,13 +75,17 @@ export default function HeroSlider() {
               to={active.primaryBtn.href}
               className="inline-flex items-center justify-center min-w-[180px] h-[50px] px-6 bg-[#ff5e14] text-white font-heading font-bold text-[15px] uppercase tracking-[1px] hover:bg-white hover:text-[#001659] transition-all duration-300 shadow-lg"
             >
-              {active.primaryBtn.text}
+              <EditableText path={`slides[${currentSlide}].primaryBtn.text`} as="span">
+                {active.primaryBtn.text}
+              </EditableText>
             </Link>
             <Link
               to={active.secondaryBtn.href}
               className="inline-flex items-center justify-center min-w-[180px] h-[50px] px-6 border-2 border-white text-white font-heading font-bold text-[15px] uppercase tracking-[1px] hover:bg-white hover:text-[#001659] transition-all duration-300"
             >
-              {active.secondaryBtn.text}
+              <EditableText path={`slides[${currentSlide}].secondaryBtn.text`} as="span">
+                {active.secondaryBtn.text}
+              </EditableText>
             </Link>
           </div>
         </div>

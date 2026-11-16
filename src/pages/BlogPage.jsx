@@ -1,56 +1,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Tag, Search, ArrowRight, User, CheckCircle2 } from 'lucide-react';
+import { Calendar, Tag, Search, ArrowRight, User } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
+import EditableText from '../components/cms/EditableText';
+import EditableImage from '../components/cms/EditableImage';
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const articles = [
-    {
-      id: 1,
-      title: 'Incoming China Vehicle Shipments & Ro-Ro Schedules for Accra Importers',
-      date: '24 October, 2026',
-      author: 'Joshua King Kotey',
-      category: 'Automotive Import',
-      image: '/news-1.jpg',
-      excerpt: 'Comprehensive updates on vessel docking frequencies at Tema Port, customs clearance paperwork, and how our 70/30 financing model prevents delayed container releases.',
-      content: 'Local dealership prices in Ghana often carry 40%–60% markups, while second-hand local vehicles frequently come with hidden mechanical faults. DeBaldiet Commodities manages the entire journey of your car directly from vetted automotive manufacturers and tier-one vehicle hubs in China to your driveway in Ghana.'
-    },
-    {
-      id: 2,
-      title: 'Virgin Hair Bundles & HD Lace Wigs: Wholesale Supply Guide for Ghanaian Salons',
-      date: '18 October, 2026',
-      author: 'Sarah Mensah',
-      category: 'Beauty & Hair Care',
-      image: '/news-2.jpg',
-      excerpt: 'How top Accra beauty salons maintain 40%+ retail margins with DeBaldiet’s single-donor raw hair, transparent lace closures, and scheduled restocking.',
-      content: 'Quality in the hair and beauty industry cannot be faked. DeBaldiet Commodities curates, imports, and distributes authentic hair products and styling supplies. We cater to everyday women who demand long-lasting glamour as well as commercial salons seeking reliable wholesale partners.'
-    },
-    {
-      id: 3,
-      title: 'Commercial Grain Market Analysis: Securing High-Grade Maize & Sorghum',
-      date: '10 October, 2026',
-      author: 'Kofi Osei',
-      category: 'Agri-Commodities',
-      image: '/news-3.jpg',
-      excerpt: 'Screening for moisture content and purity: why structured farm-gate sourcing prevents post-harvest industrial losses for Ghanaian food processors.',
-      content: 'Agriculture is the backbone of regional commerce. DeBaldiet Commodities operates active supply lines connecting agrarian farming cooperatives with urban distributors, industrial processors, institutional kitchens, and export buyers.'
-    }
-  ];
+  const { content } = useCms();
+  const news = content.news || {};
+  const articles = news.articles || [];
 
   const categories = [
-    'Automotive Import',
-    'Beauty & Hair Care',
-    'Agri-Commodities',
-    'Bank Partnerships'
+    'AUTOMOTIVE IMPORT',
+    'BEAUTY & SALON',
+    'AGRI-COMMODITIES',
+    'BANK PARTNERSHIPS'
   ];
 
   const filtered = articles.filter((item) => {
-    if (selectedCategory && item.category !== selectedCategory) return false;
+    if (selectedCategory && (item.category || '').toUpperCase() !== selectedCategory.toUpperCase()) return false;
     if (searchTerm) {
       const q = searchTerm.toLowerCase();
-      return item.title.toLowerCase().includes(q) || item.excerpt.toLowerCase().includes(q);
+      return (
+        (item.title || '').toLowerCase().includes(q) ||
+        (item.excerpt || '').toLowerCase().includes(q)
+      );
     }
     return true;
   });
@@ -66,11 +42,17 @@ export default function BlogPage() {
         <div className="relative w-full max-w-[1300px] mx-auto px-6">
           <div className="max-w-3xl text-white">
             <span className="font-heading uppercase text-[13px] font-bold tracking-[2px] text-[#ff5e14] block mb-3">
-              INSIGHTS, SHIPMENTS & NEWS
+              <EditableText path="news.tagline" as="span">
+                {news.tagline || 'INSIGHTS, SHIPMENTS & NEWS'}
+              </EditableText>
             </span>
-            <h1 className="font-heading font-black text-[50px] sm:text-[68px] lg:text-[76px] text-white leading-[1.05] tracking-tight mb-4">
-              Latest News
-            </h1>
+            <EditableText
+              path="news.heading"
+              as="h1"
+              className="font-heading font-black text-[50px] sm:text-[68px] lg:text-[76px] text-white leading-[1.05] tracking-tight mb-4 block"
+            >
+              {news.heading || 'Latest News'}
+            </EditableText>
             <p className="font-heading text-[18px] sm:text-[22px] text-white/90 leading-relaxed max-w-2xl font-light">
               Market intelligence, China vessel shipping schedules, salon wholesale updates, and food commodity harvest reports from Accra.
             </p>
@@ -84,56 +66,83 @@ export default function BlogPage() {
           
           {/* Main Feed */}
           <main className="lg:col-span-8 space-y-16">
-            {filtered.map((post) => (
-              <article key={post.id} className="border border-[#e8e8e9] bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-full h-[360px] sm:h-[420px] overflow-hidden bg-gray-100">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
+            {filtered.map((post, idx) => {
+              const actualIdx = articles.findIndex((a) => a.id === post.id || a.title === post.title);
+              const postIndex = actualIdx !== -1 ? actualIdx : idx;
 
-                <div className="p-8 sm:p-10">
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-heading font-bold uppercase tracking-wider text-[#565969] mb-4">
-                    <span className="flex items-center space-x-1.5 text-[#ff5e14]">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{post.date}</span>
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center space-x-1.5">
-                      <User className="w-3.5 h-3.5" />
-                      <span>{post.author}</span>
-                    </span>
-                    <span>•</span>
-                    <span className="bg-gray-100 px-2.5 py-0.5 text-[#001659]">
-                      {post.category}
-                    </span>
+              return (
+                <article key={post.id || idx} className="border border-[#e8e8e9] bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-full h-[360px] sm:h-[420px] overflow-hidden bg-gray-100 relative">
+                    <EditableImage
+                      path={`news.articles[${postIndex}].image`}
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                      title={`Change image for ${post.title}`}
+                    />
                   </div>
 
-                  <h2 className="font-heading font-black text-[26px] sm:text-[32px] text-[#001659] leading-snug mb-4">
-                    {post.title}
-                  </h2>
+                  <div className="p-8 sm:p-10">
+                    <div className="flex flex-wrap items-center gap-4 text-xs font-heading font-bold uppercase tracking-wider text-[#565969] mb-4">
+                      <span className="flex items-center space-x-1.5 text-[#ff5e14]">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <EditableText path={`news.articles[${postIndex}].date`} as="span">
+                          {post.date}
+                        </EditableText>
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center space-x-1.5">
+                        <User className="w-3.5 h-3.5" />
+                        <EditableText path={`news.articles[${postIndex}].author`} as="span">
+                          {post.author || 'Joshua King Kotey'}
+                        </EditableText>
+                      </span>
+                      <span>•</span>
+                      <span className="bg-gray-100 px-2.5 py-0.5 text-[#001659]">
+                        <EditableText path={`news.articles[${postIndex}].category`} as="span">
+                          {post.category}
+                        </EditableText>
+                      </span>
+                    </div>
 
-                  <p className="font-body text-[16px] text-[#565969] leading-relaxed mb-6">
-                    {post.excerpt}
-                  </p>
+                    <h2 className="font-heading font-black text-[26px] sm:text-[32px] text-[#001659] leading-snug mb-4">
+                      <EditableText path={`news.articles[${postIndex}].title`} as="span">
+                        {post.title}
+                      </EditableText>
+                    </h2>
 
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="font-body text-[15px] text-[#303030] leading-relaxed mb-6 bg-gray-50 p-4 border-l-2 border-[#ff5e14]">
-                      {post.content}
-                    </p>
-                    <Link
-                      to="/contact-us"
-                      className="inline-flex items-center space-x-2 font-heading font-bold text-[13px] uppercase tracking-[1px] text-[#ff5e14] hover:text-[#001659] transition-colors"
+                    <EditableText
+                      path={`news.articles[${postIndex}].excerpt`}
+                      as="p"
+                      multiline
+                      className="font-body text-[16px] text-[#565969] leading-relaxed mb-6 block"
                     >
-                      <span>Inquire About This Service</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                      {post.excerpt}
+                    </EditableText>
+
+                    <div className="pt-4 border-t border-gray-100">
+                      <div className="mb-6 bg-gray-50 p-4 border-l-2 border-[#ff5e14]">
+                        <EditableText
+                          path={`news.articles[${postIndex}].content`}
+                          as="p"
+                          multiline
+                          className="font-body text-[15px] text-[#303030] leading-relaxed block"
+                        >
+                          {post.content}
+                        </EditableText>
+                      </div>
+                      <Link
+                        to="/contact-us"
+                        className="inline-flex items-center space-x-2 font-heading font-bold text-[13px] uppercase tracking-[1px] text-[#ff5e14] hover:text-[#001659] transition-colors"
+                      >
+                        <span>Inquire About This Service</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </main>
 
           {/* Sidebar */}
@@ -189,7 +198,9 @@ export default function BlogPage() {
                 HEADQUARTERS
               </span>
               <h4 className="font-heading font-bold text-2xl text-white mb-3">
-                DeBaldiet Commodities (DC)
+                <EditableText path="company.name" as="span">
+                  {content.company?.name || 'DeBaldiet Commodities (DC)'}
+                </EditableText>
               </h4>
               <p className="text-sm text-white/80 leading-relaxed mb-6">
                 Accra, Ghana. We are your accountable trading and logistics partner.

@@ -1,55 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
+import EditableText from './cms/EditableText';
+import EditableImage from './cms/EditableImage';
 
 export default function ProjectsPortfolio({ onSelectProject }) {
   const [startIndex, setStartIndex] = useState(0);
-
-  const showcase = [
-    {
-      id: 1,
-      title: 'Chinese SUVs (BYD, Haval, Geely, Chery)',
-      category: 'Automotive (Brand New & Low-Mileage Slightly Used)',
-      image: '/chinese-suv-byd.jpg',
-      badge: 'CHINA TO ACCRA',
-      desc: 'Dual-inspected Chinese SUVs (new & low-mileage used) with optional Buy N Spec styling and 70/30 financing.'
-    },
-    {
-      id: 2,
-      title: 'Rugged Off-Road & Fleet SUVs (Tank 300 & Commercial)',
-      category: 'Automotive Procurement',
-      image: '/chinese-suv-tank300.jpg',
-      badge: 'OFF-ROAD & COMMERCIAL',
-      desc: 'High-performance Chinese SUVs and fleet vehicles sourced directly from tier-one manufacturers and verified hubs.'
-    },
-    {
-      id: 3,
-      title: '100% Virgin Human Hair & HD Lace Wigs',
-      category: 'Beauty & Hair Care',
-      image: '/project-3.jpg',
-      badge: 'SALON WHOLESALE',
-      desc: 'Single donor straight, body wave, and deep wave bundles with intact cuticles and custom HD lace frontals.'
-    },
-    {
-      id: 4,
-      title: 'Bulk Maize, Rice & Sorghum Supplies',
-      category: 'Agricultural Commodities',
-      image: '/project-4.jpg',
-      badge: 'STAPLE CROPS',
-      desc: 'Direct farm-gate aggregation delivering high-purity yellow maize, white rice, and sorghum to food processors.'
-    },
-    {
-      id: 5,
-      title: 'Soybeans, Legumes & Animal Feed Inputs',
-      category: 'Commercial Agro-Trade',
-      image: '/project-5.jpg',
-      badge: 'GRAIN TRADE',
-      desc: 'Screened oilseeds and raw agricultural inputs for commercial feed mills and institutional buyers.'
-    }
-  ];
+  const { content } = useCms();
+  const portfolio = content.portfolio || {};
+  const showcase = portfolio.items || [];
 
   const handlePrev = () => {
-    setStartIndex((prev) => (prev > 0 ? prev - 1 : showcase.length - 3));
+    setStartIndex((prev) => (prev > 0 ? prev - 1 : Math.max(0, showcase.length - 3)));
   };
 
   const handleNext = () => {
@@ -63,11 +26,17 @@ export default function ProjectsPortfolio({ onSelectProject }) {
       <div className="max-w-[1300px] mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-            DELIVERED COMMODITIES & VEHICLES
+            <EditableText path="portfolio.tagline" as="span">
+              {portfolio.tagline || 'DELIVERED COMMODITIES & VEHICLES'}
+            </EditableText>
           </span>
-          <h2 className="font-heading font-black text-[38px] sm:text-[52px] lg:text-[60px] text-white leading-tight tracking-tight">
-            Procurement Showcase
-          </h2>
+          <EditableText
+            path="portfolio.headline"
+            as="h2"
+            className="font-heading font-black text-[38px] sm:text-[52px] lg:text-[60px] text-white leading-tight tracking-tight block"
+          >
+            {portfolio.headline || 'Procurement Showcase'}
+          </EditableText>
         </div>
 
         {/* Carousel arrows */}
@@ -92,49 +61,67 @@ export default function ProjectsPortfolio({ onSelectProject }) {
       {/* Projects Grid / Carousel */}
       <div className="max-w-[1300px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
-          {visibleItems.map((item) => (
-            <div
-              key={item.id}
-              className="group relative bg-[#001c47] overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300 flex flex-col justify-between"
-            >
-              {/* Image */}
-              <div className="w-full h-[280px] overflow-hidden bg-gray-900 relative">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute top-4 right-4 bg-[#ff5e14] text-white px-2.5 py-0.5 text-[10px] font-heading font-black tracking-widest uppercase">
-                  {item.badge}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-8 flex flex-col justify-between flex-grow">
-                <div>
-                  <span className="font-heading uppercase text-[12px] tracking-[1.5px] text-[#ff5e14] block mb-2 font-bold">
-                    {item.category}
-                  </span>
-                  <h3 className="font-heading font-bold text-[22px] text-white leading-tight mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="font-body text-[14px] text-white/80 leading-relaxed mb-6">
-                    {item.desc}
-                  </p>
+          {visibleItems.map((item, relIdx) => {
+            const actualIdx = startIndex + relIdx;
+            return (
+              <div
+                key={item.id || actualIdx}
+                className="group relative bg-[#001c47] overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300 flex flex-col justify-between"
+              >
+                {/* Image */}
+                <div className="w-full h-[280px] overflow-hidden bg-gray-900 relative">
+                  <EditableImage
+                    path={`portfolio.items[${actualIdx}].image`}
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    title={`Change image for ${item.title}`}
+                  />
+                  <div className="absolute top-4 right-4 bg-[#ff5e14] text-white px-2.5 py-0.5 text-[10px] font-heading font-black tracking-widest uppercase z-10">
+                    <EditableText path={`portfolio.items[${actualIdx}].badge`} as="span">
+                      {item.badge}
+                    </EditableText>
+                  </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <Link
-                    to="/our-services"
-                    className="inline-flex items-center space-x-2 text-[14px] text-white font-heading font-semibold hover:text-[#ff5e14] transition-colors"
-                  >
-                    <span>View Specifications</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                {/* Content */}
+                <div className="p-8 flex flex-col justify-between flex-grow">
+                  <div>
+                    <span className="font-heading uppercase text-[12px] tracking-[1.5px] text-[#ff5e14] block mb-2 font-bold">
+                      <EditableText path={`portfolio.items[${actualIdx}].category`} as="span">
+                        {item.category}
+                      </EditableText>
+                    </span>
+                    <EditableText
+                      path={`portfolio.items[${actualIdx}].title`}
+                      as="h3"
+                      className="font-heading font-bold text-[22px] text-white leading-tight mb-3 block"
+                    >
+                      {item.title}
+                    </EditableText>
+                    <EditableText
+                      path={`portfolio.items[${actualIdx}].desc`}
+                      as="p"
+                      multiline
+                      className="font-body text-[14px] text-white/80 leading-relaxed mb-6 block"
+                    >
+                      {item.desc}
+                    </EditableText>
+                  </div>
+
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <Link
+                      to="/our-services"
+                      className="inline-flex items-center space-x-2 text-[14px] text-white font-heading font-semibold hover:text-[#ff5e14] transition-colors"
+                    >
+                      <span>View Specifications</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

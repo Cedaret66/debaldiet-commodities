@@ -7,6 +7,7 @@ import EditableImage from './cms/EditableImage';
 export default function TeamSection() {
   const { content } = useCms();
   const leadership = content.about?.leadership || {};
+  const teamSection = content.teamSection || {};
   const teamList = content.team || [
     {
       name: leadership.name || 'Joshua King Kotey',
@@ -46,7 +47,9 @@ export default function TeamSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
               <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-                EXECUTIVE PROFILE & LEADERSHIP MESSAGE
+                <EditableText path="about.leadership.tagline" as="span">
+                  {leadership.tagline || 'EXECUTIVE PROFILE & LEADERSHIP MESSAGE'}
+                </EditableText>
               </span>
               <EditableText
                 path="about.leadership.name"
@@ -114,11 +117,17 @@ export default function TeamSection() {
         {/* Operational Leadership Section */}
         <div className="mb-12">
           <span className="font-heading uppercase text-[12px] font-bold tracking-[2px] text-[#ff5e14] block mb-2">
-            ACCOUNTABLE OPERATIONS
+            <EditableText path="teamSection.tagline" as="span">
+              {teamSection.tagline || 'ACCOUNTABLE OPERATIONS'}
+            </EditableText>
           </span>
-          <h2 className="font-heading font-black text-[36px] sm:text-[48px] text-[#001659] leading-tight tracking-tight">
-            Leadership Across Our 3 Pillars
-          </h2>
+          <EditableText
+            path="teamSection.heading"
+            as="h2"
+            className="font-heading font-black text-[36px] sm:text-[48px] text-[#001659] leading-tight tracking-tight block"
+          >
+            {teamSection.heading || 'Leadership Across Our 3 Pillars'}
+          </EditableText>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -135,8 +144,10 @@ export default function TeamSection() {
                   className="w-full h-full object-cover"
                   title={`Change photo for ${member.name}`}
                 />
-                <div className="absolute top-3 right-3 bg-[#001659] text-white px-2.5 py-0.5 font-heading font-black text-[10px] uppercase tracking-wider z-10 pointer-events-none">
-                  {member.badge}
+                <div className="absolute top-3 right-3 bg-[#001659] text-white px-2.5 py-0.5 font-heading font-black text-[10px] uppercase tracking-wider z-10">
+                  <EditableText path={`team[${idx}].badge`} as="span">
+                    {member.badge}
+                  </EditableText>
                 </div>
               </div>
 
