@@ -292,7 +292,7 @@ export default function CarsShowcasePage() {
                       {/* 70/30 Breakdown highlight - Automatically calculated at 70% */}
                       {(() => {
                         const autoDeposit = calculate70PercentDeposit(car.price);
-                        const displayDeposit = autoDeposit || car.deposit70;
+                        const displayDeposit = autoDeposit || (car.deposit70 ? String(car.deposit70).replace('$', '₵') : '');
                         if (!displayDeposit) return null;
                         return (
                           <div className="mt-2 py-1.5 px-2.5 bg-[#f8f9fa] border-l-2 border-[#ff5e14] flex items-center justify-between text-xs font-heading">

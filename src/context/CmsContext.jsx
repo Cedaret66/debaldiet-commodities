@@ -1,9 +1,49 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { siteData as defaultSiteData } from '../data/siteData';
+import { calculate70PercentDeposit } from '../utils/pricing';
 
 const STORAGE_KEY = 'debaldiet_cms_content_v4';
 const AUTH_KEY = 'debaldiet_cms_auth_v2';
 const CLOUD_SYNC_KEY = 'debaldiet_cloud_sync_config_v2';
+
+export function sanitizeCediData(obj) {
+  if (!obj || typeof obj !== 'object') return obj;
+  const cloned = JSON.parse(JSON.stringify(obj));
+  if (cloned.showcases?.cars?.items && Array.isArray(cloned.showcases.cars.items)) {
+    cloned.showcases.cars.items.forEach((car) => {
+      if (car.deposit70 && String(car.deposit70).includes('$')) {
+        car.deposit70 = calculate70PercentDeposit(car.price) || String(car.deposit70).replace(/\$/g, '₵');
+      }
+      if (car.currency && String(car.currency).includes('USD')) {
+        car.currency = 'GH₵ Landed Tema';
+      }
+      if (car.price && String(car.price).includes('$')) {
+        car.price = String(car.price).replace(/\$/g, '₵');
+      }
+    });
+  }
+  if (cloned.showcases?.hair?.items && Array.isArray(cloned.showcases.hair.items)) {
+    cloned.showcases.hair.items.forEach((hair) => {
+      if (hair.price && String(hair.price).includes('$')) {
+        hair.price = String(hair.price).replace(/\$/g, '₵');
+      }
+      if (hair.localPrice && String(hair.localPrice).includes('$')) {
+        hair.localPrice = '';
+      }
+    });
+  }
+  if (cloned.showcases?.agriculture?.items && Array.isArray(cloned.showcases.agriculture.items)) {
+    cloned.showcases.agriculture.items.forEach((agri) => {
+      if (agri.price && String(agri.price).includes('$')) {
+        agri.price = String(agri.price).replace(/\$/g, '₵');
+      }
+      if (agri.localPrice && String(agri.localPrice).includes('$')) {
+        agri.localPrice = '';
+      }
+    });
+  }
+  return cloned;
+}
 
 const LEGACY_STORAGE_KEYS = [
   'debaldiet_cms_content_v4',
@@ -21,11 +61,12 @@ function loadPersistedContent() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed && typeof parsed === 'object') {
+          const sanitized = sanitizeCediData(parsed);
           // Always ensure the active key has the latest data
           if (key !== STORAGE_KEY) {
-            localStorage.setItem(STORAGE_KEY, saved);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(sanitized));
           }
-          return parsed;
+          return sanitized;
         }
       }
     } catch (e) {
@@ -109,7 +150,7 @@ export function CmsProvider({ children }) {
     try {
       const saved = loadPersistedContent();
       if (saved) {
-        return deepMerge(defaultSiteData, saved);
+        return sanitizeCediData(deepMerge(defaultSiteData, saved));
       }
     } catch (e) {
       console.warn('Error reading saved CMS content:', e);
@@ -121,7 +162,7 @@ export function CmsProvider({ children }) {
     try {
       const saved = loadPersistedContent();
       if (saved) {
-        return deepMerge(defaultSiteData, saved);
+        return sanitizeCediData(deepMerge(defaultSiteData, saved));
       }
     } catch {
       // ignore
@@ -195,7 +236,7 @@ export function CmsProvider({ children }) {
         if (res.ok) {
           const rows = await res.json();
           if (rows?.[0]?.data && isMounted) {
-            const merged = { ...defaultSiteData, ...rows[0].data };
+            const merged = sanitizeCediData(deepMerge(defaultSiteData, rows[0].data));
             setContent(merged);
             setSavedContent(merged);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));

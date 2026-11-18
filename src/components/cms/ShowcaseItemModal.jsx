@@ -16,8 +16,8 @@ export default function ShowcaseItemModal({
       title: 'Add New Vehicle to Showcase',
       nameLabel: 'Car / Model Name',
       namePlaceholder: 'e.g. BYD Leopard 5 Hybrid Off-Road SUV',
-      pricePlaceholder: 'e.g. $42,500 Landed Tema',
-      depositPlaceholder: 'e.g. $29,750 (70% Initial Deposit)',
+      pricePlaceholder: 'e.g. ₵150,000 including shipping',
+      depositPlaceholder: 'e.g. ₵105,000 (70% Initial Deposit)',
       tagPlaceholder: 'e.g. Hybrid & EV or Off-Road 4x4',
       badgePlaceholder: 'e.g. NEW ARRIVAL, POPULAR',
       defaultImg: '/chinese-suv-byd.jpg',
@@ -26,8 +26,8 @@ export default function ShowcaseItemModal({
     hair: {
       title: 'Add New Hair / Beauty Product',
       nameLabel: 'Product Name / Texture',
-      namePlaceholder: 'e.g. Raw Cambodian Deep Wavy 3-Bundle Deal',
-      pricePlaceholder: 'e.g. $145 – $260 / Bundle Set',
+      namePlaceholder: 'e.g. French Curls Braid Extensions',
+      pricePlaceholder: 'e.g. ₵28 / Bundle',
       depositPlaceholder: 'e.g. 70/30 Commercial Salon Plan',
       tagPlaceholder: 'e.g. Raw Bundles or HD Lace Wigs',
       badgePlaceholder: 'e.g. 100% UNPROCESSED, SALON GRADE',
@@ -37,8 +37,8 @@ export default function ShowcaseItemModal({
     agriculture: {
       title: 'Add New Agro-Commodity',
       nameLabel: 'Commodity Name & Grade',
-      namePlaceholder: 'e.g. Premium White Sesame Seeds (99.5% Purity)',
-      pricePlaceholder: 'e.g. $1,420 – $1,550 / Metric Ton',
+      namePlaceholder: 'e.g. Commercial Grade-1 Yellow & White Maize',
+      pricePlaceholder: 'e.g. ₵160 / 50kg Sack',
       depositPlaceholder: 'e.g. Spot CIF Tema or Farm-Gate FOB',
       tagPlaceholder: 'e.g. Export Cash Crops or Grains & Cereals',
       badgePlaceholder: 'e.g. EXPORT QUALITY, ASSAY TESTED',
@@ -182,7 +182,7 @@ export default function ShowcaseItemModal({
                 className="w-full px-3.5 py-2 text-sm border border-gray-300 rounded focus:border-[#ff5e14] focus:outline-none"
               />
               <span className="text-[11px] text-[#565969] mt-0.5 block">
-                e.g. $35,000 or $38,000 – $42,000
+                e.g. ₵120,000 or ₵150,000 – ₵180,000
               </span>
             </div>
             <div>

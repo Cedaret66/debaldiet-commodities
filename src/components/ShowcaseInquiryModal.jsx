@@ -39,7 +39,7 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
   const isSold = (item.availability || '').toLowerCase() === 'sold';
 
   const getWhatsAppLink = () => {
-    const deposit = calculate70PercentDeposit(item.price) || item.deposit70;
+    const deposit = calculate70PercentDeposit(item.price) || (item.deposit70 ? String(item.deposit70).replace('$', '₵') : '');
     const depositNote = deposit ? ` [70% Deposit: ${deposit}]` : '';
     const statusNote = isSold ? ' [UNIT IS SOLD - Inquiring for direct sourcing of same model under 70/30 scheme]' : '';
     const text = encodeURIComponent(
@@ -127,7 +127,7 @@ export default function ShowcaseInquiryModal({ item, type = 'cars', onClose }) {
                 <div className="mt-2 py-1 px-2 bg-white border border-[#e8e8e9] inline-flex items-center gap-1.5 text-xs font-heading">
                   <span className="text-[#565969]">70% Initial Deposit:</span>
                   <span className="text-[#ff5e14] font-bold">
-                    {calculate70PercentDeposit(item.price) || item.deposit70}
+                    {calculate70PercentDeposit(item.price) || (item.deposit70 ? String(item.deposit70).replace('$', '₵') : '')}
                   </span>
                   <span className="text-gray-300">•</span>
                   <span className="text-[#001659] text-[11px]">30% on Handover</span>
